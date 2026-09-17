@@ -89,7 +89,7 @@ REGULAR
 correctness
 
 12
-The Underwood verification/back-substitution block in `CH4_C2H4_FUG_Calculation_Record.pdf` presents the semantically equivalent checks as the corresponding expected file, with the back substituted values matching within ±0.0001.
+The Underwood verification/back-substitution block in `CH4_C2H4_FUG_Calculation_Record.pdf` reports the feed Underwood equation result, the distillate reflux equation result, the Rmin-from-reflux value, the CH4 and C2H4 component-balance checks, and the overall balance closure, with each value matching the corresponding expected file within ±0.0001.
 10
 
 REGULAR
@@ -103,14 +103,14 @@ REGULAR
 correctness
 
 14
-`CH4_C2H4_FUG_Calculation_Record.pdf` resolved all placeholders, showing no `--`, curly-brace instructions, or fill-in prompts, consistent with the fully resolved content of the corresponding expected file.
+`CH4_C2H4_FUG_Calculation_Record.pdf` shows no `--`, curly-brace instructions, or fill-in prompts in any of its ten numbered sections, matching the fully resolved section content of the corresponding expected file.
 5
 
 REGULAR
 correctness
 
 15
-`CH4_C2H4_FUG_Executive_Memo.pdf` presents `To`, `From`, `Date`, `Subject`, and `Revision` fields, with `To` and `From` entries using role-based entries rather than invented personal names.
+`CH4_C2H4_FUG_Executive_Memo.pdf` presents `To`, `From`, `Date`, `Subject`, and `Revision` fields matching the corresponding expected file, with `To` and `From` entries using role-based entries rather than invented personal names.
 8
 
 REGULAR
@@ -152,7 +152,7 @@ REGULAR
 correctness
 
 21
-`CH4_C2H4_FUG_Key_Results.pptx` presents the operating reflux ratio R and the other principal shortcut result values, each shown under its own label and matching the corresponding expected file within ±0.01.
+The "Principal shortcut results" slide of `CH4_C2H4_FUG_Key_Results.pptx` presents the operating reflux ratio R, the Underwood root theta, Rmin, Nmin, and the Gilliland/Eduljee theoretical stage estimate, each shown under its own label and matching the corresponding expected file within ±0.01.
 15
 
 REGULAR
@@ -215,7 +215,7 @@ REGULAR
 correctness
 
 30
-`CH4_C2H4_FUG_Key_Results.pptx` identifies relevant, technically supported engineering implications and limitations of the shortcut validation that are consistent with, and not contradicted by, the implications/limitations of the corresponding expected file.
+The engineering implications and limitations identified in `CH4_C2H4_FUG_Key_Results.pptx` are semantically equivalent to the corresponding expected file.
 5
 
 REGULAR
