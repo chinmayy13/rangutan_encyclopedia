@@ -72,10 +72,12 @@ its spatial-accuracy numbers are too unstable to trust for autonomous node place
 this stack could not reliably determine where to insert a new node.
 
 **Add `elkjs`.** It is the single change most correlated with run-to-run stability across every metric,
-including the two metrics agents most need for autonomous operation: spatial accuracy (positioning) and
-page-navigation success (knowing which page to open). It is also the largest latency addition in the
-set — roughly 190 ms on the base stack — which is the trade worth taking here, since an unstable
-position signal fails the task at any speed.
+including the three things agents most need for autonomous operation: spatial accuracy (positioning),
+page-navigation success (knowing which page to open), and dependency-resolution accuracy (knowing what
+a node depends on). It is also the largest latency addition in the set, roughly 190 ms on the base
+stack, which is the trade worth taking here: an unstable position signal, an unreliable page-navigation
+result, or an incomplete dependency lookup each break autonomous operation outright, so the added
+latency is worth paying for the reliability gained across all three.
 
 **Also add `d3-hierarchy`, as a complement to `elkjs` rather than a substitute for it.** It provides the
 page/parent-container context an agent needs to reason about "which page does this belong to," but the
