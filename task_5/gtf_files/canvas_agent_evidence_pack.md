@@ -66,7 +66,8 @@ and whether `d3-hierarchy` is needed for page context. The full reconciliation t
 
 ## Recommendation
 
-**`react-flow + roughjs + dagre` alone is not enough.** It gets dependency resolution right, but its
+**`react-flow + roughjs + dagre` alone is not enough.** It resolves dependencies consistently, but only
+reaches a ~60-61% hit rate — well below the ~78-85% the `elkjs`-equipped stacks reach — and its
 spatial-accuracy numbers are too unstable to trust for autonomous node placement — an agent using this
 stack could not reliably determine where to insert a new node.
 
