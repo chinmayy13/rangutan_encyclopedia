@@ -41,7 +41,7 @@ REGULAR
 correctness
 
 6
-`library_delta_table.md` reconciles the disagreements between `capability_notes_source_a.md` and `capability_notes_source_b.md`, addressing at minimum the two disagreements the prompt explicitly names: whether `roughjs` exposes bounding-box metadata natively, and whether `elkjs` is necessary.
+`library_delta_table.md`'s reconciliation table addresses, at minimum, the disagreement over whether `roughjs` exposes bounding-box metadata natively and the disagreement over whether `elkjs` is necessary, with conclusions semantically equivalent to the corresponding expected file.
 20
 REGULAR
 correctness
@@ -71,7 +71,7 @@ REGULAR
 correctness
 
 11
-The embedded reconciliation content in `canvas_agent_evidence_pack.md` is semantically equivalent to the corresponding content in the expected file, covering the same conflict areas and conclusions.
+`canvas_agent_evidence_pack.md` includes the full reconciliation table, with each conflict area's Source A position, Source B position, benchmark evidence, and supported source, matching the corresponding expected file.
 8
 REGULAR
 correctness
@@ -125,7 +125,7 @@ REGULAR
 visual
 
 20
-The recommendation in `canvas_agent_evidence_pack.md` acknowledges the layout-latency cost of the recommended configuration, consistent with the corresponding expected file.
+The recommendation in `canvas_agent_evidence_pack.md` weighs the layout-latency cost of the recommended configuration against the reliability gains in node placement, page navigation, and dependency reasoning, reaching the same trade-off judgment as the corresponding expected file.
 10
 REGULAR
 correctness
