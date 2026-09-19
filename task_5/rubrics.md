@@ -41,7 +41,7 @@ REGULAR
 correctness
 
 6
-`library_delta_table.md` contains a reconciliation table covering the same conflict areas addressed in the corresponding expected file (`roughjs` bounding-box exposure, `dagre` dependency-resolution sufficiency, `elkjs` necessity, `d3-hierarchy` for page/content context).
+`library_delta_table.md` reconciles the disagreements between `capability_notes_source_a.md` and `capability_notes_source_b.md`, addressing at minimum the two disagreements the prompt explicitly names: whether `roughjs` exposes bounding-box metadata natively, and whether `elkjs` is necessary.
 20
 REGULAR
 correctness
@@ -107,7 +107,7 @@ REGULAR
 correctness
 
 17
-The chart in `benchmark_comparison_annotated.png` presents a legible grouped-bar comparison of both runs across all four stacks and all four metrics, using faceting, nested grouping, or another clear grouped arrangement, with distinguishable Run 1 and Run 2 colors and a legend identifying the runs.
+The chart in `benchmark_comparison_annotated.png` presents a legible grouped-bar comparison of both runs across all four stacks and all four metrics, using faceting, nested grouping, or another clear grouped arrangement, with Run 1 and Run 2 unambiguously distinguishable and identified, whether via color, pattern, direct labeling, a legend, or another clear encoding.
 30
 REGULAR
 visual
