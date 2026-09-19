@@ -3,7 +3,7 @@ Write criteria that encompass all requirements needed to fulfill this prompt.
 Edit raw criteria
 
 Table view
-(19/19 completed)
+(20/20 completed)
 
 Criterion
 Weight
@@ -59,66 +59,72 @@ REGULAR
 correctness
 
 9
+For each conflict area in `library_delta_table.md`, the table states Source A's position, Source B's position, and which source the benchmark evidence supports, matching the corresponding expected file.
+15
+REGULAR
+correctness
+
+10
 `canvas_agent_evidence_pack.md` embeds the benchmark chart image (`benchmark_comparison_annotated.png`), as shown in the corresponding expected file.
 5
 REGULAR
 correctness
 
-10
-`canvas_agent_evidence_pack.md` embeds the delta table's reconciliation content from `library_delta_table.md` directly, rather than only referencing or summarizing it, matching the corresponding expected file.
+11
+The embedded reconciliation content in `canvas_agent_evidence_pack.md` is semantically equivalent to the corresponding content in the expected file, covering the same conflict areas and conclusions.
 8
 REGULAR
 correctness
 
-11
+12
 The benchmark evidence section in `canvas_agent_evidence_pack.md` conveys the same key methodology and divergence findings as the corresponding expected file.
 10
 REGULAR
 correctness
 
-12
-The reconciled capability-notes summary in `canvas_agent_evidence_pack.md` is consistent with the conclusions reached for each conflict area in `library_delta_table.md`, with no contradictions between the two files.
+13
+The capability-notes summary in `canvas_agent_evidence_pack.md` is semantically equivalent to the corresponding summary in the expected file, reaching the same conclusion for each conflict area.
 10
 REGULAR
 correctness
 
-13
+14
 The recommendation in `canvas_agent_evidence_pack.md` reaches the same overall conclusion on stack sufficiency, the primary library addition, any complementary addition, and the final recommended configuration as the corresponding expected file.
 40
 REGULAR
 correctness
 
-14
+15
 The recommendation in `canvas_agent_evidence_pack.md` addresses autonomous node placement, page/view navigation, and dependency reasoning, consistent with the corresponding expected file.
 10
 REGULAR
 correctness
 
-15
-`canvas_agent_evidence_pack.md` includes a background section framing the agent-canvas problem, consistent with the corresponding expected file.
+16
+The agent-canvas problem is framed with the same context and stakes as the corresponding expected file, whether in an introduction, background, or elsewhere in `canvas_agent_evidence_pack.md`.
 5
 REGULAR
 correctness
 
-16
-The chart in `benchmark_comparison_annotated.png` uses a grouped bar layout faceted by metric, with distinguishable Run 1 and Run 2 bar colors and a legend identifying the runs, comparable to the corresponding expected file.
+17
+The chart in `benchmark_comparison_annotated.png` presents a legible grouped-bar comparison of both runs across all four stacks and all four metrics, using faceting, nested grouping, or another clear grouped arrangement, with distinguishable Run 1 and Run 2 colors and a legend identifying the runs.
 30
 REGULAR
 visual
 
-17
+18
 All text in `benchmark_comparison_annotated.png` including axis labels, stack names, metric titles, divergence annotations, and the legend is legible, with no overlapping, truncation, or clipping.
 25
 REGULAR
 visual
 
-18
+19
 The chart in `benchmark_comparison_annotated.png` has a descriptive title and appropriate axis labels, comparable to the corresponding expected file.
 20
 REGULAR
 visual
 
-19
+20
 The recommendation in `canvas_agent_evidence_pack.md` acknowledges the layout-latency cost of the recommended configuration, consistent with the corresponding expected file.
 10
 REGULAR
