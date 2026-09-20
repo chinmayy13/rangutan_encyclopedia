@@ -1,3 +1,0 @@
-I dropped the literal "open RStudio, use canvas_benchmark_analysis.R to load both CSVs" instruction because naming the exact app and script hands the agent a procedure instead of a business ask, and turned it into an optional, softly-worded mention of the script instead. I reworded the "interact with the RStudio plot pane, adjust label placement" bit into an outcome - the chart just needs to render clean and readable, since dictating literal clicks isn't how a real manager would phrase it. Same logic applied to "use the VSCode side-by-side diff view," which I cut entirely and replaced with just the actual goal, reconciling the conflicting notes against the benchmark data.
-
-Reviewer: Added backticks to file names and gave context for `recommendation_draft.md`.
