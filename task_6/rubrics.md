@@ -92,7 +92,7 @@ The panel tags, the panel titles, the legends and the caption of `XPS_Sulfur_Reg
 8 points · REGULAR · visual
 
 22
-In `XPS_Analysis_Record.docx`, no section heading is left stranded at the foot of a page as in the corresponding expected file.
+Every section heading in `XPS_Analysis_Record.docx` stays on the same page as the paragraph or table that immediately follows it, as in the corresponding expected file.
 6 points · REGULAR · visual
 
 23
@@ -104,25 +104,25 @@ The failure-day callout in panel (b) of `XPS_Sulfur_Region.pdf` is fully legible
 6 points · REGULAR · visual
 
 25
-The assignment table in `XPS_Analysis_Record.docx` shows every column in full on the page with all cell text legible at normal viewing size, matching the corresponding expected file.
-6 points · REGULAR · visual
+Every table in `XPS_Analysis_Record.docx` shows every column in full on the page with all cell text legible at normal viewing size, matching the corresponding expected file.
+10 points · REGULAR · visual
 
 26
-The performance table in `XPS_Analysis_Record.docx` shows every column in full on the page with all cell text legible at normal viewing size, matching the corresponding expected file.
-6 points · REGULAR · visual
-
-27
 Panel (a) of `XPS_Sulfur_Region.pdf` draws the raw scan, the smoothed trace and the background, distinguishable from one another, matching the corresponding expected file.
 6 points · REGULAR · visual
 
-28
-The peak assignment and column performance sheets of `Speciation_Summary.xlsx` are set to print on a single page.
+27
+The peak assignment and column performance sheets of `Speciation_Summary.xlsx` are set to print on a single page, with all cell text legible at normal viewing size.
 5 points · REGULAR · format_gate
 
-29
+28
 The spectrum sheet of `Speciation_Summary.xlsx` repeats its header row across printed pages, matching the corresponding expected file.
 5 points · REGULAR · visual
 
-30
+29
 Every negative removal value in `Speciation_Summary.xlsx` is shown in red, matching the corresponding expected file.
 6 points · REGULAR · visual
+
+30
+In `XPS_Analysis_Record.docx`, the completed sulfur-region-and-column-performance figure is embedded directly above the `Figure 1` caption in place of the template's placeholder text, and the embedded image is the same figure saved as `XPS_Sulfur_Region.pdf`.
+18 points · REGULAR · correctness
