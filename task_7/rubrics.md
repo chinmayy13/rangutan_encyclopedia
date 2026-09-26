@@ -24,7 +24,7 @@ Output includes a file named `Executive Technical Recommendation.pdf` with the .
 5 points · MUST-PASS · format_gate
 
 5
-Both the pH 3 and pH 9 tables in `Summary of Adsorption Data at pH 3 and 9.docx` have one row per timestamp and use the same column structure — timestamp, absorbance at the analytical wavelength, calculated concentration, adsorption capacity, and adsorption efficiency — matching the corresponding expected file; additional consistent columns are acceptable.
+Both the pH 3 and pH 9 tables in `Summary of Adsorption Data at pH 3 and 9.docx` have one row per timestamp and use the same column structure (timestamp, absorbance at the analytical wavelength, calculated concentration, adsorption capacity, and adsorption efficiency), matching the corresponding expected file; additional consistent columns are acceptable.
 15 points · REGULAR · correctness
 
 6
@@ -76,7 +76,7 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 15 points · REGULAR · correctness
 
 18
-`Executive Technical Recommendation.pdf` reports the fitted pseudo-second-order kinetic parameters for both pH conditions — the equilibrium capacity within ±10% and the rate constant within ±25% of the values in the corresponding expected file.
+`Executive Technical Recommendation.pdf` reports the fitted pseudo-second-order kinetic parameters for both pH conditions: the equilibrium capacity within ±10% and the rate constant within ±25% of the values in the corresponding expected file.
 25 points · REGULAR · correctness
 
 19
@@ -88,7 +88,7 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 10 points · REGULAR · correctness
 
 21
-`Executive Technical Recommendation.pdf` notes that the fitted equilibrium capacities of the two conditions are close to one another — unlike the gap between their last-reading values — and grounds the practical difference between the two conditions in their fitted rate constants, semantically equivalent to the corresponding expected file.
+`Executive Technical Recommendation.pdf` notes that the fitted equilibrium capacities of the two conditions are close to one another, unlike the gap between their last-reading values, and grounds the practical difference between the two conditions in their fitted rate constants, semantically equivalent to the corresponding expected file.
 12 points · REGULAR · correctness
 
 22
