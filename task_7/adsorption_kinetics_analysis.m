@@ -6,10 +6,19 @@
 %        -> adsorption capacity and efficiency (mass balance)
 %        -> pseudo-second-order kinetic fit (Gauss-Newton)
 %
-% Run this whole script in Octave. It prints the capacity/efficiency
-% table for both pH conditions and the fitted qe, k2, R^2 for each.
+% Run this whole script in Octave, e.g. from a terminal:
+%   octave adsorption_kinetics_analysis.m
+% It prints the capacity/efficiency table for both pH conditions and the
+% fitted qe, k2, R^2 for each, plus the percent-improvement and speciation
+% numbers used in the PDF.
+%
+% NOTE: the two local functions below are defined BEFORE the script code
+% that calls them. Octave requires that order when a script is run
+% directly (as opposed to loaded with `run`) -- don't move them to the
+% end, that will break it with "'capacity_efficiency' undefined".
 
 clear; clc;
+warning('off', 'Octave:nearly-singular-matrix');  % benign, happens right at convergence
 
 % --- Constants from Data Information table.docx ---
 V = 0.120;      % volume of adsorbate, L
@@ -55,7 +64,7 @@ function [qe, k2, R2] = fit_pso(t, q)
     J = [dfdqe, dfdk2];
     dp = (J' * J) \ (J' * r);
     p = p + dp;
-    if norm(dp) < 1e-12
+    if norm(dp) < 1e-10
       break;
     endif
   endfor
