@@ -90,3 +90,20 @@ printf("pH 3 last-reading capacity/efficiency: %.2f mol/g, %.0f%%\n", q3(end), e
 printf("pH 9 last-reading capacity/efficiency: %.2f mol/g, %.0f%%\n", q9(end), eff9(end));
 printf("pH 3 fitted qe/k2/R2: %.1f, %.2e, %.3f\n", qe3, k2_3, R2_3);
 printf("pH 9 fitted qe/k2/R2: %.1f, %.2e, %.3f\n", qe9, k2_9, R2_9);
+
+% --- Percent improvement of pH 3 over pH 9, using the unrounded efficiency
+%     values (not the table's displayed whole-number percentages) ---
+cap_improvement = (q3(end) - q9(end)) / q9(end) * 100;
+eff_improvement = (eff3(end) - eff9(end)) / eff9(end) * 100;
+printf("Percent improvement, pH 3 over pH 9: capacity %.0f%%, efficiency %.0f%%\n", ...
+       cap_improvement, eff_improvement);
+
+% --- Speciation percentages (Henderson-Hasselbalch) ---
+% fraction deprotonated = 10^(pH-pKa) / (1 + 10^(pH-pKa))
+pKa = 3.55;
+for pH = [3 9]
+  ratio = 10^(pH - pKa);
+  frac_deprot = ratio / (1 + ratio) * 100;
+  frac_prot = 100 - frac_deprot;
+  printf("pH %d speciation: %.0f%% protonated, %.1f%% deprotonated\n", pH, frac_prot, frac_deprot);
+endfor
