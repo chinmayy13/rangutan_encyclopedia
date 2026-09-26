@@ -72,8 +72,8 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 8 points · REGULAR · correctness
 
 17
-`Executive Technical Recommendation.pdf` justifies the analytical-wavelength choice by referencing features of the UV-Vis spectra, consistent with the corresponding expected file (exact wording not required).
-12 points · REGULAR · correctness
+`Executive Technical Recommendation.pdf` justifies the analytical-wavelength choice by addressing why 325 nm is used for quantitation even though the full absorbance scan in `Kinetic data.xlsx` shows a taller peak elsewhere, consistent with the reasoning in the corresponding expected file (exact wording not required).
+15 points · REGULAR · correctness
 
 18
 `Executive Technical Recommendation.pdf` reports the fitted pseudo-second-order kinetic parameters for both pH conditions — the equilibrium capacity within ±10% and the rate constant within ±25% of the values in the corresponding expected file.
