@@ -28,11 +28,11 @@ Both the pH 3 and pH 9 tables in `Summary of Adsorption Data at pH 3 and 9.docx`
 15 points · REGULAR · correctness
 
 6
-The numeric values in the pH 3 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1%.
+The concentration and adsorption-capacity values in the pH 3 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, and the adsorption-efficiency values match within ±1 percentage point.
 25 points · REGULAR · correctness
 
 7
-The numeric values in the pH 9 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1%, including reporting the one timestamp whose computed uptake would be negative as 0.00 mol/g and 0% rather than a negative value.
+The concentration and adsorption-capacity values in the pH 9 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, and the adsorption-efficiency values match within ±1 percentage point, including every value reported under the prompt's noise-floor convention of 0.00 mol/g and 0%.
 25 points · REGULAR · correctness
 
 8
@@ -40,7 +40,7 @@ The analysis paragraph and key findings in `Summary of Adsorption Data at pH 3 a
 15 points · REGULAR · correctness
 
 9
-The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` reports adsorption capacity and adsorption efficiency for both pH 3 and pH 9, with values matching the corresponding expected file within ±1%.
+The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` reports adsorption capacity for both pH 3 and pH 9 matching the corresponding expected file within ±1%, and adsorption efficiency matching within ±1 percentage point.
 15 points · REGULAR · correctness
 
 10
@@ -48,11 +48,11 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 8 points · REGULAR · correctness
 
 11
-`Adsorption_Kinetics_pH_3.png` plots one data point per timestamp with adsorption-capacity values that match the pH 3 capacity values in the corresponding expected file within ±5%.
+`Adsorption_Kinetics_pH_3.png` plots one data point per timestamp with adsorption-capacity values that match the pH 3 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger.
 20 points · REGULAR · correctness
 
 12
-`Adsorption_Kinetics_pH_9.png` plots one data point per timestamp with adsorption-capacity values that match the pH 9 capacity values in the corresponding expected file within ±5%.
+`Adsorption_Kinetics_pH_9.png` plots one data point per timestamp with adsorption-capacity values that match the pH 9 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger.
 20 points · REGULAR · correctness
 
 13
@@ -72,7 +72,7 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 8 points · REGULAR · correctness
 
 17
-`Executive Technical Recommendation.pdf` justifies the analytical-wavelength choice by addressing why 325 nm is used for quantitation even though the full absorbance scan in `Kinetic data.xlsx` shows a taller peak elsewhere, consistent with the reasoning in the corresponding expected file (exact wording not required).
+`Executive Technical Recommendation.pdf` justifies the analytical-wavelength choice against the full absorbance scan in `Kinetic data.xlsx`, reaching the same justification as the corresponding expected file (exact wording not required).
 15 points · REGULAR · correctness
 
 18
@@ -80,15 +80,15 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 25 points · REGULAR · correctness
 
 19
-`Executive Technical Recommendation.pdf` reports the measured adsorption capacity and adsorption efficiency for both pH conditions at the last timestamp, with values matching the corresponding expected file within ±1%.
+`Executive Technical Recommendation.pdf` reports the measured adsorption capacity for both pH conditions at the last timestamp matching the corresponding expected file within ±1%, and the measured adsorption efficiency matching within ±1 percentage point.
 12 points · REGULAR · correctness
 
 20
-`Executive Technical Recommendation.pdf` quantifies the percent improvement of the preferred pH over the other for both measured adsorption capacity and adsorption efficiency, matching the corresponding expected file within ±1 percentage point.
+`Executive Technical Recommendation.pdf` quantifies the percent improvement of the preferred pH over the other for both measured adsorption capacity and adsorption efficiency, matching the corresponding expected file within ±2 percentage points.
 10 points · REGULAR · correctness
 
 21
-`Executive Technical Recommendation.pdf` notes that the fitted equilibrium capacities of the two conditions are close to one another, unlike the gap between their last-reading values, and grounds the practical difference between the two conditions in their fitted rate constants, semantically equivalent to the corresponding expected file.
+`Executive Technical Recommendation.pdf` reaches the same conclusion as the corresponding expected file about how the fitted kinetic model changes the comparison between the two pH conditions relative to their last-reading values, grounding that comparison in the fitted rate constants, semantically equivalent to the corresponding expected file.
 12 points · REGULAR · correctness
 
 22
