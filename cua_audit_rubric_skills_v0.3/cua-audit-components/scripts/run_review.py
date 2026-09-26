@@ -22,10 +22,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
 import time
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -231,14 +233,15 @@ def run_one(job: tuple[str, dict]) -> dict:
 
     t0 = time.time()
     cmd = ["claude", "--print", "--model", comp["model"], "--effort", EFFORT,
-           "--permission-mode", "bypassPermissions",
+           "--permission-mode", "bypassPermissions", "--session-id", str(uuid.uuid4()),
            "--output-format", "stream-json", "--verbose",
            "--json-schema", json.dumps(schema_for(comp))]
     final, n_ev = None, 0
+    child_env = {**os.environ, "IS_SANDBOX": "1"}
     try:
         with subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               stderr=subprocess.DEVNULL, text=True, encoding="utf-8",
-                              bufsize=1, cwd=str(AUDIT / unit)) as p, \
+                              bufsize=1, cwd=str(AUDIT / unit), env=child_env) as p, \
                 (d / f"{comp['num']}.stream.jsonl").open("w", encoding="utf-8") as sf:
             p.stdin.write(prompt)
             p.stdin.close()

@@ -23,11 +23,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
 import threading
 import time
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -435,14 +437,16 @@ def run_one(unit: str) -> dict:
 
     cmd = ["claude", "--print", "--model", MODEL, "--effort", EFFORT,
            "--tools", "", "--permission-mode", "bypassPermissions",
+           "--session-id", str(uuid.uuid4()),
            "--output-format", "stream-json", "--verbose",
            "--json-schema", json.dumps(SCHEMA)]
     final, n_ev = None, 0
+    child_env = {**os.environ, "IS_SANDBOX": "1"}
     done, fired = threading.Event(), threading.Event()
     try:
         with subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               stderr=subprocess.DEVNULL, text=True, encoding="utf-8",
-                              bufsize=1, cwd=str(d)) as p, \
+                              bufsize=1, cwd=str(d), env=child_env) as p, \
                 (d / "component_review_summary.stream.jsonl").open("w", encoding="utf-8") as sf:
             threading.Thread(target=watchdog, daemon=True,
                              args=(p, t0, f"{unit[:8]} summary", done, fired)).start()
