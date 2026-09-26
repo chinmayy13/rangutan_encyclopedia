@@ -1,5 +1,5 @@
 Write criteria that encompass all requirements needed to fulfill this prompt.
-29/29 completed
+30/30 completed
 
 Edit raw criteria
 
@@ -36,11 +36,11 @@ The numeric values in the pH 9 table in `Summary of Adsorption Data at pH 3 and 
 25 points · REGULAR · correctness
 
 8
-The analysis paragraph in `Summary of Adsorption Data at pH 3 and 9.docx` compares how adsorption capacity and adsorption efficiency evolve over time at pH 3 and pH 9 and reaches the same conclusion about which pH performs better as the corresponding expected file.
+The analysis paragraph and key findings in `Summary of Adsorption Data at pH 3 and 9.docx` compare how adsorption capacity and adsorption efficiency evolve over time at pH 3 and pH 9, reach the same conclusion about which pH performs better, and note that neither condition had leveled off by the last timestamp, consistent with the corresponding expected file.
 15 points · REGULAR · correctness
 
 9
-The key-findings summary table in `Summary of Adsorption Data at pH 3 and 9.docx` reports adsorption capacity and adsorption efficiency for both pH 3 and pH 9, with values matching the corresponding expected file within ±1%.
+The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` reports adsorption capacity and adsorption efficiency for both pH 3 and pH 9, with values matching the corresponding expected file within ±1%.
 15 points · REGULAR · correctness
 
 10
@@ -116,9 +116,13 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 15 points · REGULAR · visual
 
 28
-The pH 3 table, the pH 9 table, and the key-findings/side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` are all visually well-formatted: text and numbers fit within the table cell boundaries and no row splits awkwardly across pages, comparable to the corresponding expected file.
+The pH 3 table, the pH 9 table, and the side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` are all visually well-formatted: text and numbers fit within the table cell boundaries and no row splits awkwardly across pages, comparable to the corresponding expected file.
 20 points · REGULAR · visual
 
 29
 `Executive Technical Recommendation.pdf` is professionally formatted and readable, comparable in quality to the corresponding expected file.
 20 points · REGULAR · visual
+
+30
+The title and axis labels in `Adsorption_Kinetics_pH_3.png` and `Adsorption_Kinetics_pH_9.png` correctly identify each chart's pH condition and name the correct quantity and units on both axes, consistent with the corresponding expected file (exact wording not required).
+15 points · REGULAR · correctness
