@@ -64,7 +64,7 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 18 points · REGULAR · correctness
 
 15
-The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` restate the capacity and efficiency comparison and note that neither condition had leveled off by the last timestamp, consistent with the corresponding expected file.
+The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` restate the capacity and efficiency comparison and state the same saturation status for the two conditions at the last timestamp as the corresponding expected file (semantic equivalence; exact wording not required).
 7 points · REGULAR · correctness
 
 16
