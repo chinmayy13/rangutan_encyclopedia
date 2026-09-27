@@ -28,11 +28,11 @@ Both the pH 3 and pH 9 tables in `Summary of Adsorption Data at pH 3 and 9.docx`
 15 points · REGULAR · correctness
 
 6
-The concentration and adsorption-capacity values in the pH 3 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, the adsorption-efficiency values match within ±1 percentage point, and the absorbance values at the analytical wavelength match the corresponding values in the corresponding expected file within ±1% or ±0.01 absorbance units, whichever is larger.
+The concentration and adsorption-capacity values in the pH 3 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, the adsorption-efficiency values match within ±1 percentage point, and the absorbance values at the analytical wavelength match the corresponding values in the corresponding expected file exactly (transcribed, not derived).
 25 points · REGULAR · correctness
 
 7
-The concentration and adsorption-capacity values in the pH 9 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, the adsorption-efficiency values match within ±1 percentage point, including every value reported under the prompt's noise-floor convention of 0.00 mol/g and 0%, and the absorbance values at the analytical wavelength match the corresponding values in the corresponding expected file within ±1% or ±0.01 absorbance units, whichever is larger.
+The concentration and adsorption-capacity values in the pH 9 table in `Summary of Adsorption Data at pH 3 and 9.docx` match the corresponding values in the corresponding expected file within ±1% or ±0.01 in the reported unit, whichever is larger, the adsorption-efficiency values match within ±1 percentage point, including every value reported under the prompt's noise-floor convention of 0.00 mol/g and 0%, and the absorbance values at the analytical wavelength match the corresponding values in the corresponding expected file exactly (transcribed, not derived).
 25 points · REGULAR · correctness
 
 8
@@ -92,7 +92,7 @@ The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` state which 
 12 points · REGULAR · correctness
 
 22
-`Executive Technical Recommendation.pdf` concludes with a clear recommendation of the same operational pH as the corresponding expected file, supported by both the kinetic reasoning and the speciation argument (exact wording not required).
+`Executive Technical Recommendation.pdf` concludes with a recommendation of the same operational pH as the corresponding expected file, supported by both the kinetic reasoning and the speciation argument (exact wording not required).
 18 points · REGULAR · correctness
 
 23
