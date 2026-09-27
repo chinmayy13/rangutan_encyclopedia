@@ -1,5 +1,5 @@
 Write criteria that encompass all requirements needed to fulfill this prompt.
-30/30 completed
+29/29 completed
 
 Edit raw criteria
 
@@ -36,8 +36,8 @@ The concentration and adsorption-capacity values in the pH 9 table in `Summary o
 25 points · REGULAR · correctness
 
 8
-The analysis paragraph and key findings in `Summary of Adsorption Data at pH 3 and 9.docx` compare how adsorption capacity and adsorption efficiency evolve over time at pH 3 and pH 9, reach the same conclusion about which pH performs better, and note that neither condition had leveled off by the last timestamp, consistent with the corresponding expected file.
-15 points · REGULAR · correctness
+The analysis paragraph in `Summary of Adsorption Data at pH 3 and 9.docx` compares how adsorption capacity and adsorption efficiency evolve over time at pH 3 and pH 9 and reaches the same conclusion about which pH performs better, consistent with the corresponding expected file.
+8 points · REGULAR · correctness
 
 9
 The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.docx` reports adsorption capacity for both pH 3 and pH 9 matching the corresponding expected file within ±1%, and adsorption efficiency matching within ±1 percentage point.
@@ -45,34 +45,34 @@ The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.d
 
 10
 In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the key findings, and the side-by-side comparison table appear in that order after the two detailed data tables, matching the structure of the corresponding expected file.
-8 points · REGULAR · correctness
+8 points · REGULAR · visual
 
 11
-`Adsorption_Kinetics_pH_3.png` plots one data point per timestamp with adsorption-capacity values that match the pH 3 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger.
-20 points · REGULAR · correctness
+`Adsorption_Kinetics_pH_3.png` plots one data point per timestamp with adsorption-capacity values that match the pH 3 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger, and its title and axis labels correctly identify the pH 3 condition and name the correct quantity and units on both axes, consistent with the corresponding expected file (exact wording not required).
+27 points · REGULAR · correctness
 
 12
-`Adsorption_Kinetics_pH_9.png` plots one data point per timestamp with adsorption-capacity values that match the pH 9 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger.
-20 points · REGULAR · correctness
+`Adsorption_Kinetics_pH_9.png` plots one data point per timestamp with adsorption-capacity values that match the pH 9 capacity values in the corresponding expected file within ±5% or ±0.5 mol/g, whichever is larger, and its title and axis labels correctly identify the pH 9 condition and name the correct quantity and units on both axes, consistent with the corresponding expected file (exact wording not required).
+28 points · REGULAR · correctness
 
 13
 `Executive Technical Recommendation.pdf` explains the protonated and deprotonated forms of the molecule at pH 3 and at pH 9, consistent with the speciation reasoning in the corresponding expected file (exact wording not required).
 10 points · REGULAR · correctness
 
 14
-`Executive Technical Recommendation.pdf` states the approximate percentage of protonated vs deprotonated species at both pH 3 and at pH 9, with values matching the corresponding expected file within ±5 percentage points.
-10 points · REGULAR · correctness
+`Executive Technical Recommendation.pdf` states the approximate percentage of protonated vs deprotonated species at both pH 3 and at pH 9, with values matching the corresponding expected file within ±5 percentage points, and references a pKa value that matches the pKa stated in the corresponding expected file (exact numeric match).
+18 points · REGULAR · correctness
 
 15
-`Executive Technical Recommendation.pdf` references a pKa value that matches the pKa stated in the corresponding expected file (exact numeric match).
-8 points · REGULAR · correctness
+The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` restate the capacity and efficiency comparison and note that neither condition had leveled off by the last timestamp, consistent with the corresponding expected file.
+7 points · REGULAR · correctness
 
 16
-`Executive Technical Recommendation.pdf` identifies an analytical wavelength that matches the value stated in the corresponding expected file.
+`Executive Technical Recommendation.pdf` grounds part of the analytical-wavelength justification in what the supplied UV-Vis spectra images show, semantically equivalent to the corresponding expected file.
 8 points · REGULAR · correctness
 
 17
-`Executive Technical Recommendation.pdf` justifies the analytical-wavelength choice against the full absorbance scan in `Kinetic data.xlsx`, reaching the same justification as the corresponding expected file (exact wording not required).
+`Executive Technical Recommendation.pdf` identifies the analytical wavelength, matching the value in the corresponding expected file, and justifies that choice against the full absorbance scan in `Kinetic data.xlsx`, reaching the same justification as the corresponding expected file (exact wording not required).
 15 points · REGULAR · correctness
 
 18
@@ -97,7 +97,7 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 
 23
 `Executive Technical Recommendation.pdf` opens with the pH-dependent speciation discussion before the analytical-wavelength justification and the capacity/efficiency/kinetic-model results, matching the order of the corresponding expected file.
-8 points · REGULAR · correctness
+8 points · REGULAR · visual
 
 24
 `Adsorption_Kinetics_pH_3.png` is a scatter plot (individual dots, not connected lines) that renders legibly, with axis ranges and tick spacing that keep the plotted points room to breathe with no more than about 25% extra space beyond the data extent.
@@ -122,7 +122,3 @@ The pH 3 table, the pH 9 table, and the side-by-side comparison table in `Summar
 29
 `Executive Technical Recommendation.pdf` is professionally formatted and readable, comparable in quality to the corresponding expected file.
 20 points · REGULAR · visual
-
-30
-The title and axis labels in `Adsorption_Kinetics_pH_3.png` and `Adsorption_Kinetics_pH_9.png` correctly identify each chart's pH condition and name the correct quantity and units on both axes, consistent with the corresponding expected file (exact wording not required).
-15 points · REGULAR · correctness
