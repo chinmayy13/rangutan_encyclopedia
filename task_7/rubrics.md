@@ -68,7 +68,7 @@ The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` state which 
 7 points · REGULAR · correctness
 
 16
-`Executive Technical Recommendation.pdf` supports its analytical-wavelength justification with an observation about the supplied UV-Vis spectra images that those images actually show.
+`Executive Technical Recommendation.pdf` supports its analytical-wavelength justification with an observation about the UV-Vis absorbance spectra at pH 3 and pH 9 that is semantically equivalent to the corresponding observation in the corresponding expected file.
 8 points · REGULAR · correctness
 
 17
