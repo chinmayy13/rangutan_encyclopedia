@@ -44,7 +44,7 @@ The side-by-side comparison table in `Summary of Adsorption Data at pH 3 and 9.d
 15 points · REGULAR · correctness
 
 10
-In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the key findings, and the side-by-side comparison table appear in that order after the two detailed data tables, matching the structure of the corresponding expected file.
+In `Summary of Adsorption Data at pH 3 and 9.docx`, the key findings appear after the two per-timestamp data tables, matching the structure of the corresponding expected file.
 8 points · REGULAR · visual
 
 11
@@ -64,11 +64,11 @@ In `Summary of Adsorption Data at pH 3 and 9.docx`, the analysis paragraph, the 
 18 points · REGULAR · correctness
 
 15
-The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` restate the capacity and efficiency comparison and state the same saturation status for the two conditions at the last timestamp as the corresponding expected file (semantic equivalence; exact wording not required).
+The key findings in `Summary of Adsorption Data at pH 3 and 9.docx` state which pH condition performed better on adsorption capacity and adsorption efficiency, reaching the same conclusion as the corresponding expected file (semantic equivalence; exact wording not required).
 7 points · REGULAR · correctness
 
 16
-`Executive Technical Recommendation.pdf` grounds part of the analytical-wavelength justification in what the supplied UV-Vis spectra images show, semantically equivalent to the corresponding expected file.
+`Executive Technical Recommendation.pdf` supports its analytical-wavelength justification with an observation about the supplied UV-Vis spectra images that those images actually show.
 8 points · REGULAR · correctness
 
 17
