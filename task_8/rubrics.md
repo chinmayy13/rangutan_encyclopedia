@@ -20,20 +20,20 @@ Output includes a file named `Adsorbent_Cost_Comparison.docx` that opens as a va
 5 points · MUST-PASS · format_gate
 
 4
-`Thermal_Stability_Assessment.pdf` is exactly one page.
+`Thermal_Stability_Assessment.pdf` is exactly one page at a body-text and table-text size comparable to the corresponding expected file.
 8 points · REGULAR · format_gate
 
 5
-The chitosan precursor row in the peak table of `Thermal_Stability_Assessment.pdf` reports its temperature within ±1 °C and peak DTG rate within ±0.002 %/°C of the corresponding expected-file values.
-8 points · REGULAR · correctness
+The chitosan precursor and alginate precursor rows in the peak table of `Thermal_Stability_Assessment.pdf` report their temperatures within ±1 °C and peak DTG rates within ±0.002 %/°C of the corresponding expected-file values.
+16 points · REGULAR · correctness
 
 6
-The alginate precursor row in the peak table of `Thermal_Stability_Assessment.pdf` reports its temperature within ±1 °C and peak DTG rate within ±0.002 %/°C of the corresponding expected-file values.
-8 points · REGULAR · correctness
-
-7
 Both CTSAgn rows (as made and post-adsorption) in the peak table of `Thermal_Stability_Assessment.pdf` report their temperature within ±1 °C and peak DTG rate within ±0.002 %/°C of the corresponding expected-file values.
 14 points · REGULAR · correctness
+
+7
+The four material row labels in the peak table of `Thermal_Stability_Assessment.pdf` are semantically equivalent to the corresponding expected file's row labels.
+8 points · REGULAR · correctness
 
 8
 `Thermal_Stability_Assessment.pdf` quantifies the as-made composite peak-rate comparisons against both named precursors, each within ±5% relative of the corresponding expected-file ratio, however expressed.
@@ -48,15 +48,15 @@ Both CTSAgn rows (as made and post-adsorption) in the peak table of `Thermal_Sta
 17 points · REGULAR · correctness
 
 11
-`Thermal_Stability_Assessment.pdf` reports the magnitude and downward direction of the peak-temperature change between the as-made and post-adsorption composite traces, within ±1 °C of the corresponding expected file.
+`Thermal_Stability_Assessment.pdf` reports the magnitude and direction of the peak-temperature change between the as-made and post-adsorption composite traces, matching the corresponding expected file's direction and within ±0.5 °C of its magnitude.
 16 points · REGULAR · correctness
 
 12
-`Thermal_Stability_Assessment.pdf` distinguishes the lower post-adsorption peak-temperature maximum from a demonstrated change in decomposition onset, and offers a candidate mechanism for the movement, presented as a plausible interpretation rather than proven mechanism, consistent with the corresponding expected file.
+`Thermal_Stability_Assessment.pdf` distinguishes the post-adsorption peak-temperature maximum from a demonstrated change in decomposition onset and offers a candidate mechanism for the movement as a plausible interpretation rather than a proven one, consistent with the corresponding expected file.
 12 points · REGULAR · correctness
 
 13
-`Thermal_Stability_Assessment.pdf` identifies the recovered composite’s handling/regeneration screening threshold within ±2 °C of the corresponding expected file, stating its operational mass-loss definition, any limitations on what the threshold establishes, and how that threshold weighs against the trade-association note's regeneration figure, consistent with the corresponding expected file.
+`Thermal_Stability_Assessment.pdf` identifies the recovered composite's handling/regeneration screening threshold within ±2 °C of the corresponding expected file, stating its operational mass-loss definition, any limitations on what the threshold establishes, and how that threshold weighs against the trade-association note's regeneration figure, consistent with the corresponding expected file.
 20 points · REGULAR · correctness
 
 14
@@ -68,11 +68,11 @@ Both composite traces in `Composite_DTG_Overlay.png` have marked peaks labelled 
 16 points · REGULAR · correctness
 
 16
-`Composite_DTG_Overlay.png` uses the lab overlay’s axis titles and both composite series names, allowing each plotted trace to be identified.
+`Composite_DTG_Overlay.png` uses the same axis titles and the same two composite series names as the corresponding expected file, allowing each plotted trace to be identified.
 12 points · REGULAR · correctness
 
 17
-The CTSAgn row of `Adsorbent_Cost_Comparison.docx` uses the released-product costing basis and reports its Cost ($/kg) and Capacity (mg/g) cells within ±1% of the corresponding expected file, without using the rejected-batch capacity in the released-product benchmark.
+The CTSAgn row of `Adsorbent_Cost_Comparison.docx` reports its Cost ($/kg) cell within ±0.5% of the corresponding expected file and takes its Capacity (mg/g) cell from the released-batch capacity, matching the corresponding expected file.
 25 points · REGULAR · correctness
 
 18
@@ -84,15 +84,15 @@ The benchmark table in `Adsorbent_Cost_Comparison.docx` retains all five expecte
 12 points · REGULAR · correctness
 
 20
-The note immediately under the benchmark table in `Adsorbent_Cost_Comparison.docx` identifies the five released pilot batches as the table’s CTSAgn basis and correctly explains the formulas for Cost per mg removed and Efficiency. The all-batches counterfactual is optional.
+The note immediately under the benchmark table in `Adsorbent_Cost_Comparison.docx` identifies the five released pilot batches as the table's CTSAgn basis and correctly explains the formulas for Cost per mg removed and Efficiency. The all-batches counterfactual is optional.
 16 points · REGULAR · correctness
 
 21
-The released-product comparison in `Adsorbent_Cost_Comparison.docx` identifies the same closest benchmark on efficiency as the corresponding expected file and states the direction and magnitude of CTSAgn’s efficiency difference against it within ±5% relative of the expected file’s figure.
+The released-product comparison in `Adsorbent_Cost_Comparison.docx` identifies the same closest benchmark on efficiency as the corresponding expected file and states the direction and magnitude of CTSAgn's efficiency difference against it within ±5% relative of the expected file's figure.
 16 points · REGULAR · correctness
 
 22
-The adoption discussion in `Adsorbent_Cost_Comparison.docx` agrees with `Thermal_Stability_Assessment.pdf` on the recovered-composite threshold within ±1 °C and distinguishes the benchmark’s 175 °C, three-cycle assumption from demonstrated cycle performance.
+The adoption discussion in `Adsorbent_Cost_Comparison.docx` states the recovered composite's handling/regeneration threshold within ±1 °C of the corresponding expected file and separates the benchmark table's stated regeneration assumption from demonstrated repeated-cycle performance, consistent with the corresponding expected file.
 15 points · REGULAR · correctness
 
 23
@@ -104,7 +104,7 @@ The downside case in `Adsorbent_Cost_Comparison.docx` uses released CTSAgn capac
 14 points · REGULAR · correctness
 
 25
-The final stage-gate discussion in `Adsorbent_Cost_Comparison.docx` compares the downside case’s efficiency standing against the released-product basis and its closest benchmark, ties its stage-gate conclusion to the need to confirm manufacturing losses and repeated-cycle performance, and states how much confidence the handling ceiling carries once weighed against the trade-association note, consistent with the corresponding expected file; a cautious conditional progression or a hold pending validation is acceptable.
+The adoption discussion in `Adsorbent_Cost_Comparison.docx` compares the downside case's efficiency standing against the released-product basis and its closest benchmark, ties its stage-gate conclusion to the need to confirm manufacturing losses, and states how much confidence the handling ceiling carries once weighed against the trade-association note, consistent with the corresponding expected file.
 15 points · REGULAR · correctness
 
 26
