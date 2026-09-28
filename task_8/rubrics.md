@@ -56,8 +56,8 @@ Both CTSAgn rows (as made and post-adsorption) in the peak table of `Thermal_Sta
 12 points · REGULAR · correctness
 
 13
-`Thermal_Stability_Assessment.pdf` identifies the recovered composite’s handling/regeneration screening threshold within ±2 °C of the corresponding expected file, stating its operational mass-loss definition and any limitations on what the threshold establishes, consistent with the corresponding expected file.
-18 points · REGULAR · correctness
+`Thermal_Stability_Assessment.pdf` identifies the recovered composite’s handling/regeneration screening threshold within ±2 °C of the corresponding expected file, stating its operational mass-loss definition, any limitations on what the threshold establishes, and how that threshold weighs against the trade-association note's regeneration figure, consistent with the corresponding expected file.
+20 points · REGULAR · correctness
 
 14
 `Composite_DTG_Overlay.png` shows only the two composite traces before and after adsorption, with their curve shapes and relative vertical scale faithful to the corresponding expected figure rather than merely drawing arbitrary peaks.
@@ -104,8 +104,8 @@ The downside case in `Adsorbent_Cost_Comparison.docx` uses released CTSAgn capac
 14 points · REGULAR · correctness
 
 25
-The final stage-gate discussion in `Adsorbent_Cost_Comparison.docx` compares the downside case’s efficiency standing against the released-product basis and its closest benchmark, and ties its stage-gate conclusion to the need to confirm manufacturing losses and repeated-cycle performance, consistent with the corresponding expected file; a cautious conditional progression or a hold pending validation is acceptable.
-13 points · REGULAR · correctness
+The final stage-gate discussion in `Adsorbent_Cost_Comparison.docx` compares the downside case’s efficiency standing against the released-product basis and its closest benchmark, ties its stage-gate conclusion to the need to confirm manufacturing losses and repeated-cycle performance, and states how much confidence the handling ceiling carries once weighed against the trade-association note, consistent with the corresponding expected file; a cautious conditional progression or a hold pending validation is acceptable.
+15 points · REGULAR · correctness
 
 26
 The text and peak table of `Thermal_Stability_Assessment.pdf` render legibly at normal zoom, with all content visible and no clipping or overlap.
