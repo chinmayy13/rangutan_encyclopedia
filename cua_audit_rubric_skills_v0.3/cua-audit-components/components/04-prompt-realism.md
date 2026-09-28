@@ -1,0 +1,121 @@
+# 04. Prompt - Realism
+
+> Generated from this skill's `audit-rubric.csv` by `_generate.py`. Do not hand-edit; edit the CSV and regenerate.
+
+| | |
+|---|---|
+| audit-rubric id | `c651259f-9eb4-4a33-98db-0775ac9e56c9` |
+| title | Prompt - Realism |
+| allowed scores | 2, 3, 5 |
+| required | true |
+| evidence class | `other` |
+| subagent model | `claude-sonnet-5` at `--effort max` |
+
+## Question
+
+Rate the Realism of the Prompt dimension.
+
+## Description (verbatim from the CSV)
+
+```
+The prompt should read like something a real person would write—wording, rhythm, minor spelling errors, and detail matching a normal working session.
+It should carry a light layer of context—who is asking, their role/stack, the constraint shaping the ask, etc.—and make the motivation for the expected files visible.
+
+Stripped-of-context, templated prompts are the failure mode this dimension catches.
+
+Watch for the V3 anti-patterns:
+Rubric-style language ("treat X as fixed," "do not use outside sources")
+| - Artificial personas ("You are a finance manager")
+| - Excessive "must/only/exactly"
+| - Robotic file references ("extract data from file A and file B").
+```
+
+## Score options
+
+Only these scores exist for this component. There is no other value; in particular do not invent a score the CSV does not list.
+
+**Before you score.** The notes below are calibration carried over from the deployed reference evals. They say how the options that follow are applied — they never add an option, move a threshold, or create a band the CSV does not list. Where the two sources genuinely conflict, the CSV wins and the rule is left out, so everything below is safe to apply as written.
+
+- **Naming input files is correct practice and is never a defect on this component.** A prompt that refers to its inputs by name — "work from `Q3_returns.xlsx` and the field notes in `site_survey.pdf`" — is doing what the project requires: named inputs are what make a task verifiable and what let a reviewer confirm the prompt, the files and the rubric describe the same task. Never read that as robotic, unnatural or templated, and never count it toward this component at any band.
+- **The "robotic file references" anti-pattern is narrowed to its mechanical form**: a bare "extract data from file A and file B" instruction carrying no context, no motivation and no working situation. Filenames *plus* context are not it. The reverse is the real concern, and it belongs to component 03: a prompt that never names any input, describing them only as "the attached data".
+- Prescriptiveness is overwhelmingly the middle band. In the observed defect distribution it carries five warnings and **zero** failures, so detail alone is score 3 and the fail option stays rare.
+- Domain fit is carried by who is asking and the work context they are in, not by the deliverable's genre. An unexpected output genre is not an unnatural prompt.
+
+### Score 2  — **justification REQUIRED**
+
+```
+[Fail - Unnatural Prompt]
+The prompt is overly synthetic/templated without a realistic framing, i.e., the "why".
+| The prompt reads as a raw test case a real user would never write.
+| The prompt is overly prescriptive—excessive step-by-step guidance or exact section-title checklists that overfit the output / reveal verifier logic.
+```
+
+**Applies to this score.**
+
+- Before taking this option, confirm the prompt is genuinely rubric-shaped in one of these specific ways: output-by-output enumeration, an exact section-title checklist, a step-by-step statement of the internal algorithm, or leaked verifier logic. Quote the enumeration or checklist you object to.
+
+### Score 3  — **justification REQUIRED**
+
+```
+[Non-Fail - Minor Prescriptive Prompt]
+The prompt is natural and grounded but is somewhat prescriptive—there's more procedural detail than a real user would typically write, but not to the extent of leaking verifiers or overfitting output.
+```
+
+**Applies to this score.**
+
+- More procedural detail than a real user would write, without leaking the verifier or overfitting the output. A prompt that is merely detailed, or that states necessary constraints, lands here.
+
+### Score 5  — justification not required
+
+```
+The prompt is natural, grounded, and conveys a realistic user context.
+```
+
+## errorCategories
+
+The label a reviewer selects. Emit one of these verbatim in `error_category` when the score is not the clean pass, else `null`.
+
+- `[All] [All] [Non-Fail - Minor Prescriptive Prompt]`
+- `[All] [All] [Fail - Unnatural Prompt]`
+
+**One band, one value.** Where the score you chose has no matching label — several components define a non-fail score but list only a `Fail` entry — emit `null` and name the band in `justification`. Never emit a `Fail` label on a non-fail score: the label is what reaches the reviewer's CSV, and a mislabelled non-fail reads there as a failure.
+
+## Overlap with the rubric is not evidence
+
+The rubric is written from the prompt, so prompt wording matching criterion wording is the expected direction of causation, not proof the prompt was reverse-engineered from the verifier. Do not compare prompt text against the criteria for this component. Score the prompt's own register only: artificial personas, rubric vocabulary, stacked must/only/exactly, robotic file references, and whether a real person's motivation is visible. `prompt_changes_made` is authoring history and says nothing about the prompt an agent receives.
+
+## Evidence to read
+
+- `bundle.json` -> `prompt`, `seed_prompt`, `applications_used`
+- `bundle.json` -> `input_files[]`, `verifier`, `mechanical`
+- `bundle.json` -> `agent_issue_details` — often records a real environment failure
+
+Every path above is relative to the evidence directory named in the prompt. Read nothing outside it.
+
+## Output contract
+
+Return exactly one JSON object:
+
+```json
+{
+  "component_id": "c651259f-9eb4-4a33-98db-0775ac9e56c9",
+  "title": "Prompt - Realism",
+  "score": <one of: 2, 3, 5>,
+  "error_category": "<verbatim from the list above, or null>",
+  "justification": "<required when the chosen score says so>",
+  "evidence": "<quote the exact text, value, cell or filename>",
+  "criteria": [<rubric criterion numbers, if applicable>],
+  "confidence": "high|medium|low",
+  "blocked_on": "<what you could not verify, or null>",
+  "minor_issues": ["<non-scoring suggestion>", "..."]
+}
+```
+
+Rules:
+
+- Score **only** from the options above. The clean-pass score is `5`.
+- A score whose option is marked **justification REQUIRED** must carry a non-empty `justification` naming the threshold it crosses and the evidence it rests on.
+- Quote evidence. A finding with no quoted text, value or filename is not a finding — score the clean pass instead.
+- If you could not verify something (a file would not open, an artifact is unavailable), set `blocked_on` and lower `confidence`; do not guess.
+- Judge **this** submission only. Any reviewer score or feedback in the task response was written about the PREVIOUS attempt and does not apply here — ignore it.
+- `minor_issues` is **never scored**. It carries suggestions that would improve the task but that this component's answer options do not name, so nothing you put there may change `score`, `error_category` or the verdict — and a clean pass stays a clean pass with entries in it. Use `[]` when there is nothing to record.

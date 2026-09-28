@@ -1,0 +1,135 @@
+# 16. Rubric - Coverage
+
+> Generated from this skill's `audit-rubric.csv` by `_generate.py`. Do not hand-edit; edit the CSV and regenerate.
+
+| | |
+|---|---|
+| audit-rubric id | `5178d35e-bf44-45cc-bad8-acfff08955e3` |
+| title | Rubric - Coverage |
+| allowed scores | 2, 3, 5 |
+| required | true |
+| evidence class | `coverage` |
+| subagent model | `claude-opus-5` at `--effort max` |
+
+## Question
+
+Rate the Coverage of the Rubric dimension.
+
+## Description (verbatim from the CSV)
+
+```
+A primary request is an essential request to the core intent of the prompt.
+
+A secondary request is a request that is not critical to fulfilling the core intent of the prompt.
+
+See Example & Notes on the spec for more detailed explanation.
+```
+
+## Score options
+
+Only these scores exist for this component. There is no other value; in particular do not invent a score the CSV does not list.
+
+**Before you score.** The notes below are calibration carried over from the deployed reference evals. They say how the options that follow are applied — they never add an option, move a threshold, or create a band the CSV does not list. Where the two sources genuinely conflict, the CSV wins and the rule is left out, so everything below is safe to apply as written.
+
+- **Archetypes that repeatedly go uncovered.** A schema or header criterion never covers the **values** under it — a table of correctly named columns full of zeros passes it. A compound deliverable needs one criterion per named member ("the fluid **and temperature** profiles"). A count hard-coded where a cutoff or tie-break rule makes the answer size a property of the *data* leaves the tie rule untested. For a GUI, HTML or application deliverable, a criterion on a control's *appearance* plus criteria on each view's *contents* still leaves the control's **effect** untested. An aggregate-under-tolerance criterion (`within ±1%`) does not cover the **completeness** of the enumeration feeding it — ask whether a whole category, subtype or line item could be dropped and still land inside the band. And a named opening or closing element ("open with the headline numbers") states a *position*, not just a topic.
+- **Expand a shared requirement into its full entity x element grid.** One sentence naming two entities and several elements — "for fund A and fund B, show how much came from own revenue versus bond proceeds and transfers" — is one ask per cell, not one ask. Write the grid out and tick each cell against a criterion. The usual shape of the gap is a rubric that grades the grid in full for the entity the author found interesting and grades one bundled criterion for its neighbour, so a whole row goes untested. A criterion that names the neighbour is not coverage of the neighbour's elements; read what it actually lists.
+- **A chart criterion on contents leaves how the chart is drawn ungraded.** Title, axis labels, series names, categories and value labels are the chart's *contents*. Its *construction* — a baseline that does not start at zero, a truncated or clipped axis range, a distorted aspect ratio, a scale that misstates the comparison the prompt asked the chart to make — is a separate ask, and "legible and clearly labeled" does not reach it. A chart whose bars misrepresent the comparison while every label is correct passes every contents criterion, so ask explicitly whether a misleading but correctly labelled chart would be caught.
+- **A purpose clause is an ask.** "...so the figures can be checked directly", "...so a reader can follow the calculation", "...so the committee can see where each number came from" state a property the deliverable must have — live formulas rather than pasted constants, intermediate steps shown, each figure carrying its source — and a rubric that grades only the final values leaves it untested. Treat the clause as its own ask, name the observable property it demands, and check whether a deliverable holding the right numbers as opaque hard-coded constants would pass.
+- **Never a coverage gap, however the prompt phrases it:** where output files are saved (enforced by the verifier's `result.path`, not by the rubric); output filenames and extensions beyond the one format gate the rubric already carries; and which application or method the agent used, unless the tool itself is the deliverable.
+- **Restraint.** A clearly aggregated criterion covers every instance — "each slide …", "every classification …" — so do not demand one criterion per artifact where an aggregate already reads clearly. Sweep the whole rubric before calling a schema gap: a values criterion several rows away, worded differently, still covers the request. Redundancy is not a coverage gap — two criteria testing the same request means it is covered, twice.
+- **The criterion you would add must itself be legal:** one element, one category, no restated answer, no conditional wording, and not already present elsewhere under different words. A proposed criterion that hands the contributor the finding the agent was meant to reach is not a fix.
+
+### Score 2  — **justification REQUIRED**
+
+```
+[Fail - Coverage]
+At least 1 explicit, primary prompt request is not covered in the rubric such that a clearly wrong answer could pass the rubric.
+```
+
+### Score 3  — **justification REQUIRED**
+
+```
+[Non-Fail - Coverage]
+At least 1 secondary or implicit prompt request is not covered in the rubric.
+```
+
+**Applies to this score.**
+
+- An uncovered **secondary or implicit** request. Name the request and the artifact and say explicitly that it is secondary.
+
+### Score 5  — justification not required
+
+```
+The rubric has sufficient coverage.
+```
+
+## errorCategories
+
+The label a reviewer selects. Emit one of these verbatim in `error_category` when the score is not the clean pass, else `null`.
+
+- `[All] [All] [Fail - Coverage]`
+- `[All] [All] [Non-Fail - Coverage]`
+
+**One band, one value.** Where the score you chose has no matching label — several components define a non-fail score but list only a `Fail` entry — emit `null` and name the band in `justification`. Never emit a `Fail` label on a non-fail score: the label is what reaches the reviewer's CSV, and a mislabelled non-fail reads there as a failure.
+
+## Multiple valid interpretations
+
+An ambiguity matters when it changes the graded output. For each element of the request that could be read more than one way, list the defensible readings, then decide whether they produce *different* artifacts that `criteria[]` would score differently. If two competent submissions following different valid readings would be graded differently, the ambiguity is consequential and belongs in your score; if every valid reading converges on the same graded content, it does not. Where a method, statistic or convention is left unspecified and several standard choices give different numbers, that is consequential by definition.
+
+Judge the request as the agent receives it. A supplied template or example file may narrow a reading, but only if it is unambiguous on the point in question; do not treat an attachment as curing an ambiguity it does not actually settle.
+
+## Decompose before matching
+
+Do not match prompt sentences to criteria. A single sentence routinely carries several atomic asks, and a criterion covering one of them reads as coverage while the others go ungraded. Conjunctions, lists and plurals are the tell: "X and Y", "the options considered", "each of the alternatives", "the drivers".
+
+1. Walk the prompt and write out every atomic ask: one verifiable thing the deliverable must contain or do. Split every conjunction and expand every plural into its named members. If the prompt names three items, that is three asks, not one.
+2. For each atomic ask, write the specific wrong submission that satisfies every criterion while omitting or falsifying that ask. Name which criteria it passes and why none of them fails it. If you cannot construct such a submission, the ask is covered. A criterion is not coverage because it names the ask's noun — passing it must **entail** satisfying the ask.
+3. State the totals: how many atomic asks, how many covered, which are not.
+
+The test for an uncovered ask: could a submission omit it entirely and still pass every criterion? If yes, it is uncovered, however well the rest of the rubric maps.
+
+## Primary or secondary
+
+The two bands turn on this, so decide it explicitly for each uncovered ask rather than defaulting to the lower severity.
+
+An ask is **primary** when it is essential to the core intent: the prompt states it as something the deliverable must contain or decide, a reader would judge the deliverable incomplete without it, or omitting it would leave a clearly wrong answer passing the rubric. An ask is **secondary** when it supports or refines a primary ask, or is implied rather than stated.
+
+State the classification and the reason for every uncovered ask. One uncovered primary ask takes the fail option, whatever the proportion of the rubric that maps cleanly. Do not describe an explicitly stated request as implicit.
+
+## Evidence to read
+
+- `bundle.json` -> `prompt`, `criteria[]`
+- `expected_extracted.md` — the answer key, to see what a criterion anchored to the expected file actually forces
+- `inputs_extracted.md` — to expand the prompt's plurals into their named members
+- `bundle.json` -> `mechanical` — precomputed; do not recompute
+
+Every path above is relative to the evidence directory named in the prompt. Read nothing outside it.
+
+## Output contract
+
+Return exactly one JSON object:
+
+```json
+{
+  "component_id": "5178d35e-bf44-45cc-bad8-acfff08955e3",
+  "title": "Rubric - Coverage",
+  "score": <one of: 2, 3, 5>,
+  "error_category": "<verbatim from the list above, or null>",
+  "justification": "<required when the chosen score says so>",
+  "evidence": "<quote the exact text, value, cell or filename>",
+  "criteria": [<rubric criterion numbers, if applicable>],
+  "confidence": "high|medium|low",
+  "blocked_on": "<what you could not verify, or null>",
+  "minor_issues": ["<non-scoring suggestion>", "..."]
+}
+```
+
+Rules:
+
+- Score **only** from the options above. The clean-pass score is `5`.
+- A score whose option is marked **justification REQUIRED** must carry a non-empty `justification` naming the threshold it crosses and the evidence it rests on.
+- Quote evidence. A finding with no quoted text, value or filename is not a finding — score the clean pass instead.
+- If you could not verify something (a file would not open, an artifact is unavailable), set `blocked_on` and lower `confidence`; do not guess.
+- Judge **this** submission only. Any reviewer score or feedback in the task response was written about the PREVIOUS attempt and does not apply here — ignore it.
+- **A criterion you propose must pass the rubric itself.** Replacement or new criterion text you write, in `justification` or `minor_issues`, is judged by the rubric components the way the task's own criteria are. It never states the value, name, date, count or conclusion the agent has to produce: it names the expected file and a comparison — a tolerance on a derived number, semantic equivalence on prose — and only a value the prompt itself gives may appear. It has no conditional wording ("if …", "unless …", "where applicable", "when present", "if any", "any X it reports"): the task's inputs already fix which case holds, so it grades that case's outcome. It tests one element. A criterion that grades what the prompt never asks for is removed, folded into another, or backed by a prompt change, never made conditional.
+- `minor_issues` is **never scored**. It carries suggestions that would improve the task but that this component's answer options do not name, so nothing you put there may change `score`, `error_category` or the verdict — and a clean pass stays a clean pass with entries in it. Use `[]` when there is nothing to record.
