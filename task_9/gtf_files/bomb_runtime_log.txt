@@ -1,0 +1,141 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple A18 Pro
+
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=1
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=2
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=3
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=4
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=5
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=6
+MOTION_SAMPLE mechanic=bomb t=1.0 first=(287.5,164.2) collected=1 actions=6
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=7
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=8
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=9
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=10
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=11
+MOTION_SAMPLE mechanic=bomb t=2.0 first=(276.7,134.9) collected=1 actions=11
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=12
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=13
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=14
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=15
+MOTION_SAMPLE mechanic=bomb t=3.0 first=(306.2,167.7) collected=1 actions=15
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=16
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=17
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=18
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=19
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=20
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=21
+MOTION_SAMPLE mechanic=bomb t=4.0 first=(273.0,134.0) collected=1 actions=21
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=22
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=23
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=24
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=25
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=26
+MOTION_SAMPLE mechanic=bomb t=5.0 first=(276.6,142.6) collected=1 actions=26
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=27
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=28
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=29
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=30
+MOTION_SAMPLE mechanic=bomb t=6.0 first=(277.8,134.0) collected=1 actions=30
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=31
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=32
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=33
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=34
+MOTION_SAMPLE mechanic=bomb t=7.0 first=(302.1,168.5) collected=1 actions=34
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=35
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=36
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=37
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=38
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=39
+MOTION_SAMPLE mechanic=bomb t=8.0 first=(273.0,137.3) collected=1 actions=39
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=40
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=41
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=42
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=43
+MOTION_SAMPLE mechanic=bomb t=9.0 first=(291.8,146.0) collected=1 actions=43
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=44
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=45
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=46
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=47
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=48
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=49
+MOTION_SAMPLE mechanic=bomb t=10.0 first=(273.0,138.3) collected=1 actions=49
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=50
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=51
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=52
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=53
+MOTION_SAMPLE mechanic=bomb t=11.0 first=(291.4,154.9) collected=1 actions=53
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=54
+MOTION_SAMPLE mechanic=bomb t=12.0 first=(478.7,385.3) collected=1 actions=54
+MOTION_SAMPLE mechanic=bomb t=13.0 first=(365.0,221.5) collected=15 actions=54
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=55
+MOTION_SAMPLE mechanic=bomb t=14.0 first=(404.8,266.6) collected=17 actions=55
+MOTION_SAMPLE mechanic=bomb t=15.0 first=(670.0,201.7) collected=23 actions=55
+MOTION_SAMPLE mechanic=bomb t=16.0 first=(844.8,339.5) collected=25 actions=55
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=56
+MOTION_SAMPLE mechanic=bomb t=17.0 first=(792.7,371.6) collected=29 actions=56
+MOTION_SAMPLE mechanic=bomb t=18.0 first=(546.0,364.3) collected=34 actions=56
+MOTION_SAMPLE mechanic=bomb t=19.0 first=(299.4,395.0) collected=39 actions=56
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=57
+MOTION_SAMPLE mechanic=bomb t=20.0 first=(316.5,425.6) collected=40 actions=57
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=58
+MOTION_SAMPLE mechanic=bomb t=21.0 first=(439.2,468.1) collected=44 actions=58
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=59
+MOTION_SAMPLE mechanic=bomb t=22.0 first=(770.1,422.9) collected=47 actions=59
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=60
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=61
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=62
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=63
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=64
+MOTION_SAMPLE mechanic=bomb t=23.0 first=(868.9,417.4) collected=47 actions=64
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=65
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=66
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=67
+MOTION_SAMPLE mechanic=bomb t=24.0 first=(859.5,359.4) collected=47 actions=67
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=68
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=69
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=70
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=71
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=72
+MOTION_SAMPLE mechanic=bomb t=25.0 first=(868.1,164.0) collected=47 actions=72
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=73
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=74
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=75
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=76
+MOTION_SAMPLE mechanic=bomb t=26.0 first=(871.5,134.0) collected=47 actions=76
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=77
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=78
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=79
+MOTION_SAMPLE mechanic=bomb t=27.0 first=(756.7,280.0) collected=47 actions=79
+MOTION_SAMPLE mechanic=bomb t=28.0 first=(365.0,207.8) collected=60 actions=79
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=80
+MOTION_SAMPLE mechanic=bomb t=29.0 first=(309.9,190.4) collected=60 actions=80
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=81
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=82
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=83
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=84
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=85
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=86
+MOTION_SAMPLE mechanic=bomb t=30.0 first=(288.2,141.9) collected=61 actions=86
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=87
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=88
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=89
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=90
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=91
+MOTION_SAMPLE mechanic=bomb t=31.0 first=(294.8,168.5) collected=62 actions=91
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=92
+ACTION_TRANSITION mechanic=bomb origin=INPUT count=93
+MOTION_SAMPLE mechanic=bomb t=32.0 first=(439.6,346.9) collected=62 actions=93
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=94
+MOTION_SAMPLE mechanic=bomb t=33.0 first=(484.6,500.8) collected=73 actions=94
+MOTION_SAMPLE mechanic=bomb t=34.0 first=(365.0,264.4) collected=75 actions=94
+MOTION_SAMPLE mechanic=bomb t=35.0 first=(365.0,353.0) collected=80 actions=94
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=95
+MOTION_SAMPLE mechanic=bomb t=36.0 first=(288.6,430.6) collected=85 actions=95
+MOTION_SAMPLE mechanic=bomb t=37.0 first=(522.9,455.4) collected=92 actions=95
+MOTION_SAMPLE mechanic=bomb t=38.0 first=(789.7,376.0) collected=99 actions=95
+ACTION_TRANSITION mechanic=bomb origin=AUTO count=96
+MOTION_SAMPLE mechanic=bomb t=39.0 first=(837.8,405.3) collected=103 actions=96
+MOTION_SAMPLE mechanic=bomb t=40.0 first=(668.0,391.1) collected=107 actions=96
+MOTION_SAMPLE mechanic=bomb t=41.0 first=(424.5,414.9) collected=115 actions=96
+--- Debugging process stopped ---
