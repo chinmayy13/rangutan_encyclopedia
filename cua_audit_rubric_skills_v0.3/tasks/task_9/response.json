@@ -84,7 +84,7 @@
           },
           {
             "id": "f1a00002-0004-4000-a002-000000000009",
-            "title": "`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.",
+            "title": "Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, with each origin type present in quantities consistent with the corresponding expected file.",
             "weight": 10,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -156,7 +156,7 @@
           },
           {
             "id": "f1a00003-0007-4000-a003-000000000017",
-            "title": "`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file",
+            "title": "`bomb_blast_frame.png` shows board tokens matching the token appearance in the corresponding expected file.",
             "weight": 40,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -183,8 +183,8 @@
           },
           {
             "id": "f1a00004-0003-4000-a004-000000000020",
-            "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.",
-            "weight": 45,
+            "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
+            "weight": 50,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "visual"
@@ -210,8 +210,8 @@
           },
           {
             "id": "f1a00004-0007-4000-a004-000000000024",
-            "title": "`bomb_blast_frame.png` shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
-            "weight": 50,
+            "title": "`Bomb_Chain_Reaction_Godot_Project.zip` contains a project that arranges initial board tokens with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.",
+            "weight": 45,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "visual"
@@ -219,7 +219,7 @@
           },
           {
             "id": "f1a00004-0008-4000-a004-000000000025",
-            "title": "The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+            "title": "The actions value in each MOTION_SAMPLE line of `bomb_runtime_log.txt` is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
             "weight": 10,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -314,6 +314,7 @@
           ]
         },
         "verifierInput": {
+          "config": [],
           "evaluator": {
             "func": "agent_judge_multi",
             "expected": [
@@ -426,7 +427,7 @@
                 },
                 {
                   "id": "f1a00002-0004-4000-a002-000000000009",
-                  "title": "`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.",
+                  "title": "Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, with each origin type present in quantities consistent with the corresponding expected file.",
                   "weight": 10,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -498,7 +499,7 @@
                 },
                 {
                   "id": "f1a00003-0007-4000-a003-000000000017",
-                  "title": "`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file",
+                  "title": "`bomb_blast_frame.png` shows board tokens matching the token appearance in the corresponding expected file.",
                   "weight": 40,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -525,8 +526,8 @@
                 },
                 {
                   "id": "f1a00004-0003-4000-a004-000000000020",
-                  "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.",
-                  "weight": 45,
+                  "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
+                  "weight": 50,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "visual"
@@ -552,8 +553,8 @@
                 },
                 {
                   "id": "f1a00004-0007-4000-a004-000000000024",
-                  "title": "`bomb_blast_frame.png` shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
-                  "weight": 50,
+                  "title": "`Bomb_Chain_Reaction_Godot_Project.zip` contains a project that arranges initial board tokens with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.",
+                  "weight": 45,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "visual"
@@ -561,7 +562,7 @@
                 },
                 {
                   "id": "f1a00004-0008-4000-a004-000000000025",
-                  "title": "The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+                  "title": "The actions value in each MOTION_SAMPLE line of `bomb_runtime_log.txt` is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
                   "weight": 10,
                   "annotations": {
                     "criteria_type": "REGULAR",
