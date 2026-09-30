@@ -10,12 +10,12 @@ Bomb.glb has to be rendered live as an actual 3D object while the scene runs, in
 
 While the scene runs, print one telemetry line at the sample interval from gameplay_config.txt in the form
 
-MOTION_SAMPLE mechanic=<id> t=<seconds> first=(<x>,<y>) collected=<n> actions=<n>
+MOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}
 
 and one line every time the blast fires, in the form
 
-ACTION_TRANSITION mechanic=<id> origin=<AUTO|INPUT> count=<n>
+ACTION_TRANSITION mechanic={id} origin=<AUTO|INPUT> count={n}
 
-where <id> is the mechanic identifier from gameplay_config.txt and origin tells apart the automatic cycle from a player trigger.
+where {id} is the mechanic identifier from gameplay_config.txt and origin tells apart the automatic cycle from a player trigger.
 
 Three things for me, all saved to the Desktop. The complete editable project as Bomb_Chain_Reaction_Godot_Project.zip, containing project.godot and every scene, script and local asset needed to open and run it with no missing dependencies. A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame. And the captured console output as bomb_runtime_log.txt, covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line.
