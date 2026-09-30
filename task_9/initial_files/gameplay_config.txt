@@ -17,7 +17,7 @@ blast_force_px = 360
 token_speed_cap_px_per_s = 1200
 
 [board]
-token_rows = 3
+token_rows = 4
 tokens_per_row = 5
 row_offset_pattern = alternating
 token_diameter_px = 28
