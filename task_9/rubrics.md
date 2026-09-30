@@ -124,5 +124,5 @@ Each ACTION_TRANSITION line in bomb_runtime_log.txt carries an origin value that
 8 points · REGULAR · correctness
 
 30
-During periods in bomb_runtime_log.txt where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events is approximately three seconds, within plus or minus 20 percent of three seconds.
+During periods in bomb_runtime_log.txt where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.
 8 points · REGULAR · correctness
