@@ -40,7 +40,7 @@ bomb_runtime_log.txt records a continuous sequence of MOTION_SAMPLE lines with n
 12 points · REGULAR · correctness
 
 9
-bomb_runtime_log.txt includes at least one origin=AUTO action line and at least one origin=INPUT action line.
+Both origin=AUTO and origin=INPUT action lines appear in bomb_runtime_log.txt, with each origin type present in quantities consistent with the corresponding expected file.
 10 points · REGULAR · correctness
 
 10
@@ -72,7 +72,7 @@ bomb_blast_frame.png shows a 3D bomb model rendered in its own viewport panel to
 50 points · REGULAR · visual
 
 17
-bomb_blast_frame.png shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file
+bomb_blast_frame.png shows board tokens matching the token appearance in the corresponding expected file.
 40 points · REGULAR · visual
 
 18
@@ -84,8 +84,8 @@ bomb_blast_frame.png shows the HUD counters legible in a column on the left, wit
 40 points · REGULAR · visual
 
 20
-bomb_blast_frame.png shows a framed play area with internal grid lines, consistent with the corresponding expected file.
-45 points · REGULAR · visual
+bomb_blast_frame.png shows a framed play area with internal grid lines, divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.
+50 points · REGULAR · visual
 
 21
 bomb_blast_frame.png shows a collection strip along the bottom edge with its label, consistent with the corresponding expected file.
@@ -96,11 +96,11 @@ bomb_blast_frame.png shows a title across the top of the scene, consistent with 
 40 points · REGULAR · visual
 
 23
-bomb_blast_frame.png shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.
-50 points · REGULAR · visual
+bomb_blast_frame.png shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.
+45 points · REGULAR · visual
 
 24
-The actions value in the MOTION_SAMPLE lines of bomb_runtime_log.txt never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.
+The actions value in each MOTION_SAMPLE line of bomb_runtime_log.txt is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.
 10 points · REGULAR · correctness
 
 25
