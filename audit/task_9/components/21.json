@@ -1,14 +1,14 @@
 {
- "component_id": "de6f8f1c-3701-4af6-b54d-40645afe9f54",
- "title": "Rubric - Framing",
- "score": 5,
- "evidence": "All criteria are framed as positive assertions of what should be present or true: 'Output includes...', 'contains...lines in the prescribed format', 'shows a 3D bomb model', 'shows board tokens rendered as', 'shows a large colored ring', 'shows the HUD counters legible', 'shows a framed play area'. No criteria are framed as negatives ('should not', 'must not') except where logically necessary (criterion 19: 'no text clipped, truncated, or overlapping' — this is a quality assertion, not a negative framing). No criteria impose unnecessary constraints beyond what the prompt requests.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "21"
+  "_model": "claude-opus-5",
+  "_component": "21",
+  "component_id": "de6f8f1c-3701-4af6-b54d-40645afe9f54",
+  "title": "Rubric - Framing",
+  "score": 2,
+  "error_category": "[All] [All] [Fail - Framing]",
+  "justification": "Criterion 24 is negatively framed. Its text reads: \"The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.\" The predicate \"never decreases\" is a coordinate main requirement (joined by \"and\" with \"agrees with the count\"), not a subordinate constraint on a positive main action. It is analogous to \"Does not decrease\" and matches the rubric's negative-framing examples. A positive rewrite is available (e.g., \"monotonically increases or holds steady\"). The prompt does not contain an omission request—it positively states \"each trigger raises the actions counter.\" No sibling criterion shares this exact negative shape after a full sweep of all 30 criteria.",
+  "evidence": "Criterion 24 text: \"The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.\"",
+  "criteria": [24],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

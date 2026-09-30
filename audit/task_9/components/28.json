@@ -1,14 +1,17 @@
 {
- "component_id": "1d89daf5-f545-4599-b767-6d54f915c206",
- "title": "JSON - Structure / URL Integrity",
- "score": 5,
- "evidence": "Mechanical pre-pass confirmed: func = 'agent_judge_multi' ✓. dest names match between expected and result arrays (Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png). All result paths are under /home/docker/Desktop/. No signed URLs in verifier or initializer. No dest mismatch. bundle.json mechanical.28_json_structure_url_integrity.score = 5.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "28"
+  "_model": "claude-sonnet-5",
+  "_component": "28",
+  "component_id": "1d89daf5-f545-4599-b767-6d54f915c206",
+  "title": "JSON - Structure / URL Integrity",
+  "score": 5,
+  "error_category": null,
+  "justification": "",
+  "evidence": "verifier.func = \"agent_judge_multi\"; verifier.result dests = [Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png], each with path /home/docker/Desktop/<same name>; expected_files dests are the same three names with three distinct S3 URLs (.../D8UHO49ikh4ha_r, .../k2m2QdWm4LBc8TV, .../swPirwXcbzvHhf5), all staged 'cached' in files/expected. mechanical.28_json_structure_url_integrity: {score:5, func:agent_judge_multi, dest_mismatch:[], signed_urls_verifier:[], signed_urls_initializer:[], result_paths_off_desktop:[]}. The prompt names all three outputs on the Desktop with the same filenames.",
+  "criteria": [],
+  "confidence": "medium",
+  "blocked_on": "Could not run the verifier, and did not fetch the S3 links live. Structure was checked from bundle.json and the staged files only.",
+  "minor_issues": [
+    "All four input_files entries (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) carry the identical URL .../65cbc42b32ffab95dd54b864/pwy5ipf5O1s2zNk, although the four staged inputs differ in size and content. This may be a bundle or pipeline artifact, but the initializer URLs are worth confirming, because the same link cannot serve four different files.",
+    "verifier has self_check_score \"1\" as a string, and the contributor's expected zip contains a top-level folder named Bomb_Chain_Reaction_Working plus __MACOSX entries. Neither affects this component."
+  ]
 }

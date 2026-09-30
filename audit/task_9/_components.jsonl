@@ -26,3 +26,4 @@
 {"unit": "task_9", "component": "26", "title": "Component: Rubric - Robustness", "model": "claude-opus-5", "elapsed_s": 1.1, "events": 0, "status": "no_result_event"}
 {"unit": "task_9", "component": "27", "title": "Component: Rubric - Value Binding", "model": "claude-opus-5", "elapsed_s": 1.0, "events": 0, "status": "no_result_event"}
 {"unit": "task_9", "component": "28", "title": "JSON - Structure / URL Integrity", "model": "claude-sonnet-5", "elapsed_s": 0.7, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "01", "title": "Task - Feasibility", "model": "claude-sonnet-5", "elapsed_s": 0.6, "events": 0, "status": "no_result_event"}

@@ -1,14 +1,14 @@
 {
- "component_id": "8c2ae7e1-6bcb-411e-a3f1-fdedb7fa0687",
- "title": "Prompt - Answer leakage",
- "score": 5,
- "evidence": "The prompt describes WHAT to build, not HOW to build it. It specifies gameplay mechanics (blast, gravity, bouncing, collection) and telemetry format structures (MOTION_SAMPLE and ACTION_TRANSITION with field placeholders), but does not provide GDScript code, scene tree structures, node configurations, or implementation details. The input files are source assets (texture, 3D model, reference image, config), not solution files. The gameplay_config.txt provides parameters but not implementation. The telemetry format uses curly-brace placeholders ({id}, {seconds}, {x}, {y}, {n}) — template syntax, not actual output values. No answer leakage detected.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "08"
+  "_model": "claude-opus-5",
+  "_component": "08",
+  "component_id": "8c2ae7e1-6bcb-411e-a3f1-fdedb7fa0687",
+  "title": "Component: Prompt - Answer leakage",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "The prompt provides telemetry format templates with placeholders (e.g., 'MOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}') and task specifications (blast mechanics, layout matching scene_reference.png, HUD wording matching the reference image). None of these are graded answer content. The criteria grade actual runtime values (coordinates like '(287.5,164.2)', collected counts, timing intervals, visual elements), all of which require building and running a working Godot project. The mechanic id 'bomb' comes from the input file gameplay_config.txt, not the prompt. Copying the prompt into the output would yield only placeholder templates, not valid log lines or a working game.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

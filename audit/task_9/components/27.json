@@ -1,15 +1,24 @@
 {
- "component_id": "d77b518d-fd8c-467d-8717-d5e7b05327c4",
- "title": "Rubric - Value Binding",
- "score": 5,
- "evidence": "All criteria that reference specific values bind them to authoritative sources: 'matching the corresponding expected file' binds to the ground-truth files in the verifier. 'consistent with the corresponding expected file' binds visual checks to bomb_blast_frame.png. 'the mechanic identifier from gameplay_config.txt' binds to the input file. 'the sample interval from gameplay_config.txt' binds to telemetry_sample_interval_s=1.0. 'the repeating cycle defined in gameplay_config.txt' binds to auto_cycle_interval_s=3.0. 'at least twelve seconds' comes from the prompt. No criterion references a value without tracing it to the prompt, an input file, or the expected file.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "whole_answer_inputs": [],
- "_model": "claude-opus-4-6",
- "_component": "27"
+  "_model": "claude-opus-5",
+  "_component": "27",
+  "component_id": "d77b518d-fd8c-467d-8717-d5e7b05327c4",
+  "title": "Component: Rubric - Value Binding",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "All value criteria bind values to named fields within structured line formats. Log criteria (6, 7, 8, 9, 10, 24, 27, 28, 29, 30) reference specific fields (mechanic=, t=, first=, collected=, actions=, origin=, count=) within named line types (MOTION_SAMPLE, ACTION_TRANSITION). Criterion 25 binds to 'HUD text' at a specific visual location in the screenshot. Tolerance bands on criteria 10 (±10% on sampling interval) and 30 (±20% on AUTO gap) are on derived runtime values from the Godot game engine, not transcribed figures -- the game's frame timer produces these timestamps, so the bands are sound. No single input contains all graded values for any criterion group: gameplay_config.txt provides mechanic id 'bomb' but not timestamps, coordinates, or counters; scene_reference.png shows HUD label text but with static values (0/0) rather than the runtime values (62/89) in the expected file.",
+  "criteria": [6, 7, 8, 9, 10, 24, 25, 27, 28, 29, 30],
+  "confidence": "high",
+  "blocked_on": null,
+  "whole_answer_inputs": [
+    {
+      "criteria": [6, 7, 8, 9, 10, 24, 27, 28, 29, 30],
+      "input": null
+    },
+    {
+      "criteria": [25],
+      "input": null
+    }
+  ],
+  "minor_issues": []
 }

@@ -1,14 +1,14 @@
 {
- "component_id": "eaf3a435-fd94-4b4f-9c17-d61eb42d2b32",
- "title": "Rubric - Hardcoded Values",
- "score": 5,
- "evidence": "Criteria reference values traceable to input files: criterion 10 references 'the same regular sampling interval used in the corresponding expected file' — bound to the expected file and gameplay_config.txt telemetry_sample_interval_s=1.0. Criterion 30 references 'the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent' — bound to the expected file and gameplay_config.txt auto_cycle_interval_s=3.0. Visual criteria reference 'consistent with the corresponding expected file' — properly bound to bomb_blast_frame.png. No arbitrary numeric thresholds are hardcoded without source. The 'twelve seconds' in criterion 8 comes directly from the prompt ('covering at least twelve continuous seconds of play'). The 10% and 20% tolerances in criteria 10 and 30 are reasonable engineering tolerances for runtime measurement.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "13"
+  "_model": "claude-opus-5",
+  "_component": "13",
+  "component_id": "eaf3a435-fd94-4b4f-9c17-d61eb42d2b32",
+  "title": "Rubric - Hardcoded Values",
+  "score": 3,
+  "error_category": null,
+  "justification": "Exactly 1 criterion contains a hardcoded expected value, which crosses the threshold for score 3 (Non-Fail: 1 criterion) but not score 2 (Fail: at least 2). Criterion 17 states tokens are 'yellow oval coins' -- applying the strip-the-anchor test, removing 'matching the token appearance in the corresponding expected file' leaves 'shows board tokens rendered as yellow oval coins', which tells the reader the exact color (yellow) and shape (oval) of the tokens. The prompt never says 'yellow oval'; it only references source_coin_token.png as the production coin face. The visual characteristics are derived from the input/expected files and should not be stated in the criterion text. The criterion should read something like 'shows board tokens matching the token appearance in the corresponding expected file' without pre-announcing the color and shape. All other criteria were swept: format gates (1-5) use prompt-defined names; telemetry criteria (6-10, 24, 27-30) use format labels (MOTION_SAMPLE, ACTION_TRANSITION, AUTO, INPUT) that the prompt itself defines; gameplay criteria (11-15, 26) reference the expected file; visual criteria (16, 18-23, 25) use terms from the prompt ('blast ring', 'at least two lights', 'dark background', 'HUD column on the left', etc.) or reference the expected file. No second hardcoded criterion was found.",
+  "evidence": "Criterion 17: \"`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file\" -- 'yellow oval coins' is a hardcoded description of the token appearance not found in the prompt text.",
+  "criteria": [17],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

@@ -1,14 +1,19 @@
 {
- "component_id": "4d2d498a-cd03-4e60-9367-1dc61a3e4de9",
- "title": "Gold File - Accuracy",
- "score": 5,
- "evidence": "Expected files accurately represent the prompt's requirements: (1) Bomb_Chain_Reaction_Godot_Project.zip contains 140 members including project.godot, scenes/TokenWave.tscn, scripts/token_wave.gd, imported assets (Bomb.glb, source_coin_token.png), shader cache — a complete runnable Godot project. (2) bomb_runtime_log.txt contains Godot Engine header, 41 MOTION_SAMPLE lines and 96 ACTION_TRANSITION lines, spanning t=1.0 to t=41.0 (40 seconds, well over the 12-second minimum), with mechanic=bomb matching gameplay_config.txt, both AUTO and INPUT origins, 1.0s sampling interval matching config. (3) bomb_blast_frame.png shows: title 'TD 2D · BOMB' at top, framed play area with horizontal grid lines, yellow oval coin tokens, blast ring expanding from center, HUD column on left (BOMB, Collected: 62, Actions: 89, SPACE / CLICK trigger mechanic, Automatic preview runs every cycle.), collection strip at bottom with COLLECT label, 3D bomb model in viewport to the right.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "09"
+  "_model": "claude-opus-5",
+  "_component": "09",
+  "component_id": "4d2d498a-cd03-4e60-9367-1dc61a3e4de9",
+  "title": "Gold File - Accuracy",
+  "score": 3,
+  "error_category": "[All] [All] [Non-Fail - Somewhat Inaccurate Gold File]",
+  "justification": "All three expected files are present with correct names and substantively correct content. The screenshot shows all required visual elements (blast ring, HUD, 3D bomb panel, grid lines, collection strip, title). The runtime log uses the correct telemetry format, covers 40 continuous seconds (exceeding the 12-second requirement), includes both AUTO and INPUT origins, and has internally consistent counter values. The Godot project ZIP contains project.godot, scene, script, and asset files with no missing dependencies.\n\nHowever, the gold file's code (token_wave.gd) hardcodes physics values that significantly deviate from what gameplay_config.txt specifies, despite the prompt stating 'gameplay_config.txt controls timing and physics':\n- gravity: code uses 38.0 px/s^2, config specifies 980 (25.8x off)\n- blast_force (mechanic_strength): scene sets 360.0, config specifies blast_force_px=600\n- auto_cycle: code uses 3.2s, config specifies 3.0s\n- bounce_damping: code uses 0.72, config specifies 0.7\n- token_speed_cap: not implemented (config specifies 1200 px/s)\n- blast_expand_duration: code uses ~0.45s, config specifies 0.4s\n- window size: project.godot uses 1152x648, config specifies 1150x650\n\nThe code does not read gameplay_config.txt at all; all values are hardcoded. This is a deviation from the prompt's stated constraint but does not rise to a primary-ask failure because: (1) all three deliverables are present and correctly structured, (2) no criterion directly grades the physics constants themselves, (3) the criteria use 'consistent with' language and tolerances (e.g., criterion 30 allows +/-20% on AUTO gaps), and (4) the log and screenshot are internally self-consistent outputs of the running game. The auto cycle deviation (3.2 vs 3.0, 6.7% off) falls within the criteria's 20% tolerance.\n\nThis is a secondary constraint violation: the prompt's instruction about the config controlling physics is important but not a primary deliverable, and the observable outputs remain substantively correct.",
+  "evidence": "token_wave.gd line 131: 'velocity.y += 38.0 * delta' (config: gravity_px_per_s2 = 980); line 47: 'auto_timer = 3.2' (config: auto_cycle_interval_s = 3.0); line 135-138: 'velocity.x *= -0.72' / 'velocity.y = absf(velocity.y) * 0.72' (config: bounce_damping = 0.7); TokenWave.tscn line 11: 'mechanic_strength = 360.0' (config: blast_force_px = 600); project.godot: 'window_width_override=1152' / 'window_height_override=648' (config: window_width=1150, window_height=650).",
+  "criteria": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 24, 25, 27, 28, 29, 30],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": [
+    "Close call on Score 2 vs Score 3: The gravity discrepancy (38 vs 980, 25.8x off) is large in magnitude and the prompt explicitly says the config controls physics. I considered Score 2 ('wrong values') but chose Score 3 because no criterion directly grades the gravity constant, the criteria compare observable behaviors with tolerances rather than exact physics values, and all primary deliverables are present and structurally correct. The fix (changing code to use config values) is legal since the prompt constrains them. Count: 1 reading favored Score 2, 4 readings favored Score 3.",
+    "The code does not implement token_speed_cap_px_per_s = 1200 from the config. No speed cap is applied to token velocities. This is another config parameter that is ignored.",
+    "Denominator: 3 expected files exist (zip, png, txt). All 3 were opened and examined. The zip was extracted to inspect project.godot, TokenWave.tscn, and token_wave.gd. 1 issue flagged (physics parameter deviations from config).",
+    "Screenshot shows Collected: 62, Actions: 89. The log has no MOTION_SAMPLE with exactly those values (closest: t=31.0 with collected=62, actions=91). This is not a contradiction -- the screenshot captured a game state between MOTION_SAMPLE intervals, and ACTION_TRANSITION count=89 does exist in the log, confirming the state was real."
+  ]
 }

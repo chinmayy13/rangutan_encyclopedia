@@ -1,14 +1,14 @@
 {
- "component_id": "9b90d593-d92a-431c-b3ca-99f25c8ab95d",
- "title": "Prompt - Output Naming",
- "score": 5,
- "evidence": "Mechanical pre-pass confirmed: all three output files are explicitly named in the prompt — 'Bomb_Chain_Reaction_Godot_Project.zip', 'bomb_blast_frame.png', and 'bomb_runtime_log.txt'. The prompt specifies 'all saved to the Desktop' as the output location. bundle.json mechanical.06_prompt_output_naming.score = 5, unnamed_outputs = [], states_desktop = true.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "06"
+  "_model": "claude-sonnet-5",
+  "_component": "06",
+  "component_id": "9b90d593-d92a-431c-b3ca-99f25c8ab95d",
+  "title": "Prompt - Output Naming",
+  "score": 5,
+  "error_category": null,
+  "justification": "Clean pass. The prompt names all three deliverables exactly, and each matches a verifier result dest and an expected file. It also states the Desktop save location. mechanical.06_prompt_output_naming reports unnamed_outputs=[] and states_desktop=true.",
+  "evidence": "\"Three things for me, all saved to the Desktop. The complete editable project as Bomb_Chain_Reaction_Godot_Project.zip ... A screenshot of the running game as bomb_blast_frame.png ... And the captured console output as bomb_runtime_log.txt\". Verifier dests: Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png. Expected files: Bomb_Chain_Reaction_Godot_Project.zip, bomb_blast_frame.png, bomb_runtime_log.txt.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

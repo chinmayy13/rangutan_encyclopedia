@@ -1,14 +1,14 @@
 {
- "component_id": "5178d35e-bf44-45cc-bad8-acfff08955e3",
- "title": "Rubric - Coverage",
- "score": 5,
- "evidence": "Coverage across all prompt requirements: Deliverables: all 3 files covered (criteria 1-5). Gameplay mechanics: blast trigger (11), gravity+bouncing+collection (12), auto-cycle (13), repopulation (14), counters (15, 24), radial trajectory (26). Telemetry: MOTION_SAMPLE format (6), ACTION_TRANSITION format (7), continuous span (8), both origins (9), sampling interval (10), counter consistency (24), coordinate format (28), origin mapping (29), AUTO timing (30), sequential counting (27). Visual elements: 3D bomb panel (16), tokens (17), blast ring (18), HUD (19, 25), framed area+grid (20), collection strip (21), title (22), row zones (23). The rubric covers the prompt comprehensively with no major gap. All deliverables, gameplay mechanics, telemetry fields, and visual elements from the prompt are addressed.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "16"
+  "_model": "claude-opus-5",
+  "_component": "16",
+  "component_id": "5178d35e-bf44-45cc-bad8-acfff08955e3",
+  "title": "Rubric - Coverage",
+  "score": 2,
+  "error_category": "[All] [All] [Fail - Coverage]",
+  "justification": "The prompt explicitly states: \"match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows.\" The alternating horizontal offset between token rows is one of six named visual elements the prompt lists to match from the reference image (designated as \"the visual authority for this build\"). The config file also confirms this with row_offset_pattern=alternating. No criterion tests whether token rows have an alternating horizontal offset. Criterion 17 grades token appearance (\"yellow oval coins\"), not spatial arrangement. Criterion 23 grades row zones (grid lines), not token placement within those zones. A submission with tokens placed in straight, non-alternating columns would pass every criterion while visibly deviating from the reference spec on this explicitly named point. This is a primary ask because it is explicitly stated in the prompt text as part of the board layout spec, not implied or secondary.",
+  "evidence": "Prompt: \"match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows\"; Config: \"row_offset_pattern = alternating\"; Reference image (scene_reference.png) visually shows staggered/offset rows. Criterion 17: \"board tokens rendered as yellow oval coins matching the token appearance\" (appearance, not arrangement). Criterion 23: \"play area divided by horizontal grid lines into the same number of row zones\" (grid lines, not token offset pattern).",
+  "criteria": [17, 23],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

@@ -1,14 +1,14 @@
 {
- "component_id": "fed588c5-689e-495c-b522-71a8279ab740",
- "title": "Rubric - Overfitting",
- "score": 5,
- "evidence": "Criteria test at the right level of specificity without overfitting to implementation details. Criterion 11 explicitly allows 'Alternative implementations that produce the same outward dispersal'. Visual criteria use 'consistent with the corresponding expected file' rather than pixel-exact matching. Telemetry criteria specify format structure but allow runtime variation (criterion 10 allows ±10%, criterion 30 allows ±20%). Criteria test observable outputs (file contents, screenshot appearance, console log) rather than implementation internals (no criteria about specific node types, class names, or code patterns). The criteria would accept any correct Godot implementation that produces the specified outputs.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "18"
+  "_model": "claude-opus-5",
+  "_component": "18",
+  "component_id": "fed588c5-689e-495c-b522-71a8279ab740",
+  "title": "Rubric - Overfitting",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "All 30 criteria were individually checked against the prompt, gameplay_config.txt, and scene_reference.png. Every criterion grades a requirement directly traceable to these sources. Filenames (criteria 1-3) are prompt-specified. Telemetry formats (6-7) use the prompt's prescribed templates. Physics and gameplay behavior (11-15, 26) restate prompt language. Visual criteria (16-23) anchor to the reference image and config, both designated as authoritative by the prompt. Criterion 25's 'exact wording and line breaks' echoes the prompt's own phrase. Timing criteria (10, 30) carry explicit tolerances (+-10%, +-20%). Log consistency criteria (24, 27-29) check internal logic rather than mandating gold-specific values. No criterion penalizes a valid alternate implementation.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

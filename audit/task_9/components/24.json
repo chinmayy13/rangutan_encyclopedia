@@ -1,14 +1,14 @@
 {
- "component_id": "cb62d51d-a958-4480-b1fe-5a2c775ed093",
- "title": "Rubric - Individual Criteria Weights",
- "score": 5,
- "evidence": "Mechanical pre-pass confirmed: weights_out_of_range = [], type_mistags = [], missing_annotations = [], bundle_defects = []. 3 MUST-PASS criteria (criteria 1-3) — all are format_gate file-existence checks (file named X exists), which is the correct narrow scope for MUST-PASS (source-conflicts.md §2). MUST-PASS weights are 5 each (within the 5-10 range from the generator, though this range is an orphaned generator rule per source-conflicts.md §11 and not strictly gradable). REGULAR weights range from 5 to 50, proportional to visual and behavioral importance. bundle.json mechanical.24_rubric_individual_criteria_weights.score = 5.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "24"
+  "_model": "claude-opus-5",
+  "_component": "24",
+  "component_id": "cb62d51d-a958-4480-b1fe-5a2c775ed093",
+  "title": "Rubric - Individual Criteria Weights",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "mechanical.24_rubric_individual_criteria_weights: weights_out_of_range=[], type_mistags=[], bundle_defects=[], bands_not_run=[], n_must_pass=3. All 30 criteria weights are integers in [1,50]. The 3 MUST-PASS criteria (n=1,2,3) are file-existence gates: 'Output includes a valid .zip file named Bomb_Chain_Reaction_Godot_Project.zip', 'Output includes a screenshot file named bomb_blast_frame.png', 'Output includes a console log file named bomb_runtime_log.txt'. All remaining 27 criteria are REGULAR.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

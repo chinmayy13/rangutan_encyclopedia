@@ -1,14 +1,14 @@
 {
- "component_id": "791d6498-5d1d-48b9-89ca-0ac6b7b5dea1",
- "title": "Rubric - Weight Share",
- "score": 5,
- "evidence": "Mechanical pre-pass confirmed: domain is 'Design & Creative', which uses inverted bands (source-conflicts.md §4). Weight shares: format_gate 5.67% (≤20% ✓), correctness 29.43% (20-30% ✓), visual 64.90% (≥50% ✓). Total weight: 547. All three bands are within the Design & Creative specification. bundle.json mechanical.23_rubric_weight_share.score = 5, off_band = [].",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "23"
+  "_model": "claude-opus-5",
+  "_component": "23",
+  "component_id": "791d6498-5d1d-48b9-89ca-0ac6b7b5dea1",
+  "title": "Rubric - Weight Share",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "mechanical.23_rubric_weight_share: band_used=\"Design & Creative\", shares_pct={format_gate: 5.67, correctness: 29.43, visual: 64.9}, total_weight=547, off_band=[].\n\nArithmetic: format_gate 31/547 = 5.67% (band: <= 20%), correctness 161/547 = 29.43% (band: 20-30%), visual 355/547 = 64.9% (band: >= 50%). All three within range.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

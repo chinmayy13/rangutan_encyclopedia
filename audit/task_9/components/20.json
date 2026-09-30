@@ -1,14 +1,16 @@
 {
- "component_id": "635195ed-1833-49a5-bd7e-c1b45fa1fff4",
- "title": "Rubric - Objectivity",
- "score": 5,
- "evidence": "All criteria are objectively verifiable: file existence criteria (1-3) are binary. ZIP structure criteria (4-5) can be checked by examining the archive contents. Telemetry criteria specify exact formats (MOTION_SAMPLE, ACTION_TRANSITION) with named fields that can be parsed and validated programmatically. Timing criteria (10, 30) specify numeric tolerances (±10%, ±20%). Visual criteria compare against the expected file, which provides an objective reference standard. No criterion uses subjective terms like 'good', 'appropriate', 'well-designed', or 'aesthetically pleasing'. Every criterion has a clear pass/fail determination method.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "20"
+  "_model": "claude-opus-5",
+  "_component": "20",
+  "component_id": "635195ed-1833-49a5-bd7e-c1b45fa1fff4",
+  "title": "Rubric - Objectivity",
+  "score": 5,
+  "error_category": null,
+  "justification": null,
+  "evidence": "All 22 non-visual criteria (1-15, 24-30) use objective, testable language: existence checks ('Output includes a valid .zip file named'), format matching ('in the prescribed telemetry format, matching the corresponding expected file'), numerical tolerances ('within plus or minus 10 percent'), monotonicity checks ('never decreases'), exact text matching ('reproduces the exact wording and line breaks'), and behavioral comparisons anchored to expected files ('consistent with the corresponding expected file'). No non-visual criterion uses subjective terms such as 'good', 'nice', or 'appropriate'. Count: 0 subjective out of 22 non-visual = 0%.",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": [
+    "Criterion hygiene: criterion 17 (visual) is missing terminal punctuation — ends with '...matching the token appearance in the corresponding expected file' with no period. Does not affect this component's score since it is a visual criterion."
+  ]
 }

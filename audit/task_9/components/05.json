@@ -1,14 +1,17 @@
 {
- "component_id": "a45a178b-8e59-4e45-9163-794bcb395b60",
- "title": "Prompt - GUI Integration",
- "score": 5,
- "evidence": "The task is inherently GUI-centric: it requires building a playable Godot game prototype with visual elements (framed play area, grid lines, tokens, blast ring, HUD counters, 3D bomb panel, collection strip, title). The agent must interact with Godot Engine's GUI to create scenes, position elements, run the project, and capture a screenshot. The screenshot deliverable (bomb_blast_frame.png) directly verifies GUI output. The task cannot be completed without GUI interaction — building a Godot project with 2D gameplay and a 3D viewport panel requires the Godot editor or scripted scene construction, both GUI-dependent workflows.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "05"
+  "_model": "claude-sonnet-5",
+  "_component": "05",
+  "component_id": "a45a178b-8e59-4e45-9163-794bcb395b60",
+  "title": "Prompt - GUI Integration",
+  "score": 5,
+  "error_category": null,
+  "justification": "GUI evidence test passes. Action 1: the agent must read the layout out of scene_reference.png ('match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows, the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks'). Artifact change: the built scene's layout, and therefore the screenshot and project, differ if the reference is not read. Action 2: run the live Godot scene and capture 'A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame.' Artifact change: bomb_blast_frame.png must show a mid-expansion ring, legible HUD and a live 3D Bomb.glb viewport that does not overlap the play area. This cannot be produced without running the game and timing a capture. Action 3: place a live 3D viewport panel with its own camera and two or more lights 'so that both the silhouette and the top surface of the model read clearly against the dark background', which is a visual readability requirement on the rendered output. The GUI work is tied directly to verifiable deliverables and is not GUI-for-its-own-sake.",
+  "evidence": "\"The reference image is the visual authority for this build. Treat it as the spec\"; \"A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame.\"; \"Bomb.glb has to be rendered live as an actual 3D object while the scene runs, in its own viewport panel placed beside the board... it must not overlap the framed play area.\"",
+  "criteria": [],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": [
+    "bundle.json applications_used is null, so the intended GUI application (Godot editor or runtime) is inferred from the prompt rather than declared.",
+    "The screenshot timing condition ('blast ring still expanding') is subjective, and a tolerance could be stated."
+  ]
 }

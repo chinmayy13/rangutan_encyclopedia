@@ -1,14 +1,14 @@
 {
- "component_id": "09396cc3-65d2-4fba-a60d-5545e2185f9b",
- "title": "Rubric - Redundancy",
- "score": 5,
- "evidence": "No significant redundancy between criteria. Each criterion targets a distinct verification point: criteria 6 vs 7 test different telemetry line types (MOTION_SAMPLE vs ACTION_TRANSITION). Criteria 16-23 each target a different visual element (3D panel, tokens, blast ring, HUD, grid, collection strip, title, row zones). Criteria 24 vs 27 test different aspects of the action counter (monotonic values in MOTION_SAMPLE vs sequential counting in ACTION_TRANSITION). Criteria 8 vs 10 test different timing properties (span duration vs sampling interval). There is appropriate complementary overlap (e.g., criteria 6 tests format while criteria 28 tests value consistency within the same lines), but this is not redundancy — they verify different properties.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "22"
+  "_model": "claude-opus-5",
+  "_component": "22",
+  "component_id": "09396cc3-65d2-4fba-a60d-5545e2185f9b",
+  "title": "Rubric - Redundancy",
+  "score": 3,
+  "error_category": "[All] [All] [Non-Fail - Redundancy]",
+  "justification": "One overlapping pair exists: C20 ('shows a framed play area with internal grid lines, consistent with the corresponding expected file') and C23 ('shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file'). Both test for grid lines in the play area. The 'internal grid lines' check in C20 is subsumed by C23's more detailed horizontal-grid-line check: if C23 passes, C20's grid-line portion necessarily passes too. However, the scoring impact is minimal because C20 also tests the frame itself and C23 adds unique quantitative requirements (correct row count, proportional spacing, overall dimensions). Applying the calibration test: the overlap would not cause a correct agent to be marked wrong or a wrong agent to be marked right. All other criteria across the 30-item rubric are functionally distinct, testing different log properties, visual elements, game mechanics, or file validity dimensions.",
+  "evidence": "C20 title: '`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.' (weight 45, visual). C23 title: '`bomb_blast_frame.png` shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.' (weight 50, visual). Shared element: grid lines exist in the play area.",
+  "criteria": [20, 23],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": []
 }

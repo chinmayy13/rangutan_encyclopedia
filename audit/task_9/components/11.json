@@ -1,14 +1,17 @@
 {
- "component_id": "456787e8-cb89-4fd7-a6bd-9d0760318f5e",
- "title": "Gold File - Input Consistency",
- "score": 5,
- "evidence": "Expected files are consistent with inputs: (1) bomb_blast_frame.png shows yellow oval coins matching source_coin_token.png appearance. (2) bomb_blast_frame.png shows a 3D bomb model matching Bomb.glb. (3) bomb_runtime_log.txt uses mechanic=bomb from gameplay_config.txt [mechanic] id=bomb. (4) bomb_runtime_log.txt uses 1.0s sampling interval matching gameplay_config.txt telemetry_sample_interval_s=1.0. (5) AUTO events appear at approximately 3-second intervals matching gameplay_config.txt auto_cycle_interval_s=3.0 (e.g., count=3 at ~t<1, count=19 at ~t<4, count=33 at ~t<7 — approximately 3s apart). (6) bomb_blast_frame.png visual layout matches scene_reference.png: same title, HUD column, framed play area, grid lines, collection strip.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "11"
+  "_model": "claude-opus-5",
+  "_component": "11",
+  "component_id": "456787e8-cb89-4fd7-a6bd-9d0760318f5e",
+  "title": "Component: Gold File - Input Consistency",
+  "score": 3,
+  "error_category": "[All] [All] [Non-Fail - Input Consistency]",
+  "justification": "The gold file script (token_wave.gd) does not read gameplay_config.txt at all. Instead, it hardcodes physics and timing values that differ from the config. The auto_cycle_interval is the one graded non-traceable value: the config specifies auto_cycle_interval_s = 3.0, but the script uses auto_timer = 3.2 (and initial 0.35). This produces AUTO events approximately every 3.2s in the expected log, which criterion 30 grades as a reference. The 3.2s value is not derivable from any input. However, criterion 30 allows 20% tolerance, so an agent using 3.0s (6.25% difference) would still satisfy it. Other non-traceable values include gravity (config=980, script=38.0), blast_force (config=600, scene=360), bounce_damping (config=0.7, script=0.72), blast_expand_duration (config=0.4, script=0.45), and token_speed_cap (config=1200, not implemented), but none of these are individually graded by any criterion. Visual elements (3 token rows, board layout, window size 1152x648) correctly follow the reference image over the config, as the prompt instructs. The mechanic id 'bomb' and telemetry_sample_interval 1.0s both trace to the config. All telemetry format traces to the prompt. Input assets (source_coin_token.png, Bomb.glb) are correctly bundled. The core deliverable derives correctly from the inputs; an agent following the config and reference image can satisfy all criteria despite the physics value discrepancies.",
+  "evidence": "gameplay_config.txt: auto_cycle_interval_s = 3.0; token_wave.gd line: auto_timer = 3.2 (reset value); gameplay_config.txt: gravity_px_per_s2 = 980; token_wave.gd: velocity.y += 38.0 * delta; gameplay_config.txt: blast_force_px = 600; TokenWave.tscn: mechanic_strength = 360.0; gameplay_config.txt: bounce_damping = 0.7; token_wave.gd: velocity.x *= -0.72; Expected log consecutive AUTO gap (e.g. count=55 to count=56, count=94 to count=95): approximately 3.0-3.2s intervals between MOTION_SAMPLE timestamps.",
+  "criteria": [10, 30],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": [
+    "The gold file script does not read gameplay_config.txt at all. All six physics/timing parameters from the config (gravity, bounce_damping, blast_force, blast_expand_duration, token_speed_cap, auto_cycle_interval) are either hardcoded to different values or not implemented. While the prompt says 'gameplay_config.txt controls timing and physics,' the expected project ignores it entirely. The fix is to have the script parse and use gameplay_config.txt values, or to update the config values to match what the script uses.",
+    "Window resolution in project.godot (1152x648) does not match gameplay_config.txt (window_width=1150, window_height=650). The project uses the reference image's pixel dimensions instead. This is defensible given the prompt's conflict resolution rule, but the config values are vestigial."
+  ]
 }

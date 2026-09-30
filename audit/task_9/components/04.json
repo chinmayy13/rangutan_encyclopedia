@@ -1,14 +1,18 @@
 {
- "component_id": "c651259f-9eb4-4a33-98db-0775ac9e56c9",
- "title": "Prompt - Realism",
- "score": 5,
- "evidence": "The scenario is a realistic game development task: building a playable Godot prototype for an internal gameplay review meeting. The colleague voice ('for our Thursday gameplay review', 'our 3D artist delivered', 'our art director', 'our designer locked in last sprint') establishes a plausible team context. The input files are realistic game assets — a coin texture, a 3D model, a reference screenshot, and a config file with version tracking ('build 0.4.2-preview'). The deliverables (project ZIP, screenshot, console log) are standard artifacts a game developer would produce for a review. No contrived academic exercise or unrealistic setup.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "04"
+  "_model": "claude-sonnet-5",
+  "_component": "04",
+  "component_id": "c651259f-9eb4-4a33-98db-0775ac9e56c9",
+  "title": "Prompt - Realism",
+  "score": 3,
+  "error_category": "[All] [All] [Non-Fail - Minor Prescriptive Prompt]",
+  "justification": "The prompt is grounded and has a real working situation with a visible motivation: 'Hi, I'm putting together a playable prototype for our Thursday gameplay review and I need it built in Godot so the team can run it themselves instead of watching a capture.' It has no artificial persona and names its inputs with context (art director's reference, artist's model, designer's config). It does not cross into the fail band. It is not an output-by-output checklist, it has no exact section-title list, and it does not spell out an internal algorithm. The telemetry line formats and the log and screenshot conditions are plausible requirements a developer might give. It lands in the minor-prescriptive band for two reasons. First, it carries more procedural and spec-style detail than a real user would typically write, and some of it reads as rubric language: 'Treat it as the spec, not loose inspiration', 'at least two lights positioned so that both the silhouette and the top surface of the model read clearly', 'covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line'. Second, it enumerates the reference-image elements one by one: 'the framed play area with its internal grid lines, ... the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks'. This is heavier than a real user would write, but it does not leak verifier logic or overfit the output.",
+  "evidence": "\"Treat it as the spec, not loose inspiration: match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows, the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks.\" Also: \"at least two lights positioned so that both the silhouette and the top surface of the model read clearly\" and \"covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line.\" Motivation: \"putting together a playable prototype for our Thursday gameplay review ... so the team can run it themselves instead of watching a capture.\"",
+  "criteria": [],
+  "confidence": "medium",
+  "blocked_on": null,
+  "minor_issues": [
+    "The reference-image paragraph could be shortened to point at scene_reference.png and one or two key concerns, since a real requester would rely on the image itself.",
+    "Softening 'Treat it as the spec, not loose inspiration' to something like 'the reference is what the art director signed off on' would read less like rubric language.",
+    "The mid-prompt sentence 'Where the config file and the reference image disagree ... go with what the reference image shows' is a conflict-resolution rule that reads a bit like a spec clause. A brief reason, such as the art director having signed the image off, would make it feel more natural."
+  ]
 }

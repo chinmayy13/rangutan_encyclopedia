@@ -1,14 +1,14 @@
 {
- "component_id": "b73c983a-d49f-42ae-97a5-595a176fa776",
- "title": "Rubric - Content",
- "score": 5,
- "evidence": "All criteria test meaningful aspects of the task output. format_gate criteria verify deliverable existence and structural validity. correctness criteria verify telemetry format compliance, timing accuracy, gameplay mechanics (blast, gravity, bouncing, collection, auto-cycle, repopulation), counter logic, and behavioral consistency. visual criteria verify the screenshot matches the reference image across all major visual elements. No criteria test irrelevant or trivial aspects. No criteria contradict each other. Each criterion adds distinct verification value.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "14"
+  "_model": "claude-opus-5",
+  "_component": "14",
+  "component_id": "b73c983a-d49f-42ae-97a5-595a176fa776",
+  "title": "Rubric - Content",
+  "score": 3,
+  "error_category": "[All] [All] [Non-Fail - Rubric Content]",
+  "justification": "1 of 17 correctness criteria is existence-only (5.88%), which is within the up-to-15% non-fail band. Criterion n=9 ('bomb_runtime_log.txt includes at least one origin=AUTO action line and at least one origin=INPUT action line') checks only that specific line types are present using 'includes at least one' language, with no comparison to the expected file and no assessment of content correctness. By contrast, criterion n=29 covers the same origin values but checks their correctness against the expected file's trigger-source mapping. The remaining 16 correctness criteria all assess content through comparisons to expected files, quantitative thresholds, internal consistency checks, or behavioral verification. 15% of 17 = 2.55, so the threshold for fail would be 3 or more existence-only criteria; 1 is well within the non-fail band.",
+  "evidence": "Criterion n=9 title: \"bomb_runtime_log.txt includes at least one origin=AUTO action line and at least one origin=INPUT action line.\" (category: correctness). Compare to n=29: \"Each ACTION_TRANSITION line in bomb_runtime_log.txt carries an origin value that matches the trigger-source mapping used in the corresponding expected file.\" (category: correctness). Denominator: 17 correctness criteria (n=6,7,8,9,10,11,12,13,14,15,24,25,26,27,28,29,30).",
+  "criteria": [9],
+  "confidence": "high",
+  "blocked_on": null,
+  "minor_issues": ["Criterion n=9 could be strengthened by adding a comparison anchor, e.g., requiring the count of AUTO and INPUT lines to be consistent with the expected file rather than just checking at-least-one presence."]
 }

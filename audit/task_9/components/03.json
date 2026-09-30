@@ -1,14 +1,19 @@
 {
- "component_id": "f42591e3-1f2a-4eee-9089-7a1d785d2e8b",
- "title": "Prompt - Clarity",
- "score": 5,
- "evidence": "The prompt is written in natural colleague voice with clear structure. It specifies: (1) Context — building a prototype for a gameplay review. (2) Four named input files with their purposes. (3) Visual authority hierarchy — scene_reference.png is the spec; gameplay_config.txt controls timing/physics; image wins on visual conflicts. (4) Gameplay mechanics — radial blast, gravity, bouncing, collection, auto-cycle, board repopulation. (5) 3D bomb panel requirements — viewport, camera, lights, positioning. (6) Exact telemetry formats with field definitions (MOTION_SAMPLE and ACTION_TRANSITION). (7) Three named deliverables with specific capture requirements. No ambiguity in what is asked. The telemetry format uses clear placeholder syntax with curly braces.",
- "confidence": "high",
- "criteria": [],
- "error_category": null,
- "justification": null,
- "blocked_on": null,
- "minor_issues": [],
- "_model": "claude-opus-4-6",
- "_component": "03"
+  "_model": "claude-sonnet-5",
+  "_component": "03",
+  "component_id": "f42591e3-1f2a-4eee-9089-7a1d785d2e8b",
+  "title": "Prompt - Clarity",
+  "score": 5,
+  "error_category": null,
+  "justification": "The prompt names all four inputs and all three outputs exactly, and it settles the one real conflict between sources: 'Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.' The config says token_rows = 4, and scene_reference.png shows 3 token rows inside 4 row zones. That rule covers this case, so the agent has nothing to guess. Log formats are given as templates. {id} is defined as the mechanic id in gameplay_config.txt (bomb). The sample interval (1.0 s), auto cycle (3.0 s), and gravity, bounce and blast parameters are all in the named config. The bomb panel requirements (dedicated camera, at least two lights, to the right of the board, no overlap with the play area) can each be checked. The screenshot condition ('blast ring is still expanding', HUD legible, 3D panel visible) and the log condition ('at least twelve continuous seconds', one AUTO line and one INPUT line) can be checked from the artifacts. The rubric criteria (1-30) line up with what the prompt asks for. They defer to the expected files only for the visual and behavioural details the prompt already delegates to scene_reference.png. I found no place where two competent readings would produce differently graded artifacts.",
+  "evidence": "\"Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.\"; \"MOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}\"; \"ACTION_TRANSITION mechanic={id} origin=<AUTO|INPUT> count={n}\"; \"where {id} is the mechanic identifier from gameplay_config.txt\"; gameplay_config.txt: \"id = bomb\", \"auto_cycle_interval_s = 3.0\", \"telemetry_sample_interval_s = 1.0\"; outputs named: Bomb_Chain_Reaction_Godot_Project.zip, bomb_blast_frame.png, bomb_runtime_log.txt",
+  "criteria": [6, 7, 8, 9, 10, 16, 18, 23, 24, 25, 27, 28],
+  "confidence": "high",
+  "blocked_on": "Bomb.glb could not be inspected (the extractor does not support .glb). It does not affect this clarity judgement. The expected zip was only read from its member listing.",
+  "minor_issues": [
+    "The prompt does not say which token 'first=(x,y)' refers to (for example the first token in spawn order) or which coordinate space it uses (screen pixels versus board-local). Rubric criterion 28 only asks for well-formed values that show live movement, so this does not create misalignment.",
+    "The prompt does not say outright that automatic blasts also raise the actions counter. 'Each trigger raises the actions counter' plus the shared count={n} and actions={n} fields point to counting every blast, and criteria 24 and 27 assume that. One explicit sentence would remove any doubt.",
+    "The config gives a 1150x650 window with board_margin_left = 260 and board_margin_right = 300, which leaves a 590 px board width. The reference image is 1152x648 and its frame is about 642 px wide. The prompt's 'reference image is the visual authority' rule resolves this, but the numbers are not reconciled.",
+    "The screenshot criteria do not give a ring colour. The prompt only says 'blast ring', and the reference image shows no ring."
+  ]
 }
