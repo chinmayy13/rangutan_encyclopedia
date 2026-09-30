@@ -120,7 +120,7 @@
           },
           {
             "id": "f1a00003-0003-4000-a003-000000000013",
-            "title": "`bomb_runtime_log.txt` shows the blast firing automatically on a fixed repeating cycle via origin=AUTO events, so the board never sits idle, consistent with the corresponding expected file.",
+            "title": "`bomb_runtime_log.txt` contains at least two origin=AUTO ACTION_TRANSITION lines, consistent with the automatic blast cycle in the corresponding expected file.",
             "weight": 5,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -129,7 +129,7 @@
           },
           {
             "id": "f1a00003-0004-4000-a003-000000000014",
-            "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` repopulates board tokens so the board never empties out, consistent with the corresponding expected file.",
+            "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` includes a token-repopulation mechanism that spawns new tokens after existing ones are collected, matching the repopulation logic in the corresponding expected file.",
             "weight": 15,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -137,9 +137,9 @@
             }
           },
           {
-            "id": "f1a00003-0005-4000-a003-000000000015",
-            "title": "In `bomb_runtime_log.txt`, the collected value increments with each collection event and the actions value increments with each blast trigger, consistent with the corresponding expected file.",
-            "weight": 10,
+            "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
+            "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity, damping, and blast-force values that produce token trajectories matching those in the corresponding expected file.",
+            "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
@@ -246,7 +246,7 @@
           },
           {
             "id": "5494cdc8-330b-49ec-87b9-5441178f7343",
-            "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) coordinates are well-formed numeric pairs consistent with live token positions shown in the corresponding expected file.",
+            "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) field contains a well-formed numeric coordinate pair within the board-area bounds shown in the corresponding expected file.",
             "weight": 5,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -273,7 +273,7 @@
           },
           {
             "id": "45f4431a-ac14-4fcb-b2a6-04b1f62c64fc",
-            "title": "During periods in `bomb_runtime_log.txt` where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.",
+            "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus 20 percent of the corresponding count in the expected file.",
             "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -463,7 +463,7 @@
                 },
                 {
                   "id": "f1a00003-0003-4000-a003-000000000013",
-                  "title": "`bomb_runtime_log.txt` shows the blast firing automatically on a fixed repeating cycle via origin=AUTO events, so the board never sits idle, consistent with the corresponding expected file.",
+                  "title": "`bomb_runtime_log.txt` contains at least two origin=AUTO ACTION_TRANSITION lines, consistent with the automatic blast cycle in the corresponding expected file.",
                   "weight": 5,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -472,7 +472,7 @@
                 },
                 {
                   "id": "f1a00003-0004-4000-a003-000000000014",
-                  "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` repopulates board tokens so the board never empties out, consistent with the corresponding expected file.",
+                  "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` includes a token-repopulation mechanism that spawns new tokens after existing ones are collected, matching the repopulation logic in the corresponding expected file.",
                   "weight": 15,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -480,9 +480,9 @@
                   }
                 },
                 {
-                  "id": "f1a00003-0005-4000-a003-000000000015",
-                  "title": "In `bomb_runtime_log.txt`, the collected value increments with each collection event and the actions value increments with each blast trigger, consistent with the corresponding expected file.",
-                  "weight": 10,
+                  "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
+                  "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity, damping, and blast-force values that produce token trajectories matching those in the corresponding expected file.",
+                  "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
@@ -589,7 +589,7 @@
                 },
                 {
                   "id": "5494cdc8-330b-49ec-87b9-5441178f7343",
-                  "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) coordinates are well-formed numeric pairs consistent with live token positions shown in the corresponding expected file.",
+                  "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) field contains a well-formed numeric coordinate pair within the board-area bounds shown in the corresponding expected file.",
                   "weight": 5,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -616,7 +616,7 @@
                 },
                 {
                   "id": "45f4431a-ac14-4fcb-b2a6-04b1f62c64fc",
-                  "title": "During periods in `bomb_runtime_log.txt` where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.",
+                  "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus 20 percent of the corresponding count in the expected file.",
                   "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
