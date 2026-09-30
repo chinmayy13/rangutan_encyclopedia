@@ -1,0 +1,14 @@
+{
+ "component_id": "1d89daf5-f545-4599-b767-6d54f915c206",
+ "title": "JSON - Structure / URL Integrity",
+ "score": 5,
+ "evidence": "Mechanical pre-pass confirmed: func = 'agent_judge_multi' ✓. dest names match between expected and result arrays (Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png). All result paths are under /home/docker/Desktop/. No signed URLs in verifier or initializer. No dest mismatch. bundle.json mechanical.28_json_structure_url_integrity.score = 5.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "28"
+}

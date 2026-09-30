@@ -1,0 +1,14 @@
+{
+ "component_id": "a8306b3d-a400-45b0-86a7-116b1df9c0e5",
+ "title": "Rubric - Accuracy",
+ "score": 5,
+ "evidence": "All criteria accurately reflect the prompt's requirements: criterion 11 matches prompt's 'radial blast from the middle of the board that pushes every token outward'; criterion 12 matches 'fall under gravity, bounce off inner walls, collected once they cross the collection strip'; criterion 13 matches 'fires automatically on the repeating cycle'; criterion 14 matches 'board keeps itself populated so it never empties out'; criterion 16 matches 'Bomb.glb has to be rendered live as an actual 3D object...in its own viewport panel placed beside the board...dedicated 3D camera and at least two lights'; telemetry criteria match the exact MOTION_SAMPLE and ACTION_TRANSITION formats specified in the prompt. No criterion states something the prompt does not require or contradicts what it asks for.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "15"
+}

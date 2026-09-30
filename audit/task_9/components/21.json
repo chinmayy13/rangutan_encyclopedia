@@ -1,0 +1,14 @@
+{
+ "component_id": "de6f8f1c-3701-4af6-b54d-40645afe9f54",
+ "title": "Rubric - Framing",
+ "score": 5,
+ "evidence": "All criteria are framed as positive assertions of what should be present or true: 'Output includes...', 'contains...lines in the prescribed format', 'shows a 3D bomb model', 'shows board tokens rendered as', 'shows a large colored ring', 'shows the HUD counters legible', 'shows a framed play area'. No criteria are framed as negatives ('should not', 'must not') except where logically necessary (criterion 19: 'no text clipped, truncated, or overlapping' — this is a quality assertion, not a negative framing). No criteria impose unnecessary constraints beyond what the prompt requests.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "21"
+}

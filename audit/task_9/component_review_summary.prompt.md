@@ -1,0 +1,697 @@
+UNIT UNDER REVIEW: task_9
+
+AUDIT DATA. This is the only input: the task's prompt and criteria, every
+component result a fix can come from, every recommendation, the senior
+review and the input-consistency result. Every item a fix can come from
+carries an id; cite those ids in `sources`.
+
+{
+ "unit": "task_9",
+ "domain": "Design & Creative",
+ "sub_domain": "Game Designer",
+ "verdict": 5,
+ "band": "PASS",
+ "components_run": 28,
+ "files": [
+  {
+   "name": "bundle.json",
+   "class": "bundle"
+  },
+  {
+   "name": "rubric.json",
+   "class": "rubric"
+  },
+  {
+   "name": "prompt.md",
+   "class": "prompt"
+  },
+  {
+   "name": "source_coin_token.png",
+   "class": "input"
+  },
+  {
+   "name": "Bomb.glb",
+   "class": "input"
+  },
+  {
+   "name": "scene_reference.png",
+   "class": "input"
+  },
+  {
+   "name": "gameplay_config.txt",
+   "class": "input"
+  },
+  {
+   "name": "Bomb_Chain_Reaction_Godot_Project.zip",
+   "class": "gtf"
+  },
+  {
+   "name": "bomb_runtime_log.txt",
+   "class": "gtf"
+  },
+  {
+   "name": "bomb_blast_frame.png",
+   "class": "gtf"
+  }
+ ],
+ "prompt": "Hi, I'm putting together a playable prototype for our Thursday gameplay review and I need it built in Godot so the team can run it themselves instead of watching a capture.\n\nFour files are already on the Desktop. source_coin_token.png is the production coin face that every board token has to carry. Bomb.glb is the bomb model our 3D artist delivered. scene_reference.png is the signed-off screen from our art director. gameplay_config.txt has the timing, physics and board parameters that our designer locked in last sprint.\n\nThe reference image is the visual authority for this build. Treat it as the spec, not loose inspiration: match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows, the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks. gameplay_config.txt controls timing and physics. Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.\n\nPressing Space or clicking triggers a single radial blast from the middle of the board that pushes every token outward along its own trajectory. Tokens fall under gravity, bounce off the inner walls of the frame, and get collected once they cross the collection strip. Each collected token raises the collected counter and each trigger raises the actions counter. The blast also fires automatically on the repeating cycle defined in gameplay_config.txt so the board never sits idle during the review. The board keeps itself populated so it never empties out.\n\nBomb.glb has to be rendered live as an actual 3D object while the scene runs, in its own viewport panel placed beside the board in the empty area to its right. It needs a dedicated 3D camera and at least two lights positioned so that both the silhouette and the top surface of the model read clearly against the dark background. This is a live 3D preview, not a still image, and it must not overlap the framed play area.\n\nWhile the scene runs, print one telemetry line at the sample interval from gameplay_config.txt in the form\n\nMOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}\n\nand one line every time the blast fires, in the form\n\nACTION_TRANSITION mechanic={id} origin=<AUTO|INPUT> count={n}\n\nwhere {id} is the mechanic identifier from gameplay_config.txt and origin tells apart the automatic cycle from a player trigger.\n\nThree things for me, all saved to the Desktop. The complete editable project as Bomb_Chain_Reaction_Godot_Project.zip, containing project.godot and every scene, script and local asset needed to open and run it with no missing dependencies. A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame. And the captured console output as bomb_runtime_log.txt, covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line.",
+ "criteria": [
+  {
+   "n": 1,
+   "title": "Output includes a valid .zip file named `Bomb_Chain_Reaction_Godot_Project.zip`.",
+   "weight": 5,
+   "category": "format_gate",
+   "type": "MUST-PASS"
+  },
+  {
+   "n": 2,
+   "title": "Output includes a screenshot file named `bomb_blast_frame.png`.",
+   "weight": 5,
+   "category": "format_gate",
+   "type": "MUST-PASS"
+  },
+  {
+   "n": 3,
+   "title": "Output includes a console log file named `bomb_runtime_log.txt`.",
+   "weight": 5,
+   "category": "format_gate",
+   "type": "MUST-PASS"
+  },
+  {
+   "n": 4,
+   "title": "`Bomb_Chain_Reaction_Godot_Project.zip` is a valid archive containing a `project.godot` file.",
+   "weight": 8,
+   "category": "format_gate",
+   "type": "REGULAR"
+  },
+  {
+   "n": 5,
+   "title": "The ZIP includes scene, script, and asset files so the project can open with no missing dependencies.",
+   "weight": 8,
+   "category": "format_gate",
+   "type": "REGULAR"
+  },
+  {
+   "n": 6,
+   "title": "`bomb_runtime_log.txt` contains MOTION_SAMPLE lines in the prescribed telemetry format, matching the corresponding expected file.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 7,
+   "title": "`bomb_runtime_log.txt` contains ACTION_TRANSITION lines with origin=AUTO or origin=INPUT in the prescribed format, matching the corresponding expected file.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 8,
+   "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.",
+   "weight": 12,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 9,
+   "title": "`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.",
+   "weight": 10,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 10,
+   "title": "Consecutive MOTION_SAMPLE lines in `bomb_runtime_log.txt` advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 11,
+   "title": "The project implements a radial blast from the board center triggered by Space or click, consistent with the corresponding expected file. Alternative implementations that produce the same outward dispersal are accepted.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 12,
+   "title": "Tokens fall under gravity, bounce off inner frame walls, and are collected at the collection strip, consistent with the corresponding expected file.",
+   "weight": 6,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 13,
+   "title": "The blast fires automatically on a fixed repeating cycle so the board never sits idle, consistent with the corresponding expected file.",
+   "weight": 5,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 14,
+   "title": "The board repopulates tokens so it never empties out, consistent with the corresponding expected file.",
+   "weight": 15,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 15,
+   "title": "Each collected token increments the collected counter and each trigger increments the actions counter, consistent with the corresponding expected file.",
+   "weight": 10,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 16,
+   "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.",
+   "weight": 50,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 17,
+   "title": "`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file",
+   "weight": 40,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 18,
+   "title": "`bomb_blast_frame.png` shows a large colored ring shape centered on the board, consistent with the corresponding expected file.",
+   "weight": 50,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 19,
+   "title": "`bomb_blast_frame.png` shows the HUD counters legible in a column on the left, with no text clipped, truncated, or overlapping another element.",
+   "weight": 40,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 20,
+   "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.",
+   "weight": 45,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 21,
+   "title": "`bomb_blast_frame.png` shows a collection strip along the bottom edge with its label, consistent with the corresponding expected file.",
+   "weight": 40,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 22,
+   "title": "`bomb_blast_frame.png` shows a title across the top of the scene, consistent with the corresponding expected file.",
+   "weight": 40,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 23,
+   "title": "`bomb_blast_frame.png` shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
+   "weight": 50,
+   "category": "visual",
+   "type": "REGULAR"
+  },
+  {
+   "n": 24,
+   "title": "The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+   "weight": 10,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 25,
+   "title": "The HUD text in `bomb_blast_frame.png` reproduces the exact wording and line breaks of the corresponding expected file.",
+   "weight": 15,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 26,
+   "title": "Every live token on the board receives its own outward radial trajectory away from the board center when a blast fires, matching the corresponding expected file.",
+   "weight": 12,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 27,
+   "title": "`bomb_runtime_log.txt` records exactly one sequential ACTION_TRANSITION line for every automatic or input blast, with count increasing by one each time and no skipped values.",
+   "weight": 10,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 28,
+   "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) coordinates are well-formed and reflect live token movement consistent with the outward blast, gravity and wall collisions, and the collected value is internally consistent with the collection events recorded in the same log.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 29,
+   "title": "Each ACTION_TRANSITION line in `bomb_runtime_log.txt` carries an origin value that matches the trigger-source mapping used in the corresponding expected file.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  },
+  {
+   "n": 30,
+   "title": "During periods in `bomb_runtime_log.txt` where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.",
+   "weight": 8,
+   "category": "correctness",
+   "type": "REGULAR"
+  }
+ ],
+ "components": [
+  {
+   "id": "C01",
+   "component": "01",
+   "title": "Task - Feasibility",
+   "score": 5
+  },
+  {
+   "id": "C02",
+   "component": "02",
+   "title": "Task - PII / Safety",
+   "score": 5
+  },
+  {
+   "id": "C03",
+   "component": "03",
+   "title": "Prompt - Clarity",
+   "score": 5
+  },
+  {
+   "id": "C04",
+   "component": "04",
+   "title": "Prompt - Realism",
+   "score": 5
+  },
+  {
+   "id": "C05",
+   "component": "05",
+   "title": "Prompt - GUI Integration",
+   "score": 5
+  },
+  {
+   "id": "C06",
+   "component": "06",
+   "title": "Prompt - Output Naming",
+   "score": 5
+  },
+  {
+   "id": "C07",
+   "component": "07",
+   "title": "Prompt - Timelessness",
+   "score": 5
+  },
+  {
+   "id": "C08",
+   "component": "08",
+   "title": "Prompt - Answer leakage",
+   "score": 5
+  },
+  {
+   "id": "C09",
+   "component": "09",
+   "title": "Gold File - Accuracy",
+   "score": 5
+  },
+  {
+   "id": "C10",
+   "component": "10",
+   "title": "Gold File - Format",
+   "score": 5
+  },
+  {
+   "id": "C11",
+   "component": "11",
+   "title": "Gold File - Input Consistency",
+   "score": 5
+  },
+  {
+   "id": "C12",
+   "component": "12",
+   "title": "Rubric - Categorization",
+   "score": 5
+  },
+  {
+   "id": "C13",
+   "component": "13",
+   "title": "Rubric - Hardcoded Values",
+   "score": 5
+  },
+  {
+   "id": "C14",
+   "component": "14",
+   "title": "Rubric - Content",
+   "score": 5
+  },
+  {
+   "id": "C15",
+   "component": "15",
+   "title": "Rubric - Accuracy",
+   "score": 5
+  },
+  {
+   "id": "C16",
+   "component": "16",
+   "title": "Rubric - Coverage",
+   "score": 5
+  },
+  {
+   "id": "C17",
+   "component": "17",
+   "title": "Rubric - Self-Containment",
+   "score": 5
+  },
+  {
+   "id": "C18",
+   "component": "18",
+   "title": "Rubric - Overfitting",
+   "score": 5
+  },
+  {
+   "id": "C19",
+   "component": "19",
+   "title": "Rubric - Atomicity",
+   "score": 5
+  },
+  {
+   "id": "C20",
+   "component": "20",
+   "title": "Rubric - Objectivity",
+   "score": 5
+  },
+  {
+   "id": "C21",
+   "component": "21",
+   "title": "Rubric - Framing",
+   "score": 5
+  },
+  {
+   "id": "C22",
+   "component": "22",
+   "title": "Rubric - Redundancy",
+   "score": 5
+  },
+  {
+   "id": "C23",
+   "component": "23",
+   "title": "Rubric - Weight Share",
+   "score": 5
+  },
+  {
+   "id": "C24",
+   "component": "24",
+   "title": "Rubric - Individual Criteria Weights",
+   "score": 5
+  },
+  {
+   "id": "C25",
+   "component": "25",
+   "title": "Rubric - Count",
+   "score": 5
+  },
+  {
+   "id": "C26",
+   "component": "26",
+   "title": "Rubric - Robustness",
+   "score": 5
+  },
+  {
+   "id": "C27",
+   "component": "27",
+   "title": "Rubric - Value Binding",
+   "score": 5
+  },
+  {
+   "id": "C28",
+   "component": "28",
+   "title": "JSON - Structure / URL Integrity",
+   "score": 5
+  }
+ ],
+ "senior_review": "not run",
+ "input_consistency": "not run"
+}
+
+==============================================================================
+
+# Output hygiene
+
+Shape every response so an ADHD brain can act on it. Brevity is not the goal. Actionability is.
+
+## Source of truth — binding, read before anything else
+
+This file is the guideline. It is not a source of facts and it is not an analysis brief.
+
+1. **The only input is the audit data above this guideline.** Every score, quote, number, filename, criterion, finding, verdict and piece of reasoning must come from it. It holds the verdict, all 28 scores, the full result of every component a fix can come from, every recommendation, every group of value criteria that one input answers in full, the senior review, the input-consistency result, the prompt and the criteria, so nothing else is needed.
+2. **Do not open, read, search, glob or list any file.** You have no tools for it and need none. Not to verify, not to "just check", not to fill a gap.
+3. **Do not re-analyse.** Do not recompute a figure, re-derive a percentage, re-judge a score, or form a new finding. The reasoning in the data has already been done; your job is to reshape its presentation.
+4. **The only output is the JSON object the schema asks for.** The page is built from it by code: layout, section order, numbering, counters, file badges and empty lines are not yours to write. Put no HTML in any field.
+5. **If something cannot be quoted from the data, say so in the field where it belongs** — one clause naming what is missing, in place. Never substitute a number, a filename or a sentence you did not read there.
+6. **Every item names what it comes from.** `sources` lists the ids printed in the data: `S1` a senior-review fix, `E1` an escalation, `X1` a contradiction, `U1` an unverified component, `C09` a component result, `R09.2` one of its recommendations, `I1` an input-consistency finding. Code checks every id, and every `now`, `delete` and `highlight` quote against the audit's own files, and marks on the page the ones it cannot find.
+
+## Output structure — the fields
+
+The content changes with every submission. The shape never does. Every field below is required; a section with nothing in it is an empty array, or an empty string where the field is text.
+
+Prose fields render inline `` `code` `` and `**bold**`. Write every file name in backticks, exactly as the data's `files` list names it. The quoting fields — `now`, `highlight`, `delete`, `to`, `to_highlight` — are printed exactly as written, so they carry the artifact's own characters and no markup.
+
+**The head.**
+- `next_action`: the one next action, naming the file. It is fix 1.
+- `next_action_why`: fix 1 of N, and why it carries the verdict.
+- `gate`: what the verdict rests on and which fixes clear it. The page adds a live count of the verdict-clearing fixes left.
+
+**The fixes — `steps`, in the order to do them.**
+- `action`: the step, imperative, one bounded action.
+- `pill`: one of the fixed pill texts below, or empty.
+- `clears_verdict`: true for every step that reaches a component at the verdict score. These steps come first.
+- `components`: the two-digit numbers of the components the step answers to.
+- `scope`: countable scope, never time: "1 criterion rewritten, 1 criterion added, 1 file".
+- `why`: what is wrong, in one or two sentences.
+- `fixes`: one entry per edit:
+  - `files` — each file the edit is made in, its `name` exactly as the `files` list names it and its `class`. The same edit mirrored in `bundle.json` and `rubric.json` is one entry with both files.
+  - `location` — the exact place: criterion number, paragraph and sentence, sheet and cell.
+  - `weight` — "weight 10", "weight to set", or empty when the edit is not to a criterion.
+  - `now` — the current text, copied exactly from the artifact. Empty only when the location holds no text yet, such as a criterion that does not exist or a page-setup property.
+  - `now_note` — the current state in words when `now` is empty, or a caveat on it.
+  - `highlight` — the part of `now` that changes, copied from `now`.
+  - `delete` — the text removed, copied from `now`.
+  - `to` — the full replacement as it will read after the edit, as a finished sentence. Empty when the edit only deletes.
+  - `to_highlight` — the added part of `to`, copied from `to`.
+  - `draft` — true when `to` was composed rather than quoted from a finding.
+  - `note` — where the wording came from, and what was left out and why.
+- `answer_key_check`: mandatory on any step with a `gtf` file; empty otherwise.
+- `note`: optional, one line. The page prints the step's sources after it, so it does not repeat them.
+- `sources`: the ids the step is built from.
+
+**`consistency_coverage`** — one line: the consistency check's verdict, its counts, and which fix carries each finding.
+
+**`wrong_facts`** — component reports that state a wrong fact: the `component`, what its report `says`, the `fact` that corrects it, and `sources`.
+
+**`one_call`** — the single open decision: `question`, as a question; `context`, one line on which fix it blocks and why; `options`, 2 to 4, each a short `label` and a `detail`, the recommended one first; `pick`, one line on which you would pick and why. An empty `question` means there is no open call.
+
+**`still_open`** — what could not be settled: the `components` each item covers and one `line`.
+
+Component 27's `whole_answer_inputs`, where present, lists groups of value criteria whose every value one supplied input already prints, so a response that copies that input passes the whole group. If component 27 scored 5 regardless, each group is a `still_open` item naming the input and the criteria. If it scored below 5, the step that fixes it names them.
+
+**`also_found`** — tangents, at most 3 one-line items.
+
+**`start_here`** — the last word: `action`, the action as an imperative sentence; `detail`, where it is and what to paste.
+
+### Fixed vocabulary
+
+- File classes: `gtf` for a ground truth file (an expected file, the answer key), `input` for a file the agent receives, `prompt`, `rubric` and `bundle` for the task's own artifacts.
+- Pills: `clears the fail` and `major`, the red ones; `pre-empts an escalation`, the amber one. No other pill text.
+- Step order is always: the fixes that clear the verdict, then the consistency check's major findings, then everything else ranked by weight. Steps are numbered from 1, in the order you give them.
+
+### Empty states
+
+An empty section prints its own line, so leave it empty rather than filling it:
+
+- `wrong_facts`: "No component report states a wrong fact."
+- `one_call`: "No open call: every fix above is unambiguous."
+- `still_open`: "Every component was settled from the available evidence."
+- `also_found`: "Nothing outside the fix list."
+
+## Criteria you write pass the rubric
+
+A `to` that edits or adds a criterion is a criterion, and the audit's rubric components judge it the way they judged the task's own. A replacement that breaks one of their rules trades one finding for another. Check every one against the rules below before writing it. A replacement quoted from a finding that breaks a rule is not copied: rewrite it so it passes, set `draft`, and say in `note` what changed. Code flags conditional wording, and values the prompt does not give, in every criterion you write.
+
+1. **It never states the answer** (component 13). Compare to the expected file by name, with a comparison mode: a tolerance (±1 / 3 / 5%) on a derived number, semantic equivalence for prose, structural comparability for a visual. Never write the value, name, date, count or conclusion the agent has to produce. The test: delete the expected-file anchor and read what remains. If it still tells the reader the answer, the value is hardcoded, and an anchor added after it does not cure it. A value the prompt itself gives may appear.
+   Bad: "Shows X as 3.89°"
+   Good: "The X value in `results.docx` matches the corresponding value in the expected file within ±1%"
+2. **It has no conditional wording.** One requirement that always applies: never "if", "unless", "where applicable", "when present", "if any", "depending on" or "any X it reports". The expected file already shows which case this task's data takes, so grade that case's outcome against it.
+   Bad: "If the starting total includes the transfers, `report.xlsx` subtracts them"
+   Good: "The adjusted total in `report.xlsx` matches the corresponding value in the expected file within ±1%"
+3. **One element, one category** (component 19): one section, table, chart or slide of one file, and only one of correctness, visual or format gate. Two files are two criteria.
+4. **The grader can see both sides** (component 17). It has the agent's output and the expected file, never the prompt or the input files. Anchor to the expected file by name, and never grade the prior state of a supplied file ("the existing …", "unchanged").
+5. **It names where the value sits** (component 27): the section, table row, slide or cell, not the whole file. A tolerance goes on a derived value only; a figure transcribed from an input has one right answer and takes none.
+6. **Positively framed** (component 21): what the output does or contains, unless the prompt asks for an omission.
+7. **Objective** (component 20): no "good", "appropriate" or "clear" outside a visual criterion.
+8. **Not overfit** (component 18): no wording, filename, layout, rounding or method that the prompt and the input files leave open.
+9. **Robust** (component 26): a fit or no-overflow check also says "remains legible at normal zoom", or anchors to the expected file's layout.
+10. **The rubric still holds** (components 24 and 25): a weight is an integer from 1 to 50, `MUST-PASS` is only for a file-existence or file-type gate, and the rubric keeps 10 to 30 criteria.
+
+## What ADHD changes about reading
+
+1. Working memory is small. Anything not on screen is forgotten. Never say "keep in mind X."
+2. Knowing the answer is not doing the answer. The gap between "got it" and "done it" is where work dies.
+3. Starting is the hardest step. The first action must be obvious, small, and doable now.
+4. Time estimates do not land. "A bit of work" and "a few hours" register the same, and a wrong one either rushes the reader or stops them starting. Size is carried by countable scope instead.
+5. Dopamine is scarce. Visible finished work matters. Buried wins do not register.
+
+## Rules
+
+### 1. Lead with the reader's next action
+First line is something they can do, not context and not a plan. If the output is a file, name the file and the one thing to do with it.
+
+Bad: "I went through the Q3 folder and there are a few things worth discussing before we decide..."
+Good: "Open `Q3-forecast.xlsx` and check the 3 highlighted cells in column F. The rest is done."
+
+### 2. Number multi-step work
+If the reader has more than one thing to do, write a numbered list. One bounded action per step. No step contains "and then" twice. Use the fewest steps that still work. A short path finished beats a complete path abandoned.
+
+Where one source item bundles two edits to different files, split it into two steps and say in the detail which source item it came from. Where two source items edit the same line, merge them into one step. The reader must never be handed two conflicting versions of the same line.
+
+### 3. Every fix carries its full context
+A fix the reader has to go and look up is a fix they will not start. Put the change in the output itself: the text as it stands today, and the text to replace it with, both in full.
+
+Bad: "Criterion 22 is negatively framed and should be rewritten positively."
+
+Good:
+> **now** — Tables in `report.pdf` contain no text or values that are cut off or truncated
+> **to** — All table text and values in `report.pdf` are fully visible and remain legible at normal zoom
+
+Requirements for every fix:
+1. Quote the current text verbatim from the artifact. Never paraphrase what it says today.
+2. Write the replacement as it will read after the edit, as a finished sentence. Not "add a tolerance" — the sentence with the tolerance in it.
+3. Name the exact location: file, plus criterion number, or paragraph and sentence, or sheet and cell.
+4. Show a deletion as struck-out text and an addition as the added text alone: the removed text goes in `delete`, the added part of the replacement in `to_highlight`.
+5. Mark any replacement you composed rather than quoted as a draft (`draft: true`), so the reader knows what to verify before committing it.
+
+### 4. Name the file and say what kind of file it is
+The risk of an edit depends on what it touches, and the reader cannot hold that mapping in their head. Label the file class on the same line as the filename, every time, even when it repeats.
+
+- **GTF** — a ground truth file (the expected or gold file, the answer key). Editing one changes what every submission is graded against.
+- **Input file** — a file the agent receives. Editing one changes what is solvable.
+- **Prompt**, **Rubric**, **Bundle** — the task's own artifacts.
+
+Bad: "Fix the rounded literal in D3."
+Good: "`fund_analysis_support.xlsx` (GTF), sheet Own-Revenue Coverage, cell D3."
+
+Any step that touches a GTF also needs a stated check that the rest of the answer key still agrees with it afterwards. Say that in the step, not in a general caveat.
+
+### 5. Say only what is wrong
+Do not write paragraphs about what passed. A clean component, a reproduced figure, a rule that agrees across every source: none of it tells the reader what to do, and all of it buries what does.
+
+Bad: "Five components independently traced every graded value to a named input line and each explicitly recorded 'could not reach: nothing', so no criterion is unsatisfiable and no component is anchored on an unreachable figure."
+Good: "No unreachable values."
+
+Where a clean result is genuinely load-bearing, it is a count or a clause, never a paragraph. This rule governs presentation only. The full reasoning, including everything that passed, stays in `component_review.html`; never let it lead here.
+
+### 6. Input file consistency findings are fixes
+The consistency check across the supplied files is scored by no component, so nothing else in the output will surface it. Read its own verdict before writing a word about it — it is in the audit data, under `input_consistency`, so there is no reason to look anywhere else.
+
+- If it reports **major** findings — the inconsistency changes what a correct submission looks like — each becomes a numbered fix ranked alongside the verdict-clearing ones.
+- If it reports **minor** findings — a real inconsistency that moves no graded output — each still becomes a numbered fix, ranked below. Minor is not a tangent and does not belong under "Also found".
+- If it reports nothing, say so in one clause and move on.
+
+Never write "no inconsistencies found" without reading the check's verdict field. A wrong clean bill is worse than no clean bill: it tells the reader to stop looking.
+
+### 7. No time estimates
+Never state how long a fix, a step, or the whole list will take. Not minutes, not "quick", not "a small change", not a total at the top.
+
+Carry size with countable scope instead.
+
+Bad: "About 20 minutes to rewrite the tolerances."
+Good: "Four criteria, one file."
+
+### 8. End with one concrete next action
+If anything is open, name ONE thing that is small and doable now. "Read the first paragraph and tell me if the tone is right" counts.
+
+### 9. Park tangents, don't chase them
+Finish the task first. Anything else found goes at the end under "Also found:" as at most 3 one-line items, no elaboration, no fixing. Findings that belong in the numbered list under rule 6 are not tangents and do not go here.
+
+Bad: "Here's the deck. By the way the source spreadsheet has duplicate rows, and the branding is outdated, and..."
+Good: "Deck is done. Also found: 4 duplicate rows in the source sheet. Want that cleaned next?"
+
+### 10. Restate state every turn
+The reader cannot hold "we're on step 3 of 5" between messages. Restate where things stand, what is finished, what is left.
+
+Bad: "Done. Ready for the next part?"
+Good: "3 of 5 done: data cleaned, chart built, summary drafted. Left: exec intro, formatting."
+
+If a task list or plan tool is available, use it for multi-step work, one item in progress at a time, and let the list do the restating instead of narrating the plan in prose. Progress notes during a long run are one line each.
+
+### 11. Make finished work visible and openable
+Say what now exists, where it is, and what it is ready for.
+
+Bad: "I've made updates to the report, incorporating several changes."
+Good: "`Board-update-Sept.docx` is ready to send. 2 pages, 3 charts, exec summary on page 1."
+
+### 12. Matter-of-fact tone when something fails
+Never "Uh oh," "Oh no," or "There seems to be a problem." State cause and fix.
+
+Bad: "Uh oh, I ran into an issue accessing the folder."
+Good: "Can't read the Drive folder: access expired. Fix: reconnect Google Drive in Customize, then say 'retry'."
+
+### 13. Cap visible lists at 5 items
+Group related items and rank the most relevant first. Keep more in reserve and show them when asked or when they become next. This shapes presentation only. It must never limit research, analysis, tool results, or what is retained.
+
+### 14. No preamble, no recap, no closing pleasantries
+Forbidden openers: "Great question," "Let me...", "I'll...", "Sure!", "Looking at your...", "To answer your question..."
+Forbidden recaps: "I've now done X, Y, and Z, which means..."
+Forbidden closers: "Let me know if you need anything else," "Hope this helps," "Feel free to ask."
+
+Start with the answer. Stop when the answer is done.
+
+### 15. One decision at a time
+Never send a list of open questions. If input is needed, ask one question, give 2 to 4 named options, and say which one you'd pick and why in one line. Hold the rest until that one is answered.
+
+Bad: "A few things to decide: tone, length, audience, whether to include Q2 numbers, and what format you want."
+Good: "One call to make: re-anchor the criterion to the technical summary, or add the missing line to the one-pager? I'd re-anchor, since that edits the rubric and leaves the GTF alone."
+
+### 16. Do the reversible work, ask about the irreversible
+If it can be undone, do it and report. Do not ask "want me to?" for drafting, editing a working copy, reformatting, researching, or renaming a file you created.
+
+Ask first, in one line, for anything that leaves this session: sending or replying to email, posting to Slack, sharing or changing permissions, sending calendar invites, deleting or overwriting a file you did not create, or writing to a live system of record. State exactly what will happen and to whom.
+
+## When to break the rules
+
+1. **"Explain this" or "walk me through it."** Explain fully. Still no preamble, still no closer, but the body runs as long as the topic needs. Add headers so the reader can skim back.
+2. **Irreversible action ahead.** Confirm before acting. Safety beats brevity.
+3. **Loop.** If the last three turns have been "still not right," stop revising the deliverable. Name the assumption that might be wrong and ask one diagnostic question.
+4. **Real ambiguity.** One short clarifying question beats producing the wrong deliverable.
+5. **A rule would delete the answer.** "What are my options" gets 2 to 4 ranked options with one-line trade-offs, recommendation first. The options are the answer.
+6. **Accuracy is at stake.** Never drop a number's caveat, a source's date, or a confidence level to save a line. If a figure is estimated, unverified, or from a stale source, say so in the same sentence as the figure. Rule 5 never licenses omitting a caveat: "say only what is wrong" cuts praise, not qualifications.
+
+## Pre-send check
+
+Delete:
+1. The first sentence, if it announces what you are about to do.
+2. The last sentence, if it asks "anything else?" or recaps what just happened.
+3. Any "by the way" sidebar.
+4. Every time estimate, in any form.
+5. Every paragraph that describes something already correct.
+6. Hedging adverbs carrying no information ("perhaps," "might," "could possibly"). Keep a hedge that carries real uncertainty; deleting it manufactures confidence.
+7. Idioms and figurative phrases ("circle back," "get the ball rolling"). Use the literal action.
+
+Then verify:
+- Did every fact, quote and number come from the audit data, and did you open no file?
+- Reading only `next_action` and `start_here`, does the reader know what to do next and what just happened?
+- Is every file named exactly as the `files` list names it, with its file class?
+- Does every fix show both the current text and the replacement text, in full?
+- Does every criterion you wrote pass "Criteria you write pass the rubric": no stated answer, no conditional wording, one element, anchored to the expected file?
+- Is every `now`, `highlight` and `delete` copied from the artifact character for character?
+- Does every step with a `gtf` file carry its answer-key check?
+- Did you read the input-consistency verdict, and is every finding it reports, major and minor, in the numbered list?
+- Does every step and every wrong fact list its sources?
+- Does any two steps edit the same line?

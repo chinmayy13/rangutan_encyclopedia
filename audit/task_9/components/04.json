@@ -1,0 +1,14 @@
+{
+ "component_id": "c651259f-9eb4-4a33-98db-0775ac9e56c9",
+ "title": "Prompt - Realism",
+ "score": 5,
+ "evidence": "The scenario is a realistic game development task: building a playable Godot prototype for an internal gameplay review meeting. The colleague voice ('for our Thursday gameplay review', 'our 3D artist delivered', 'our art director', 'our designer locked in last sprint') establishes a plausible team context. The input files are realistic game assets — a coin texture, a 3D model, a reference screenshot, and a config file with version tracking ('build 0.4.2-preview'). The deliverables (project ZIP, screenshot, console log) are standard artifacts a game developer would produce for a review. No contrived academic exercise or unrealistic setup.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "04"
+}

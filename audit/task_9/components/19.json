@@ -1,0 +1,14 @@
+{
+ "component_id": "f676c8ad-83bc-473d-9419-da82db8da737",
+ "title": "Rubric - Atomicity",
+ "score": 5,
+ "evidence": "Most criteria test a single verifiable property. Criteria that bundle multiple aspects do so around ONE element (per calibration guidance): criterion 16 bundles 3D model + viewport + camera + lights — but all describe the single 3D bomb panel; criterion 28 bundles coordinate format + movement consistency + collected consistency — but all describe one MOTION_SAMPLE line's validity. No criterion combines unrelated elements from different parts of the deliverable. File criteria (1-3) each test one file. Telemetry criteria each test one aspect of the log format. Visual criteria each target one visual element. Less than 15% of criteria have any bundling, and the bundling that exists is around a single element.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "19"
+}

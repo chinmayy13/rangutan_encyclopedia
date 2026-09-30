@@ -1,0 +1,14 @@
+{
+ "component_id": "9b90d593-d92a-431c-b3ca-99f25c8ab95d",
+ "title": "Prompt - Output Naming",
+ "score": 5,
+ "evidence": "Mechanical pre-pass confirmed: all three output files are explicitly named in the prompt — 'Bomb_Chain_Reaction_Godot_Project.zip', 'bomb_blast_frame.png', and 'bomb_runtime_log.txt'. The prompt specifies 'all saved to the Desktop' as the output location. bundle.json mechanical.06_prompt_output_naming.score = 5, unnamed_outputs = [], states_desktop = true.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "06"
+}

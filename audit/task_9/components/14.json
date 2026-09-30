@@ -1,0 +1,14 @@
+{
+ "component_id": "b73c983a-d49f-42ae-97a5-595a176fa776",
+ "title": "Rubric - Content",
+ "score": 5,
+ "evidence": "All criteria test meaningful aspects of the task output. format_gate criteria verify deliverable existence and structural validity. correctness criteria verify telemetry format compliance, timing accuracy, gameplay mechanics (blast, gravity, bouncing, collection, auto-cycle, repopulation), counter logic, and behavioral consistency. visual criteria verify the screenshot matches the reference image across all major visual elements. No criteria test irrelevant or trivial aspects. No criteria contradict each other. Each criterion adds distinct verification value.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "14"
+}

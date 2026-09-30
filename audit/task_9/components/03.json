@@ -1,0 +1,14 @@
+{
+ "component_id": "f42591e3-1f2a-4eee-9089-7a1d785d2e8b",
+ "title": "Prompt - Clarity",
+ "score": 5,
+ "evidence": "The prompt is written in natural colleague voice with clear structure. It specifies: (1) Context — building a prototype for a gameplay review. (2) Four named input files with their purposes. (3) Visual authority hierarchy — scene_reference.png is the spec; gameplay_config.txt controls timing/physics; image wins on visual conflicts. (4) Gameplay mechanics — radial blast, gravity, bouncing, collection, auto-cycle, board repopulation. (5) 3D bomb panel requirements — viewport, camera, lights, positioning. (6) Exact telemetry formats with field definitions (MOTION_SAMPLE and ACTION_TRANSITION). (7) Three named deliverables with specific capture requirements. No ambiguity in what is asked. The telemetry format uses clear placeholder syntax with curly braces.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "03"
+}

@@ -1,0 +1,15 @@
+{
+ "component_id": "d77b518d-fd8c-467d-8717-d5e7b05327c4",
+ "title": "Rubric - Value Binding",
+ "score": 5,
+ "evidence": "All criteria that reference specific values bind them to authoritative sources: 'matching the corresponding expected file' binds to the ground-truth files in the verifier. 'consistent with the corresponding expected file' binds visual checks to bomb_blast_frame.png. 'the mechanic identifier from gameplay_config.txt' binds to the input file. 'the sample interval from gameplay_config.txt' binds to telemetry_sample_interval_s=1.0. 'the repeating cycle defined in gameplay_config.txt' binds to auto_cycle_interval_s=3.0. 'at least twelve seconds' comes from the prompt. No criterion references a value without tracing it to the prompt, an input file, or the expected file.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "whole_answer_inputs": [],
+ "_model": "claude-opus-4-6",
+ "_component": "27"
+}

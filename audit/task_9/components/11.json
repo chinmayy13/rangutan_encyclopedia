@@ -1,0 +1,14 @@
+{
+ "component_id": "456787e8-cb89-4fd7-a6bd-9d0760318f5e",
+ "title": "Gold File - Input Consistency",
+ "score": 5,
+ "evidence": "Expected files are consistent with inputs: (1) bomb_blast_frame.png shows yellow oval coins matching source_coin_token.png appearance. (2) bomb_blast_frame.png shows a 3D bomb model matching Bomb.glb. (3) bomb_runtime_log.txt uses mechanic=bomb from gameplay_config.txt [mechanic] id=bomb. (4) bomb_runtime_log.txt uses 1.0s sampling interval matching gameplay_config.txt telemetry_sample_interval_s=1.0. (5) AUTO events appear at approximately 3-second intervals matching gameplay_config.txt auto_cycle_interval_s=3.0 (e.g., count=3 at ~t<1, count=19 at ~t<4, count=33 at ~t<7 — approximately 3s apart). (6) bomb_blast_frame.png visual layout matches scene_reference.png: same title, HUD column, framed play area, grid lines, collection strip.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "11"
+}

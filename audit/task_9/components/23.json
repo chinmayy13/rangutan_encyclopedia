@@ -1,0 +1,14 @@
+{
+ "component_id": "791d6498-5d1d-48b9-89ca-0ac6b7b5dea1",
+ "title": "Rubric - Weight Share",
+ "score": 5,
+ "evidence": "Mechanical pre-pass confirmed: domain is 'Design & Creative', which uses inverted bands (source-conflicts.md §4). Weight shares: format_gate 5.67% (≤20% ✓), correctness 29.43% (20-30% ✓), visual 64.90% (≥50% ✓). Total weight: 547. All three bands are within the Design & Creative specification. bundle.json mechanical.23_rubric_weight_share.score = 5, off_band = [].",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "23"
+}

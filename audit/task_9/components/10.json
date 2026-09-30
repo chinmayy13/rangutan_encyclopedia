@@ -1,0 +1,14 @@
+{
+ "component_id": "5b2a7e9a-4aaf-40d8-8ea5-eec4bf279436",
+ "title": "Gold File - Format",
+ "score": 5,
+ "evidence": "Mechanical pre-pass confirmed: expected file extensions are .zip, .txt, .png — all standard formats producible by the CUA VM. Godot Engine is in the 24-application list (cua-applications.csv). No ground-truth URL points at an input URL. Ubuntu-only task (os_enabled = ['ubuntu']). bundle.json mechanical.10_gold_file_format.score = 5.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "10"
+}

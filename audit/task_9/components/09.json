@@ -1,0 +1,14 @@
+{
+ "component_id": "4d2d498a-cd03-4e60-9367-1dc61a3e4de9",
+ "title": "Gold File - Accuracy",
+ "score": 5,
+ "evidence": "Expected files accurately represent the prompt's requirements: (1) Bomb_Chain_Reaction_Godot_Project.zip contains 140 members including project.godot, scenes/TokenWave.tscn, scripts/token_wave.gd, imported assets (Bomb.glb, source_coin_token.png), shader cache — a complete runnable Godot project. (2) bomb_runtime_log.txt contains Godot Engine header, 41 MOTION_SAMPLE lines and 96 ACTION_TRANSITION lines, spanning t=1.0 to t=41.0 (40 seconds, well over the 12-second minimum), with mechanic=bomb matching gameplay_config.txt, both AUTO and INPUT origins, 1.0s sampling interval matching config. (3) bomb_blast_frame.png shows: title 'TD 2D · BOMB' at top, framed play area with horizontal grid lines, yellow oval coin tokens, blast ring expanding from center, HUD column on left (BOMB, Collected: 62, Actions: 89, SPACE / CLICK trigger mechanic, Automatic preview runs every cycle.), collection strip at bottom with COLLECT label, 3D bomb model in viewport to the right.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "09"
+}

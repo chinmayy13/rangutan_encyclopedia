@@ -1,0 +1,14 @@
+{
+ "component_id": "8c2ae7e1-6bcb-411e-a3f1-fdedb7fa0687",
+ "title": "Prompt - Answer leakage",
+ "score": 5,
+ "evidence": "The prompt describes WHAT to build, not HOW to build it. It specifies gameplay mechanics (blast, gravity, bouncing, collection) and telemetry format structures (MOTION_SAMPLE and ACTION_TRANSITION with field placeholders), but does not provide GDScript code, scene tree structures, node configurations, or implementation details. The input files are source assets (texture, 3D model, reference image, config), not solution files. The gameplay_config.txt provides parameters but not implementation. The telemetry format uses curly-brace placeholders ({id}, {seconds}, {x}, {y}, {n}) — template syntax, not actual output values. No answer leakage detected.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "08"
+}

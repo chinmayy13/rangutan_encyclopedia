@@ -1,0 +1,14 @@
+{
+ "component_id": "09396cc3-65d2-4fba-a60d-5545e2185f9b",
+ "title": "Rubric - Redundancy",
+ "score": 5,
+ "evidence": "No significant redundancy between criteria. Each criterion targets a distinct verification point: criteria 6 vs 7 test different telemetry line types (MOTION_SAMPLE vs ACTION_TRANSITION). Criteria 16-23 each target a different visual element (3D panel, tokens, blast ring, HUD, grid, collection strip, title, row zones). Criteria 24 vs 27 test different aspects of the action counter (monotonic values in MOTION_SAMPLE vs sequential counting in ACTION_TRANSITION). Criteria 8 vs 10 test different timing properties (span duration vs sampling interval). There is appropriate complementary overlap (e.g., criteria 6 tests format while criteria 28 tests value consistency within the same lines), but this is not redundancy — they verify different properties.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "22"
+}

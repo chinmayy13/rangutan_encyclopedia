@@ -1,0 +1,14 @@
+{
+ "component_id": "a1d00c99-1e0e-43c8-b7d9-b74e99319e9d",
+ "title": "Prompt - Timelessness",
+ "score": 5,
+ "evidence": "The task is entirely self-contained. No external website lookups are required — all information needed is in the four input files (coin texture, 3D model, reference image, config file). No time-sensitive data is involved (no stock prices, news, weather, live APIs). No URLs or web resources are referenced. The gameplay_config.txt provides all numeric values. The scene_reference.png provides the visual spec. The prompt does not depend on any external service or data that could change over time.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "07"
+}

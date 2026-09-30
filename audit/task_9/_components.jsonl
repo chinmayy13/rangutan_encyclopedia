@@ -1,0 +1,28 @@
+{"unit": "task_9", "component": "01", "title": "Task - Feasibility", "model": "claude-sonnet-5", "elapsed_s": 3.9, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "02", "title": "Task - PII / Safety", "model": "claude-opus-5", "elapsed_s": 4.0, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "03", "title": "Prompt - Clarity", "model": "claude-sonnet-5", "elapsed_s": 3.5, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "04", "title": "Prompt - Realism", "model": "claude-sonnet-5", "elapsed_s": 3.8, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "05", "title": "Prompt - GUI Integration", "model": "claude-sonnet-5", "elapsed_s": 3.5, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "06", "title": "Prompt - Output Naming", "model": "claude-sonnet-5", "elapsed_s": 3.4, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "07", "title": "Prompt - Timelessness", "model": "claude-sonnet-5", "elapsed_s": 3.9, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "08", "title": "Component: Prompt - Answer leakage", "model": "claude-opus-5", "elapsed_s": 4.2, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "09", "title": "Gold File - Accuracy", "model": "claude-opus-5", "elapsed_s": 3.5, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "10", "title": "Gold File - Format", "model": "claude-opus-5", "elapsed_s": 4.0, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "11", "title": "Component: Gold File - Input Consistency", "model": "claude-opus-5", "elapsed_s": 4.3, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "12", "title": "Rubric - Categorization", "model": "claude-opus-5", "elapsed_s": 4.1, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "13", "title": "Rubric - Hardcoded Values", "model": "claude-opus-5", "elapsed_s": 2.6, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "14", "title": "Rubric - Content", "model": "claude-opus-5", "elapsed_s": 1.7, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "15", "title": "Rubric - Accuracy", "model": "claude-opus-5", "elapsed_s": 2.0, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "16", "title": "Rubric - Coverage", "model": "claude-opus-5", "elapsed_s": 2.1, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "17", "title": "Rubric - Self-Containment", "model": "claude-opus-5", "elapsed_s": 2.0, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "18", "title": "Rubric - Overfitting", "model": "claude-opus-5", "elapsed_s": 2.1, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "19", "title": "Rubric - Atomicity", "model": "claude-opus-5", "elapsed_s": 1.9, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "20", "title": "Rubric - Objectivity", "model": "claude-opus-5", "elapsed_s": 1.8, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "21", "title": "Rubric - Framing", "model": "claude-opus-5", "elapsed_s": 1.9, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "22", "title": "Rubric - Redundancy", "model": "claude-opus-5", "elapsed_s": 1.7, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "23", "title": "Rubric - Weight Share", "model": "claude-opus-5", "elapsed_s": 1.9, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "24", "title": "Rubric - Individual Criteria Weights", "model": "claude-opus-5", "elapsed_s": 2.1, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "25", "title": "Rubric - Count", "model": "claude-opus-5", "elapsed_s": 1.4, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "26", "title": "Component: Rubric - Robustness", "model": "claude-opus-5", "elapsed_s": 1.1, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "27", "title": "Component: Rubric - Value Binding", "model": "claude-opus-5", "elapsed_s": 1.0, "events": 0, "status": "no_result_event"}
+{"unit": "task_9", "component": "28", "title": "JSON - Structure / URL Integrity", "model": "claude-sonnet-5", "elapsed_s": 0.7, "events": 0, "status": "no_result_event"}

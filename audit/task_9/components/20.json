@@ -1,0 +1,14 @@
+{
+ "component_id": "635195ed-1833-49a5-bd7e-c1b45fa1fff4",
+ "title": "Rubric - Objectivity",
+ "score": 5,
+ "evidence": "All criteria are objectively verifiable: file existence criteria (1-3) are binary. ZIP structure criteria (4-5) can be checked by examining the archive contents. Telemetry criteria specify exact formats (MOTION_SAMPLE, ACTION_TRANSITION) with named fields that can be parsed and validated programmatically. Timing criteria (10, 30) specify numeric tolerances (±10%, ±20%). Visual criteria compare against the expected file, which provides an objective reference standard. No criterion uses subjective terms like 'good', 'appropriate', 'well-designed', or 'aesthetically pleasing'. Every criterion has a clear pass/fail determination method.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "20"
+}

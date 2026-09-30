@@ -1,0 +1,14 @@
+{
+ "component_id": "7c7c74f0-5299-482d-8a5d-eeaea4e03068",
+ "title": "Rubric - Categorization",
+ "score": 5,
+ "evidence": "All 30 criteria are correctly categorized: format_gate (criteria 1-5): file existence (.zip, .png, .txt) and file structure (valid archive, complete project) — correct for format gates. correctness (criteria 6-15, 24-30): telemetry format, timing, behavior, gameplay mechanics, counter logic — correct for correctness. visual (criteria 16-23): screenshot appearance, 3D model rendering, tokens, blast ring, HUD, grid, collection strip, title, row layout — correct for visual. MUST-PASS tagging is correct: only criteria 1-3 (file existence) are MUST-PASS; criteria 4-5 (structural checks within files) are format_gate + REGULAR, consistent with the narrow MUST-PASS rule (§2 in source-conflicts.md).",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "12"
+}

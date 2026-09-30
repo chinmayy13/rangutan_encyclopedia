@@ -1,0 +1,14 @@
+{
+ "component_id": "b6d68ac4-8165-4c83-b78f-38a0f5918e79",
+ "title": "Rubric - Self-Containment",
+ "score": 5,
+ "evidence": "Each criterion is self-contained and evaluable without external knowledge. Criteria that reference 'the corresponding expected file' bind to the ground-truth files included in the verifier — these are available to the evaluator at grading time. The telemetry format criteria (6, 7, 8, 9, 10, 24, 27, 28, 29, 30) specify exact field names, format patterns, and measurement methods. Visual criteria (16-23) specify what to look for in the screenshot. File criteria (1-5) specify exact names and structural requirements. No criterion requires knowledge outside the prompt, inputs, and expected files. The mechanic identifier, sampling interval, and auto-cycle interval are all defined in gameplay_config.txt (an input file) and referenced via 'corresponding expected file'.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "17"
+}

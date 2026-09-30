@@ -1,0 +1,14 @@
+{
+ "component_id": "a45a178b-8e59-4e45-9163-794bcb395b60",
+ "title": "Prompt - GUI Integration",
+ "score": 5,
+ "evidence": "The task is inherently GUI-centric: it requires building a playable Godot game prototype with visual elements (framed play area, grid lines, tokens, blast ring, HUD counters, 3D bomb panel, collection strip, title). The agent must interact with Godot Engine's GUI to create scenes, position elements, run the project, and capture a screenshot. The screenshot deliverable (bomb_blast_frame.png) directly verifies GUI output. The task cannot be completed without GUI interaction — building a Godot project with 2D gameplay and a 3D viewport panel requires the Godot editor or scripted scene construction, both GUI-dependent workflows.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "05"
+}

@@ -1,0 +1,14 @@
+{
+ "component_id": "32654a22-f35f-4e9c-9ea6-2c53223ef4e2",
+ "title": "Rubric - Robustness",
+ "score": 5,
+ "evidence": "Criteria are robust against valid alternative implementations: criterion 11 explicitly accepts 'Alternative implementations that produce the same outward dispersal'. Visual criteria use 'consistent with' rather than 'identical to'. Telemetry criteria check format structure and field presence, not exact numeric values (beyond what the expected file shows). Timing criteria include tolerances (±10%, ±20%). The rubric tests observable outputs, not implementation internals — any correct Godot implementation producing the right files would pass. The criteria would correctly reject a submission that fails to produce the specified behavior (wrong format, missing elements, broken mechanics) while accepting one that achieves the same result through different code paths.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "26"
+}

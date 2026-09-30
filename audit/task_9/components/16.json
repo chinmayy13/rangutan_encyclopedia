@@ -1,0 +1,14 @@
+{
+ "component_id": "5178d35e-bf44-45cc-bad8-acfff08955e3",
+ "title": "Rubric - Coverage",
+ "score": 5,
+ "evidence": "Coverage across all prompt requirements: Deliverables: all 3 files covered (criteria 1-5). Gameplay mechanics: blast trigger (11), gravity+bouncing+collection (12), auto-cycle (13), repopulation (14), counters (15, 24), radial trajectory (26). Telemetry: MOTION_SAMPLE format (6), ACTION_TRANSITION format (7), continuous span (8), both origins (9), sampling interval (10), counter consistency (24), coordinate format (28), origin mapping (29), AUTO timing (30), sequential counting (27). Visual elements: 3D bomb panel (16), tokens (17), blast ring (18), HUD (19, 25), framed area+grid (20), collection strip (21), title (22), row zones (23). The rubric covers the prompt comprehensively with no major gap. All deliverables, gameplay mechanics, telemetry fields, and visual elements from the prompt are addressed.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "16"
+}

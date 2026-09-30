@@ -1,0 +1,323 @@
+{
+  "unit": "task_9",
+  "generated_at": "2026-09-30T05:38:56+00:00",
+  "dpi": 150,
+  "page_cap": 1000,
+  "pages_per_file_cap": 1000,
+  "applications_csv": "/home/user/rangutan_encyclopedia/cua_audit_rubric_skills_v0.3/cua-applications.csv",
+  "needs": {
+    "by_kind": {},
+    "install": [],
+    "off_version": [],
+    "kinds": [],
+    "install_commands": []
+  },
+  "tools": {
+    "blender": {
+      "tool": "blender",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": ".blend -> rendered frame",
+      "hint": "snap install blender --classic",
+      "parity_app": "Blender",
+      "pinned_version": "5.2.1 (snap rev 7740)",
+      "parity": "unknown",
+      "parity_note": null
+    },
+    "chrome": {
+      "tool": "chrome",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "HTML/SVG -> screenshot",
+      "hint": "apt-get install -y chromium-browser",
+      "parity_app": "Google Chrome",
+      "pinned_version": "150.0.7871.128",
+      "parity": "unknown",
+      "parity_note": null
+    },
+    "ffmpeg": {
+      "tool": "ffmpeg",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "video -> frames",
+      "hint": "apt-get install -y ffmpeg",
+      "parity_app": "FFmpeg",
+      "pinned_version": "4.4.2-0ubuntu0.22.04.1",
+      "parity": "unknown",
+      "parity_note": null
+    },
+    "fonts-parity": {
+      "tool": "fonts-parity",
+      "present": false,
+      "path": null,
+      "found_version": "2/4 families present",
+      "unlocks": "LibreOffice substitutes nothing: the same metrics as the CUA Ubuntu VM",
+      "hint": "apt-get install -y fonts-crosextra-carlito fonts-crosextra-caladea fonts-liberation fonts-liberation2 fonts-dejavu-core",
+      "fonts_required": [
+        "Carlito",
+        "Caladea",
+        "Liberation",
+        "DejaVu"
+      ],
+      "fonts_missing": [
+        "Carlito",
+        "Caladea"
+      ],
+      "parity": "mismatch",
+      "parity_note": "Fonts are part of parity. Carlito carries Calibri's metrics and Caladea carries Cambria's; without them a DOCX written in Calibri reflows, so the line breaks and page counts you would then 'verify' are not the contributor's.",
+      "parity_gap": "missing font families Carlito, Caladea — an office file using them reflows, so pagination is not the contributor's"
+    },
+    "gs": {
+      "tool": "gs",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "PostScript/EPS -> PDF",
+      "hint": "apt-get install -y ghostscript",
+      "parity": "n/a"
+    },
+    "magick": {
+      "tool": "magick",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "PSD/HEIC/AVIF/TIFF -> PNG",
+      "hint": "apt-get install -y imagemagick",
+      "parity": "n/a"
+    },
+    "pdftoppm": {
+      "tool": "pdftoppm",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "PDF -> page images",
+      "hint": "apt-get install -y poppler-utils",
+      "parity": "n/a"
+    },
+    "pdftotext": {
+      "tool": "pdftotext",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "PDF -> layout-preserved text",
+      "hint": "apt-get install -y poppler-utils",
+      "parity": "n/a"
+    },
+    "pymupdf": {
+      "tool": "pymupdf",
+      "present": true,
+      "path": null,
+      "found_version": "fitz 1.28.2",
+      "unlocks": "PDF -> page images + text (no system package needed)",
+      "hint": "python3 provision_renderers.py pymupdf --install",
+      "parity": "n/a"
+    },
+    "qlmanage": {
+      "tool": "qlmanage",
+      "present": false,
+      "path": null,
+      "found_version": null,
+      "unlocks": "page-1 thumbnail fallback",
+      "hint": "(macOS only — no Linux equivalent)",
+      "parity": "n/a"
+    },
+    "soffice": {
+      "tool": "soffice",
+      "present": true,
+      "path": "/usr/lib/libreoffice/program/soffice",
+      "found_version": "LibreOffice 24.2.7.2 420(Build:2)",
+      "unlocks": "DOCX/PPTX/XLSX -> PDF",
+      "hint": "python3 provision_renderers.py soffice --install   (pinned build; `apt-get install -y libreoffice` gives the distro's instead)",
+      "parity_app": "LibreOffice Writer/Calc/Impress",
+      "pinned_version": "7.3.7.2 (1:7.3.7-0ubuntu0.22.04.12)",
+      "parity": "mismatch",
+      "parity_note": "LibreOffice is the parity renderer: every CUA task is Ubuntu-only, so the VM's office suite is LibreOffice, not MS Office. A different build repaginates, and pagination is what the visual criteria grade.",
+      "parity_gap": "the VM runs LibreOffice Writer/Calc/Impress 7.3.7.2, this machine has 24.2.7.2 — layout and pagination may differ"
+    },
+    "unzip": {
+      "tool": "unzip",
+      "present": true,
+      "path": "/usr/bin/unzip",
+      "found_version": "UnZip 6.00 of 20 April 2009, by Debian. Original by Info-ZIP.",
+      "unlocks": "archive listing + integrity",
+      "hint": "apt-get install -y unzip",
+      "parity": "n/a"
+    }
+  },
+  "inputs": [
+    {
+      "name": "Bomb.glb",
+      "path": "Bomb.glb",
+      "kind": "unknown",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/Bomb.glb",
+      "bytes": 25564,
+      "magic": "unknown",
+      "status": "unavailable",
+      "mode": "none",
+      "visual_verifiable": false,
+      "pages": [],
+      "unverifiable_reason": "no renderer for extension .glb"
+    },
+    {
+      "name": "gameplay_config.txt",
+      "path": "gameplay_config.txt",
+      "kind": "text",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/gameplay_config.txt",
+      "bytes": 639,
+      "magic": "text",
+      "status": "full",
+      "mode": "native",
+      "visual_verifiable": false,
+      "pages": [],
+      "read_directly": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/gameplay_config.txt",
+      "renderer": "plain-text",
+      "note": "Plain text has no visual layout — read it as text."
+    },
+    {
+      "name": "scene_reference.png",
+      "path": "scene_reference.png",
+      "kind": "image",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/scene_reference.png",
+      "bytes": 122083,
+      "magic": "png",
+      "status": "full",
+      "mode": "native",
+      "visual_verifiable": true,
+      "pages": [
+        "scene_reference.png"
+      ],
+      "pages_rendered": 1,
+      "read_directly": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/scene_reference.png",
+      "renderer": "read-tool-native",
+      "note": "Already an image — open the original, it needs no render.",
+      "parity": "n/a",
+      "parity_note": "the layout was fixed in the file before we saw it; rasterising it is faithful whatever the rasteriser"
+    },
+    {
+      "name": "source_coin_token.png",
+      "path": "source_coin_token.png",
+      "kind": "image",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/source_coin_token.png",
+      "bytes": 1901,
+      "magic": "png",
+      "status": "full",
+      "mode": "native",
+      "visual_verifiable": true,
+      "pages": [
+        "source_coin_token.png"
+      ],
+      "pages_rendered": 1,
+      "read_directly": "/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/source_coin_token.png",
+      "renderer": "read-tool-native",
+      "note": "Already an image — open the original, it needs no render.",
+      "parity": "n/a",
+      "parity_note": "the layout was fixed in the file before we saw it; rasterising it is faithful whatever the rasteriser"
+    }
+  ],
+  "expected": [
+    {
+      "name": "Bomb_Chain_Reaction_Godot_Project.zip",
+      "path": "Bomb_Chain_Reaction_Godot_Project.zip",
+      "kind": "archive",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/expected/Bomb_Chain_Reaction_Godot_Project.zip",
+      "bytes": 121107,
+      "magic": "zip",
+      "status": "full",
+      "mode": "unzip",
+      "visual_verifiable": false,
+      "pages": [],
+      "integrity_ok": true,
+      "integrity_error": null,
+      "listing": [
+        "       91  2026-09-05 03:24   Bomb_Chain_Reaction_Working/.godot/imported/Bomb.glb-45c3e1c8fb5d29516a76451c8927b5e6.md5",
+        "    22429  2026-09-05 03:23   Bomb_Chain_Reaction_Working/.godot/imported/Bomb.glb-a24917b5f523f17c341bbf327c38df46.scn",
+        "    22434  2026-09-05 03:24   Bomb_Chain_Reaction_Working/.godot/imported/Bomb.glb-45c3e1c8fb5d29516a76451c8927b5e6.scn",
+        "       91  2026-09-05 03:23   Bomb_Chain_Reaction_Working/.godot/imported/Bomb.glb-a24917b5f523f17c341bbf327c38df46.md5",
+        "       91  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/imported/source_coin_token.png-10083214eea610e7c86e25ac7356ef67.md5",
+        "     1490  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/imported/source_coin_token.png-10083214eea610e7c86e25ac7356ef67.ctex",
+        "        0  2026-09-05 03:24   Bomb_Chain_Reaction_Working/.godot/editor/favorite_properties",
+        "     4410  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/TokenWave.tscn-editstate-c337a2d05ca3e48760ace16899e6e645.cfg",
+        "       28  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/filesystem_update4",
+        "        0  2026-09-05 03:24   Bomb_Chain_Reaction_Working/.godot/editor/favorites",
+        "       49  2026-09-05 03:58   Bomb_Chain_Reaction_Working/.godot/editor/editor_script_doc_cache.res-folding-a7de57390d6e786984ca20c70a831128.cfg",
+        "      367  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/project_metadata.cfg",
+        "      269  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/script_editor_cache.cfg",
+        "       49  2026-09-05 03:24   Bomb_Chain_Reaction_Working/.godot/editor/Bomb.glb-45c3e1c8fb5d29516a76451c8927b5e6.scn-folding-887a3c3a1a3743cae5b3ab5577b099a8.cfg",
+        "      717  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/TokenWave.tscn-folding-c337a2d05ca3e48760ace16899e6e645.cfg",
+        "     1665  2026-09-05 04:39   Bomb_Chain_Reaction_Working/.godot/editor/editor_layout.cfg",
+        "        0  2026-09-05 03:34   Bomb_Chain_Reaction_Working/.godot/editor/favorites.Node",
+        "       49  2026-09-05 03:23   Bomb_Chain_Reaction_Working/.godot/editor/Bomb.glb-a24917b5f523f17c341bbf327c38df46.scn-folding-74343f6f2a452e6903cc2d9a1f5372e6.cfg",
+        "      943  2026-09-05 04:33   Bomb_Chain_Reaction_Working/.godot/editor/filesystem_cache10",
+        "       85  2026-09-05 03:34   Bomb_Chain_Reaction_Working/.godot/editor/create_recent.Node",
+        "     1901  2026-07-28 16:24   Bomb_Chain_Reaction_Working/assets/source_art/source_coin_token.png",
+        "     1144  2026-09-05 03:24   Bomb_Chain_Reaction_Working/assets/source_art/Bomb.glb.import",
+        "    25564  2026-09-05 01:07   Bomb_Chain_Reaction_Working/assets/source_art/Bomb.glb",
+        "      973  2026-09-05 00:25   Bomb_Chain_Reaction_Working/assets/source_art/source_coin_token.png.import",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/PostShaderGLES3/611f0e60d965eea4af328ee75d90358b1483178713fa95fccce7e4caeba53289/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/CubemapFilterShaderGLES3/d51158ddbfff0e3276e7660d139ad4e6c4af2aa6dad49e934329b4a2ef4a7dbb/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/SkyShaderGLES3/d4224d60da20b7911b2d86f981829b2f24c4c9b2967830f71e13416ff170470e/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/SkeletonShaderGLES3/9b8e9acecbac73a010b31a8614fb06877a14b0639895ea0a5a787647b3e670ec/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/TexBlitShaderGLES3/ed15fddf9527ed529fd3e9148000735854cb0c967edf3c8450a89d4d4ddf04af/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/CanvasOcclusionShaderGLES3/91f4c5931a11acd61348acff8159cd0012d4877323fab2c73f2094a9186fbe14/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/CanvasSdfShaderGLES3/cce925d2edeb18ac66bf0515de4d2f6850b59966d12da0ca9cbb9b1b8ca7490f/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/SceneShaderGLES3/aa2b8d1fea5c0e703680735ee59d8bf0fe57cb4617853993ae024c4bf0cbfc26/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/GlowShaderGLES3/6a7b169604bf0bae6df7bf1331c80d8927c7e39fe999dd2b4e26ace4da0754a9/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/CopyShaderGLES3/6cb3034c9cb4de16064ee6816442e4f43c8d38447f0d5bd08cb21541f3d0c888/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/ParticlesCopyShaderGLES3/9ea0fca1d5b7ec316a7e5a235108b5e930b898eade0d2e0e8b70954f304de576/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/ParticlesShaderGLES3/bd95332a6fa294e774e696ac8f40405d951118cb0108d88225786fb0b0276004/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/FeedShaderGLES3/ba699d6c0a03b6fd21218a24fd559364c5f0fc90397eca471e590ef951ad8a21/",
+        "        0  2026-09-05 00:25   Bomb_Chain_Reaction_Working/.godot/shader_cache/CanvasShaderGLES3/2db5205a15678312ea7f500bf687d311250b610bdfaeacf70a280376eba7df73/",
+        "---------                     -------",
+        "   114033                     140 files"
+      ],
+      "renderer": "unzip"
+    },
+    {
+      "name": "bomb_blast_frame.png",
+      "path": "bomb_blast_frame.png",
+      "kind": "image",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_blast_frame.png",
+      "bytes": 96607,
+      "magic": "png",
+      "status": "full",
+      "mode": "native",
+      "visual_verifiable": true,
+      "pages": [
+        "bomb_blast_frame.png"
+      ],
+      "pages_rendered": 1,
+      "read_directly": "/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_blast_frame.png",
+      "renderer": "read-tool-native",
+      "note": "Already an image — open the original, it needs no render.",
+      "parity": "n/a",
+      "parity_note": "the layout was fixed in the file before we saw it; rasterising it is faithful whatever the rasteriser"
+    },
+    {
+      "name": "bomb_runtime_log.txt",
+      "path": "bomb_runtime_log.txt",
+      "kind": "text",
+      "source": "/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_runtime_log.txt",
+      "bytes": 8569,
+      "magic": "text",
+      "status": "full",
+      "mode": "native",
+      "visual_verifiable": false,
+      "pages": [],
+      "read_directly": "/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_runtime_log.txt",
+      "renderer": "plain-text",
+      "note": "Plain text has no visual layout — read it as text."
+    }
+  ],
+  "parity_warnings": [],
+  "summary": {
+    "files": 7,
+    "visual_verifiable": 3,
+    "degraded": 0,
+    "unavailable": 1,
+    "pages_rendered": 3,
+    "parity_ok": true
+  }
+}

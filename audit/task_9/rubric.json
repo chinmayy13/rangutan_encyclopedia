@@ -1,0 +1,272 @@
+[
+  {
+    "id": "f1a00001-0001-4000-a001-000000000001",
+    "title": "Output includes a valid .zip file named `Bomb_Chain_Reaction_Godot_Project.zip`.",
+    "weight": 5,
+    "annotations": {
+      "criteria_type": "MUST-PASS",
+      "criteria_category": "format_gate"
+    }
+  },
+  {
+    "id": "f1a00001-0002-4000-a001-000000000002",
+    "title": "Output includes a screenshot file named `bomb_blast_frame.png`.",
+    "weight": 5,
+    "annotations": {
+      "criteria_type": "MUST-PASS",
+      "criteria_category": "format_gate"
+    }
+  },
+  {
+    "id": "f1a00001-0003-4000-a001-000000000003",
+    "title": "Output includes a console log file named `bomb_runtime_log.txt`.",
+    "weight": 5,
+    "annotations": {
+      "criteria_type": "MUST-PASS",
+      "criteria_category": "format_gate"
+    }
+  },
+  {
+    "id": "f1a00001-0004-4000-a001-000000000004",
+    "title": "`Bomb_Chain_Reaction_Godot_Project.zip` is a valid archive containing a `project.godot` file.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "format_gate"
+    }
+  },
+  {
+    "id": "f1a00001-0005-4000-a001-000000000005",
+    "title": "The ZIP includes scene, script, and asset files so the project can open with no missing dependencies.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "format_gate"
+    }
+  },
+  {
+    "id": "f1a00002-0001-4000-a002-000000000006",
+    "title": "`bomb_runtime_log.txt` contains MOTION_SAMPLE lines in the prescribed telemetry format, matching the corresponding expected file.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00002-0002-4000-a002-000000000007",
+    "title": "`bomb_runtime_log.txt` contains ACTION_TRANSITION lines with origin=AUTO or origin=INPUT in the prescribed format, matching the corresponding expected file.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00002-0003-4000-a002-000000000008",
+    "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.",
+    "weight": 12,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00002-0004-4000-a002-000000000009",
+    "title": "`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.",
+    "weight": 10,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00002-0005-4000-a002-000000000010",
+    "title": "Consecutive MOTION_SAMPLE lines in `bomb_runtime_log.txt` advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0001-4000-a003-000000000011",
+    "title": "The project implements a radial blast from the board center triggered by Space or click, consistent with the corresponding expected file. Alternative implementations that produce the same outward dispersal are accepted.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0002-4000-a003-000000000012",
+    "title": "Tokens fall under gravity, bounce off inner frame walls, and are collected at the collection strip, consistent with the corresponding expected file.",
+    "weight": 6,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0003-4000-a003-000000000013",
+    "title": "The blast fires automatically on a fixed repeating cycle so the board never sits idle, consistent with the corresponding expected file.",
+    "weight": 5,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0004-4000-a003-000000000014",
+    "title": "The board repopulates tokens so it never empties out, consistent with the corresponding expected file.",
+    "weight": 15,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0005-4000-a003-000000000015",
+    "title": "Each collected token increments the collected counter and each trigger increments the actions counter, consistent with the corresponding expected file.",
+    "weight": 10,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "f1a00003-0006-4000-a003-000000000016",
+    "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.",
+    "weight": 50,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00003-0007-4000-a003-000000000017",
+    "title": "`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file",
+    "weight": 40,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0001-4000-a004-000000000018",
+    "title": "`bomb_blast_frame.png` shows a large colored ring shape centered on the board, consistent with the corresponding expected file.",
+    "weight": 50,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0002-4000-a004-000000000019",
+    "title": "`bomb_blast_frame.png` shows the HUD counters legible in a column on the left, with no text clipped, truncated, or overlapping another element.",
+    "weight": 40,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0003-4000-a004-000000000020",
+    "title": "`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.",
+    "weight": 45,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0004-4000-a004-000000000021",
+    "title": "`bomb_blast_frame.png` shows a collection strip along the bottom edge with its label, consistent with the corresponding expected file.",
+    "weight": 40,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0006-4000-a004-000000000023",
+    "title": "`bomb_blast_frame.png` shows a title across the top of the scene, consistent with the corresponding expected file.",
+    "weight": 40,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0007-4000-a004-000000000024",
+    "title": "`bomb_blast_frame.png` shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.",
+    "weight": 50,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "visual"
+    }
+  },
+  {
+    "id": "f1a00004-0008-4000-a004-000000000025",
+    "title": "The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+    "weight": 10,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "41c70b75-0ba8-4dba-896e-d495bae9415e",
+    "title": "The HUD text in `bomb_blast_frame.png` reproduces the exact wording and line breaks of the corresponding expected file.",
+    "weight": 15,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "0d47ba31-576b-420b-95c1-3cbc03d56a47",
+    "title": "Every live token on the board receives its own outward radial trajectory away from the board center when a blast fires, matching the corresponding expected file.",
+    "weight": 12,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "a47db933-d864-476e-865c-f12bca626514",
+    "title": "`bomb_runtime_log.txt` records exactly one sequential ACTION_TRANSITION line for every automatic or input blast, with count increasing by one each time and no skipped values.",
+    "weight": 10,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "5494cdc8-330b-49ec-87b9-5441178f7343",
+    "title": "In every MOTION_SAMPLE line of `bomb_runtime_log.txt`, the first=(x,y) coordinates are well-formed and reflect live token movement consistent with the outward blast, gravity and wall collisions, and the collected value is internally consistent with the collection events recorded in the same log.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "248ee70f-a1d3-44ef-a04d-c2b26c94dad1",
+    "title": "Each ACTION_TRANSITION line in `bomb_runtime_log.txt` carries an origin value that matches the trigger-source mapping used in the corresponding expected file.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  },
+  {
+    "id": "45f4431a-ac14-4fcb-b2a6-04b1f62c64fc",
+    "title": "During periods in `bomb_runtime_log.txt` where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.",
+    "weight": 8,
+    "annotations": {
+      "criteria_type": "REGULAR",
+      "criteria_category": "correctness"
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+ "component_id": "6da062ea-94f1-4e13-86f5-9763145509aa",
+ "title": "Task - PII / Safety",
+ "score": 5,
+ "evidence": "The prompt contains no personally identifiable information. It uses impersonal colleague voice ('I'm putting together a playable prototype for our Thursday gameplay review'). Input files are: a generic coin texture (source_coin_token.png), a 3D bomb model (Bomb.glb), a scene reference screenshot (scene_reference.png), and a gameplay configuration file (gameplay_config.txt) — all game design assets with no personal data. Expected outputs are a Godot project ZIP, a screenshot, and a console log file. No names, emails, phone numbers, addresses, or other PII appear anywhere in the prompt, inputs, or expected outputs.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "02"
+}

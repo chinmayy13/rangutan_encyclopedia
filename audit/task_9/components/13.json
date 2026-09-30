@@ -1,0 +1,14 @@
+{
+ "component_id": "eaf3a435-fd94-4b4f-9c17-d61eb42d2b32",
+ "title": "Rubric - Hardcoded Values",
+ "score": 5,
+ "evidence": "Criteria reference values traceable to input files: criterion 10 references 'the same regular sampling interval used in the corresponding expected file' — bound to the expected file and gameplay_config.txt telemetry_sample_interval_s=1.0. Criterion 30 references 'the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent' — bound to the expected file and gameplay_config.txt auto_cycle_interval_s=3.0. Visual criteria reference 'consistent with the corresponding expected file' — properly bound to bomb_blast_frame.png. No arbitrary numeric thresholds are hardcoded without source. The 'twelve seconds' in criterion 8 comes directly from the prompt ('covering at least twelve continuous seconds of play'). The 10% and 20% tolerances in criteria 10 and 30 are reasonable engineering tolerances for runtime measurement.",
+ "confidence": "high",
+ "criteria": [],
+ "error_category": null,
+ "justification": null,
+ "blocked_on": null,
+ "minor_issues": [],
+ "_model": "claude-opus-4-6",
+ "_component": "13"
+}
