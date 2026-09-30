@@ -96,7 +96,7 @@ bomb_blast_frame.png shows a title across the top of the scene, consistent with 
 40 points · REGULAR · visual
 
 23
-bomb_blast_frame.png shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.
+`Bomb_Chain_Reaction_Godot_Project.zip` contains a project that arranges initial board tokens with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.
 45 points · REGULAR · visual
 
 24
