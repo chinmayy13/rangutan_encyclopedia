@@ -56,7 +56,7 @@ Tokens fall under gravity, bounce off inner frame walls, and are collected at th
 6 points · REGULAR · correctness
 
 13
-The blast fires automatically on a repeating cycle so the board never sits idle, consistent with the corresponding expected file.
+The blast fires automatically on a fixed repeating cycle so the board never sits idle, consistent with the corresponding expected file.
 5 points · REGULAR · correctness
 
 14
@@ -72,11 +72,11 @@ bomb_blast_frame.png shows a 3D bomb model rendered in its own viewport panel to
 50 points · REGULAR · visual
 
 17
-The project applies the prescribed coin texture to board tokens, consistent with the corresponding expected file.
+bomb_blast_frame.png shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file
 40 points · REGULAR · visual
 
 18
-bomb_blast_frame.png shows a visible expanding blast ring on the board, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a large colored ring shape centered on the board, consistent with the corresponding expected file.
 50 points · REGULAR · visual
 
 19
@@ -96,7 +96,7 @@ bomb_blast_frame.png shows a title across the top of the scene, consistent with 
 40 points · REGULAR · visual
 
 23
-The initial token layout produced by Bomb_Chain_Reaction_Godot_Project.zip places the tokens in the same number of rows and columns, with the same alternating horizontal offset between rows, and with the same total token count and per-row occupancy, as the corresponding expected file.
+bomb_blast_frame.png shows a play area divided by horizontal grid lines into the same number of row zones as the corresponding expected file, with proportional row spacing and overall grid dimensions consistent with the corresponding expected file.
 50 points · REGULAR · visual
 
 24
