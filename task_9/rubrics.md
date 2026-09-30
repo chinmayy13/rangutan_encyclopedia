@@ -8,19 +8,19 @@ Show summary
 List view
 Search criteria...
 1
-Output includes a valid `.zip` file named `Bomb_Chain_Reaction_Godot_Project.zip`.
+Output includes a valid .zip file named Bomb_Chain_Reaction_Godot_Project.zip.
 5 points · MUST-PASS · format_gate
 
 2
-Output includes a screenshot file named `bomb_blast_frame.png`.
+Output includes a screenshot file named bomb_blast_frame.png.
 5 points · MUST-PASS · format_gate
 
 3
-Output includes a console log file named `bomb_runtime_log.txt`.
+Output includes a console log file named bomb_runtime_log.txt.
 5 points · MUST-PASS · format_gate
 
 4
-`Bomb_Chain_Reaction_Godot_Project.zip` is a valid archive containing a `project.godot` file.
+Bomb_Chain_Reaction_Godot_Project.zip is a valid archive containing a project.godot file.
 8 points · REGULAR · format_gate
 
 5
@@ -28,23 +28,23 @@ The ZIP includes scene, script, and asset files so the project can open with no 
 8 points · REGULAR · format_gate
 
 6
-`bomb_runtime_log.txt` contains MOTION_SAMPLE lines in the prescribed telemetry format, matching the corresponding expected file.
+bomb_runtime_log.txt contains MOTION_SAMPLE lines in the prescribed telemetry format, matching the corresponding expected file.
 8 points · REGULAR · correctness
 
 7
-`bomb_runtime_log.txt` contains ACTION_TRANSITION lines with origin=AUTO|INPUT in the prescribed format, matching the corresponding expected file.
+bomb_runtime_log.txt contains ACTION_TRANSITION lines with origin AUTO or INPUT in the prescribed format, matching the corresponding expected file.
 8 points · REGULAR · correctness
 
 8
-`bomb_runtime_log.txt` records a continuous, gap-free sequence of `MOTION_SAMPLE` lines with no missing samples between the first and last recorded `t` value, and that continuous time span is at least twelve seconds long.
+bomb_runtime_log.txt records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.
 12 points · REGULAR · correctness
 
 9
-`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.
+bomb_runtime_log.txt includes at least one origin=AUTO action line and at least one origin=INPUT action line.
 10 points · REGULAR · correctness
 
 10
-Consecutive `MOTION_SAMPLE` lines in `bomb_runtime_log.txt` advance `t` at the same regular sampling interval used in the corresponding expected file, within ±10% of that interval.
+Consecutive MOTION_SAMPLE lines in bomb_runtime_log.txt advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.
 8 points · REGULAR · correctness
 
 11
@@ -68,7 +68,7 @@ Each collected token increments the collected counter and each trigger increment
 10 points · REGULAR · correctness
 
 16
-`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights positioned so that the model's silhouette and top surface read clearly against the dark background, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.
 50 points · REGULAR · visual
 
 17
@@ -76,35 +76,35 @@ The project applies the prescribed coin texture to board tokens, consistent with
 40 points · REGULAR · visual
 
 18
-`bomb_blast_frame.png` shows a visible expanding blast ring on the board, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a visible expanding blast ring on the board, consistent with the corresponding expected file.
 50 points · REGULAR · visual
 
 19
-`bomb_blast_frame.png` shows the HUD counters legible in a column on the left, with no text clipped, truncated or overlapping another element.
+bomb_blast_frame.png shows the HUD counters legible in a column on the left, with no text clipped, truncated, or overlapping another element.
 40 points · REGULAR · visual
 
 20
-`bomb_blast_frame.png` shows a framed play area with internal grid lines, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a framed play area with internal grid lines, consistent with the corresponding expected file.
 45 points · REGULAR · visual
 
 21
-`bomb_blast_frame.png` shows a collection strip along the bottom edge with its label, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a collection strip along the bottom edge with its label, consistent with the corresponding expected file.
 40 points · REGULAR · visual
 
 22
-`bomb_blast_frame.png` shows a title across the top of the scene, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a title across the top of the scene, consistent with the corresponding expected file.
 40 points · REGULAR · visual
 
 23
-The initial token layout produced by `Bomb_Chain_Reaction_Godot_Project.zip` places the tokens in the same number of rows and columns, with the same alternating horizontal offset between rows, and with the same total token count and per-row occupancy, as the corresponding expected file.
+The initial token layout produced by Bomb_Chain_Reaction_Godot_Project.zip places the tokens in the same number of rows and columns, with the same alternating horizontal offset between rows, and with the same total token count and per-row occupancy, as the corresponding expected file.
 50 points · REGULAR · visual
 
 24
-The `actions` value in the `MOTION_SAMPLE` lines of `bomb_runtime_log.txt` never decreases and agrees with the `count` of the most recent preceding `ACTION_TRANSITION` line.
+The actions value in the MOTION_SAMPLE lines of bomb_runtime_log.txt never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.
 10 points · REGULAR · correctness
 
 25
-The HUD text in `bomb_blast_frame.png` reproduces the exact wording and line breaks of the corresponding expected file.
+The HUD text in bomb_blast_frame.png reproduces the exact wording and line breaks of the corresponding expected file.
 15 points · REGULAR · correctness
 
 26
@@ -112,17 +112,17 @@ Every live token on the board receives its own outward radial trajectory away fr
 12 points · REGULAR · correctness
 
 27
-`bomb_runtime_log.txt` records exactly one sequential `ACTION_TRANSITION` line for every automatic or input blast, with `count` increasing by one each time and no skipped values.
+bomb_runtime_log.txt records exactly one sequential ACTION_TRANSITION line for every automatic or input blast, with count increasing by one each time and no skipped values.
 10 points · REGULAR · correctness
 
 28
-In every `MOTION_SAMPLE` line of `bomb_runtime_log.txt`, the `first=(x,y)` coordinates are well-formed and reflect live token movement consistent with the outward blast, gravity and wall collisions, and the `collected=<n>` value is internally consistent with the collection events recorded in the same log.
+In every MOTION_SAMPLE line of bomb_runtime_log.txt, the first=(x,y) coordinates are well-formed and reflect live token movement consistent with the outward blast, gravity and wall collisions, and the collected value is internally consistent with the collection events recorded in the same log.
 8 points · REGULAR · correctness
 
 29
-Each `ACTION_TRANSITION` line in `bomb_runtime_log.txt` carries an origin value that matches the trigger-source mapping used in the corresponding expected file.
+Each ACTION_TRANSITION line in bomb_runtime_log.txt carries an origin value that matches the trigger-source mapping used in the corresponding expected file.
 8 points · REGULAR · correctness
 
 30
-During periods in `bomb_runtime_log.txt` where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events is approximately three seconds, within ±20% of three seconds.
+During periods in bomb_runtime_log.txt where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events is approximately three seconds, within plus or minus 20 percent of three seconds.
 8 points · REGULAR · correctness
