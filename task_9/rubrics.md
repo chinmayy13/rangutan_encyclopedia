@@ -32,7 +32,7 @@ bomb_runtime_log.txt contains MOTION_SAMPLE lines in the prescribed telemetry fo
 8 points · REGULAR · correctness
 
 7
-bomb_runtime_log.txt contains ACTION_TRANSITION lines with origin AUTO or INPUT in the prescribed format, matching the corresponding expected file.
+bomb_runtime_log.txt contains ACTION_TRANSITION lines with origin=AUTO or origin=INPUT in the prescribed format, matching the corresponding expected file.
 8 points · REGULAR · correctness
 
 8
