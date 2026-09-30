@@ -3,7 +3,7 @@
     "step_prompt": {
       "type": "PromptInput",
       "output": {
-        "content": "Hi, I'm putting together a playable prototype for an upcoming gameplay review and I need it built in Godot so the team can run it themselves instead of watching a capture.\n\nFour files are already on the Desktop. source_coin_token.png is the production coin face that every board token has to carry. Bomb.glb is the bomb model our 3D artist delivered. scene_reference.png is the signed-off screen from our art director. gameplay_config.txt has the timing, physics and board parameters that our designer finalized.\n\nThe reference image is the visual authority for this build. Treat it as the spec, not loose inspiration: match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows, the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks. gameplay_config.txt controls timing and physics. Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.\n\nPressing Space or clicking triggers a single radial blast from the middle of the board that pushes every token outward along its own trajectory. Tokens fall under gravity, bounce off the inner walls of the frame, and get collected once they cross the collection strip. Each collected token raises the collected counter and each trigger raises the actions counter. The blast also fires automatically on the repeating cycle defined in gameplay_config.txt so the board never sits idle during the review. The board keeps itself populated so it never empties out.\n\nBomb.glb has to be rendered live as an actual 3D object while the scene runs, in its own viewport panel placed beside the board in the empty area to its right. It needs a dedicated 3D camera and at least two lights positioned so that both the silhouette and the top surface of the model read clearly against the dark background. This is a live 3D preview, not a still image, and it must not overlap the framed play area.\n\nWhile the scene runs, print one telemetry line at the sample interval from gameplay_config.txt in the form\n\nMOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}\n\nand one line every time the blast fires, in the form\n\nACTION_TRANSITION mechanic={id} origin=<AUTO|INPUT> count={n}\n\nwhere {id} is the mechanic identifier from gameplay_config.txt and origin tells apart the automatic cycle from a player trigger.\n\nThree things for me, all saved to the Desktop. The complete editable project as Bomb_Chain_Reaction_Godot_Project.zip, containing project.godot and every scene, script and local asset needed to open and run it with no missing dependencies. A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame. And the captured console output as bomb_runtime_log.txt, covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line."
+        "content": "Hi, I'm putting together a playable prototype for an upcoming gameplay review and I need it built in Godot so the team can run it themselves instead of watching a capture.\n\nFour files are already on the Desktop. source_coin_token.png is the production coin face that every board token has to carry. Bomb.glb is the bomb model our 3D artist delivered. scene_reference.png is the signed-off screen from our art director. gameplay_config.txt has the timing, physics and board parameters that our designer finalized.\n\nThe reference image is the visual authority for this build. Treat it as the spec, not loose inspiration: match the framed play area with its internal grid lines, how the tokens sit on the board row by row including the alternating horizontal offset between rows, the collection strip along the bottom edge and where its label sits, the title across the top, and the HUD column on the left with its exact wording and line breaks. gameplay_config.txt controls timing and physics. Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.\n\nPressing Space or clicking triggers a single radial blast from the middle of the board that pushes every token outward along its own trajectory. Tokens fall under gravity, bounce off the inner walls of the frame, and get collected once they cross the collection strip. Each collected token raises the collected counter and each trigger raises the actions counter. The blast also fires automatically on the repeating cycle defined in gameplay_config.txt so the board never sits idle during the review. The board keeps itself populated: whenever the token count drops below half the starting number, the board refills to the starting layout so it never empties out.\n\nBomb.glb has to be rendered live as an actual 3D object while the scene runs, in its own viewport panel placed beside the board in the empty area to its right. It needs a dedicated 3D camera and at least two lights positioned so that both the silhouette and the top surface of the model read clearly against the dark background. This is a live 3D preview, not a still image, and it must not overlap the framed play area.\n\nWhile the scene runs, print one telemetry line at the sample interval from gameplay_config.txt in the form\n\nMOTION_SAMPLE mechanic={id} t={seconds} first=({x},{y}) collected={n} actions={n}\n\nand one line every time the blast fires, in the form\n\nACTION_TRANSITION mechanic={id} origin=<AUTO|INPUT> count={n}\n\nwhere {id} is the mechanic identifier from gameplay_config.txt and origin tells apart the automatic cycle from a player trigger.\n\nThree things for me, all saved to the Desktop. The complete editable project as Bomb_Chain_Reaction_Godot_Project.zip, containing project.godot and every scene, script and local asset needed to open and run it with no missing dependencies. A screenshot of the running game as bomb_blast_frame.png, taken at a moment when the blast ring is still expanding and the HUD counters are legible, with the 3D bomb panel visible in the same frame. And the captured console output as bomb_runtime_log.txt, covering at least twelve continuous seconds of play and containing both an automatic and a player-triggered action line."
       }
     },
     "step_rubric": {
@@ -75,7 +75,7 @@
           },
           {
             "id": "f1a00002-0003-4000-a002-000000000008",
-            "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.",
+            "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines spanning at least twelve seconds, with consecutive entries advancing t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
             "weight": 12,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -84,17 +84,8 @@
           },
           {
             "id": "f1a00002-0004-4000-a002-000000000009",
-            "title": "Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, confirming that the log captures both automatic-cycle and player-triggered blast events.",
+            "title": "`bomb_runtime_log.txt` contains both origin=AUTO and origin=INPUT ACTION_TRANSITION lines, with at least two origin=AUTO lines, confirming that the log captures both automatic-cycle and player-triggered blast events.",
             "weight": 10,
-            "annotations": {
-              "criteria_type": "REGULAR",
-              "criteria_category": "correctness"
-            }
-          },
-          {
-            "id": "f1a00002-0005-4000-a002-000000000010",
-            "title": "Consecutive MOTION_SAMPLE lines in `bomb_runtime_log.txt` advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
-            "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
@@ -111,17 +102,17 @@
           },
           {
             "id": "f1a00003-0002-4000-a003-000000000012",
-            "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity, bounce off inner frame walls, and are collected at the collection strip, consistent with the corresponding expected file.",
-            "weight": 6,
+            "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity and bounce off inner frame walls, consistent with the corresponding expected file.",
+            "weight": 4,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
             }
           },
           {
-            "id": "f1a00003-0003-4000-a003-000000000013",
-            "title": "`bomb_runtime_log.txt` contains at least two origin=AUTO ACTION_TRANSITION lines, consistent with the automatic blast cycle in the corresponding expected file.",
-            "weight": 5,
+            "id": "c3d4e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f",
+            "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens that cross the collection strip are removed from play and increment the collected counter, consistent with the corresponding expected file.",
+            "weight": 4,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
@@ -129,7 +120,7 @@
           },
           {
             "id": "f1a00003-0004-4000-a003-000000000014",
-            "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` includes a token-repopulation mechanism that spawns new tokens after existing ones are collected, matching the repopulation logic in the corresponding expected file.",
+            "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` repopulates board tokens before the board empties, keeping the board populated during play, consistent with the corresponding expected file.",
             "weight": 15,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -138,7 +129,7 @@
           },
           {
             "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
-            "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity, damping, and blast-force values that produce token trajectories matching those in the corresponding expected file.",
+            "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity and damping values that produce token fall-and-bounce trajectories consistent with those in the corresponding expected file.",
             "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -146,8 +137,17 @@
             }
           },
           {
+            "id": "d4e5f6a7-b8c9-4d0e-af12-3b4c5d6e7f80",
+            "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` set the blast-ring expansion duration to a value within plus or minus 20 percent of the duration used in the corresponding expected file.",
+            "weight": 5,
+            "annotations": {
+              "criteria_type": "REGULAR",
+              "criteria_category": "correctness"
+            }
+          },
+          {
             "id": "f1a00003-0006-4000-a003-000000000016",
-            "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.",
+            "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with both the silhouette and top surface of the model reading clearly against the dark background, consistent with the corresponding expected file.",
             "weight": 50,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -255,7 +255,7 @@
           },
           {
             "id": "6b2c3d4e-5f6a-4b7c-8d9e-0a1b2c3d4e5f",
-            "title": "In `bomb_runtime_log.txt`, the collected value in each MOTION_SAMPLE line is internally consistent with the running total of collection events in the same log.",
+            "title": "In `bomb_runtime_log.txt`, the collected value in each MOTION_SAMPLE line is monotonically non-decreasing across consecutive samples.",
             "weight": 5,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -264,7 +264,7 @@
           },
           {
             "id": "248ee70f-a1d3-44ef-a04d-c2b26c94dad1",
-            "title": "Each ACTION_TRANSITION line in `bomb_runtime_log.txt` carries an origin value that matches the trigger-source mapping used in the corresponding expected file.",
+            "title": "The total number of ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus two of the total in the corresponding expected file.",
             "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -273,7 +273,7 @@
           },
           {
             "id": "45f4431a-ac14-4fcb-b2a6-04b1f62c64fc",
-            "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus 20 percent of the corresponding count in the expected file.",
+            "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus one of the corresponding count in the expected file.",
             "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -418,7 +418,7 @@
                 },
                 {
                   "id": "f1a00002-0003-4000-a002-000000000008",
-                  "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.",
+                  "title": "`bomb_runtime_log.txt` records a continuous sequence of MOTION_SAMPLE lines spanning at least twelve seconds, with consecutive entries advancing t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
                   "weight": 12,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -427,17 +427,8 @@
                 },
                 {
                   "id": "f1a00002-0004-4000-a002-000000000009",
-                  "title": "Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, confirming that the log captures both automatic-cycle and player-triggered blast events.",
+                  "title": "`bomb_runtime_log.txt` contains both origin=AUTO and origin=INPUT ACTION_TRANSITION lines, with at least two origin=AUTO lines, confirming that the log captures both automatic-cycle and player-triggered blast events.",
                   "weight": 10,
-                  "annotations": {
-                    "criteria_type": "REGULAR",
-                    "criteria_category": "correctness"
-                  }
-                },
-                {
-                  "id": "f1a00002-0005-4000-a002-000000000010",
-                  "title": "Consecutive MOTION_SAMPLE lines in `bomb_runtime_log.txt` advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.",
-                  "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
@@ -454,17 +445,17 @@
                 },
                 {
                   "id": "f1a00003-0002-4000-a003-000000000012",
-                  "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity, bounce off inner frame walls, and are collected at the collection strip, consistent with the corresponding expected file.",
-                  "weight": 6,
+                  "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity and bounce off inner frame walls, consistent with the corresponding expected file.",
+                  "weight": 4,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
                   }
                 },
                 {
-                  "id": "f1a00003-0003-4000-a003-000000000013",
-                  "title": "`bomb_runtime_log.txt` contains at least two origin=AUTO ACTION_TRANSITION lines, consistent with the automatic blast cycle in the corresponding expected file.",
-                  "weight": 5,
+                  "id": "c3d4e5f6-a7b8-4c9d-8e0f-1a2b3c4d5e6f",
+                  "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens that cross the collection strip are removed from play and increment the collected counter, consistent with the corresponding expected file.",
+                  "weight": 4,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
@@ -472,7 +463,7 @@
                 },
                 {
                   "id": "f1a00003-0004-4000-a003-000000000014",
-                  "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` includes a token-repopulation mechanism that spawns new tokens after existing ones are collected, matching the repopulation logic in the corresponding expected file.",
+                  "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` repopulates board tokens before the board empties, keeping the board populated during play, consistent with the corresponding expected file.",
                   "weight": 15,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -481,7 +472,7 @@
                 },
                 {
                   "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
-                  "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity, damping, and blast-force values that produce token trajectories matching those in the corresponding expected file.",
+                  "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity and damping values that produce token fall-and-bounce trajectories consistent with those in the corresponding expected file.",
                   "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -489,8 +480,17 @@
                   }
                 },
                 {
+                  "id": "d4e5f6a7-b8c9-4d0e-af12-3b4c5d6e7f80",
+                  "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` set the blast-ring expansion duration to a value within plus or minus 20 percent of the duration used in the corresponding expected file.",
+                  "weight": 5,
+                  "annotations": {
+                    "criteria_type": "REGULAR",
+                    "criteria_category": "correctness"
+                  }
+                },
+                {
                   "id": "f1a00003-0006-4000-a003-000000000016",
-                  "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.",
+                  "title": "`bomb_blast_frame.png` shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with both the silhouette and top surface of the model reading clearly against the dark background, consistent with the corresponding expected file.",
                   "weight": 50,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -598,7 +598,7 @@
                 },
                 {
                   "id": "6b2c3d4e-5f6a-4b7c-8d9e-0a1b2c3d4e5f",
-                  "title": "In `bomb_runtime_log.txt`, the collected value in each MOTION_SAMPLE line is internally consistent with the running total of collection events in the same log.",
+                  "title": "In `bomb_runtime_log.txt`, the collected value in each MOTION_SAMPLE line is monotonically non-decreasing across consecutive samples.",
                   "weight": 5,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -607,7 +607,7 @@
                 },
                 {
                   "id": "248ee70f-a1d3-44ef-a04d-c2b26c94dad1",
-                  "title": "Each ACTION_TRANSITION line in `bomb_runtime_log.txt` carries an origin value that matches the trigger-source mapping used in the corresponding expected file.",
+                  "title": "The total number of ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus two of the total in the corresponding expected file.",
                   "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
@@ -616,7 +616,7 @@
                 },
                 {
                   "id": "45f4431a-ac14-4fcb-b2a6-04b1f62c64fc",
-                  "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus 20 percent of the corresponding count in the expected file.",
+                  "title": "In `bomb_runtime_log.txt`, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus one of the corresponding count in the expected file.",
                   "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
