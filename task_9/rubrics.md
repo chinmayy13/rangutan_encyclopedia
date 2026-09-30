@@ -36,39 +36,39 @@ bomb_runtime_log.txt contains ACTION_TRANSITION lines with origin=AUTO or origin
 8 points · REGULAR · correctness
 
 8
-bomb_runtime_log.txt records a continuous sequence of MOTION_SAMPLE lines with no missing samples between the first and last recorded t value, and that span is at least twelve seconds long.
+bomb_runtime_log.txt records a continuous sequence of MOTION_SAMPLE lines spanning at least twelve seconds, with consecutive entries advancing t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.
 12 points · REGULAR · correctness
 
 9
-Both origin=AUTO and origin=INPUT action lines appear in bomb_runtime_log.txt, with each origin type present in quantities consistent with the corresponding expected file.
+bomb_runtime_log.txt contains both origin=AUTO and origin=INPUT ACTION_TRANSITION lines, with at least two origin=AUTO lines, confirming that the log captures both automatic-cycle and player-triggered blast events.
 10 points · REGULAR · correctness
 
 10
-Consecutive MOTION_SAMPLE lines in bomb_runtime_log.txt advance t at the same regular sampling interval used in the corresponding expected file, within plus or minus 10 percent of that interval.
+The project in Bomb_Chain_Reaction_Godot_Project.zip implements a radial blast from the board center, triggered by Space or click, that pushes every live token outward along its own trajectory, consistent with the corresponding expected file.
 8 points · REGULAR · correctness
 
 11
-The project implements a radial blast from the board center triggered by Space or click, consistent with the corresponding expected file. Alternative implementations that produce the same outward dispersal are accepted.
-8 points · REGULAR · correctness
-
-12
-Tokens fall under gravity, bounce off inner frame walls, and are collected at the collection strip, consistent with the corresponding expected file.
-6 points · REGULAR · correctness
-
-13
-The blast fires automatically on a fixed repeating cycle so the board never sits idle, consistent with the corresponding expected file.
+The project in Bomb_Chain_Reaction_Godot_Project.zip instances Bomb.glb as a 3D node inside a SubViewport with a dedicated Camera3D and at least two light nodes, so the bomb model renders live during play, consistent with the corresponding expected file.
 5 points · REGULAR · correctness
 
-14
-The board repopulates tokens so it never empties out, consistent with the corresponding expected file.
+12
+In the project from Bomb_Chain_Reaction_Godot_Project.zip, tokens that cross the collection strip are removed from play and increment the collected counter, consistent with the corresponding expected file.
+4 points · REGULAR · correctness
+
+13
+The project in Bomb_Chain_Reaction_Godot_Project.zip repopulates board tokens before the board empties, keeping the board populated during play, consistent with the corresponding expected file.
 15 points · REGULAR · correctness
 
-15
-Each collected token increments the collected counter and each trigger increments the actions counter, consistent with the corresponding expected file.
+14
+In the project from Bomb_Chain_Reaction_Godot_Project.zip, tokens fall under gravity, bounce off inner frame walls, and follow fall-and-bounce trajectories consistent with those in the corresponding expected file.
 10 points · REGULAR · correctness
 
+15
+The project scripts in Bomb_Chain_Reaction_Godot_Project.zip set the blast-ring expansion duration to a value within plus or minus 20 percent of the duration used in the corresponding expected file.
+5 points · REGULAR · correctness
+
 16
-bomb_blast_frame.png shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with a dedicated camera and at least two lights so that the silhouette and top surface of the model read clearly against the dark background, consistent with the corresponding expected file.
+bomb_blast_frame.png shows a 3D bomb model rendered in its own viewport panel to the right of the board, not overlapping the play area, with both the silhouette and top surface of the model reading clearly against the dark background, consistent with the corresponding expected file.
 50 points · REGULAR · visual
 
 17
@@ -96,7 +96,7 @@ bomb_blast_frame.png shows a title across the top of the scene, consistent with 
 40 points · REGULAR · visual
 
 23
-`Bomb_Chain_Reaction_Godot_Project.zip` contains a project that arranges initial board tokens with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.
+Bomb_Chain_Reaction_Godot_Project.zip contains a project that arranges initial board tokens with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.
 45 points · REGULAR · visual
 
 24
@@ -108,21 +108,21 @@ The HUD text in bomb_blast_frame.png reproduces the exact wording and line break
 15 points · REGULAR · correctness
 
 26
-Every live token on the board receives its own outward radial trajectory away from the board center when a blast fires, matching the corresponding expected file.
-12 points · REGULAR · correctness
-
-27
 bomb_runtime_log.txt records exactly one sequential ACTION_TRANSITION line for every automatic or input blast, with count increasing by one each time and no skipped values.
 10 points · REGULAR · correctness
 
+27
+In every MOTION_SAMPLE line of bomb_runtime_log.txt, the first=(x,y) field contains a well-formed numeric coordinate pair within the board-area bounds shown in the corresponding expected file.
+5 points · REGULAR · correctness
+
 28
-In every MOTION_SAMPLE line of bomb_runtime_log.txt, the first=(x,y) coordinates are well-formed and reflect live token movement consistent with the outward blast, gravity and wall collisions, and the collected value is internally consistent with the collection events recorded in the same log.
-8 points · REGULAR · correctness
+In bomb_runtime_log.txt, the collected value in each MOTION_SAMPLE line is monotonically non-decreasing across consecutive samples.
+5 points · REGULAR · correctness
 
 29
-Each ACTION_TRANSITION line in bomb_runtime_log.txt carries an origin value that matches the trigger-source mapping used in the corresponding expected file.
+The number of origin=AUTO ACTION_TRANSITION lines in bomb_runtime_log.txt is within plus or minus one of the count of origin=AUTO lines in the corresponding expected file.
 8 points · REGULAR · correctness
 
 30
-During periods in bomb_runtime_log.txt where consecutive origin=AUTO lines appear with no intervening origin=INPUT lines, the time gap between those AUTO events matches the corresponding gap in the expected file, within plus or minus 20 percent.
+In bomb_runtime_log.txt, between consecutive origin=AUTO ACTION_TRANSITION lines with no intervening origin=INPUT line, the number of intervening MOTION_SAMPLE lines is within plus or minus one of the corresponding count in the expected file.
 8 points · REGULAR · correctness
