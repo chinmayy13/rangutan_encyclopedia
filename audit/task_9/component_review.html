@@ -160,14 +160,14 @@ pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:.76rem;
 <h2>All submissions</h2>
 <p class=dim>Verdict, the component that drives it, and the first fix. Follow a row to its detail below.</p>
 <table><tr><th>Submission</th><th>Domain</th><th class=n>Verdict</th><th>Driven by</th><th class=n>Esc</th><th class=n>Con</th><th class=n>Rec</th><th>First fix</th></tr>
-<tr><td><a href='#utask_9'><code>task_9</code></a></td><td>Design &amp; Creative</td><td class=n><span class="s p2">2</span></td><td><span class=dim>not reviewed</span></td><td class=n>0</td><td class=n>0</td><td class=n><b>24</b></td><td></td></tr>
+<tr><td><a href='#utask_9'><code>task_9</code></a></td><td>Design &amp; Creative</td><td class=n><span class="s p2">2</span></td><td>16 Rubric - Coverage, 21 Rubric - Framing</td><td class=n>0</td><td class=n>0</td><td class=n><b>24</b></td><td>Add a visual criterion testing that token rows exhibit the alternating horizontal offset the prompt explicitly names (&#x27;including the alternating horizontal offset between rows&#x27;) an</td></tr>
 </table>
 <p class=dim>Rec counts unscored recommendations. A submission can pass with a verdict of 5 and still carry them.</p>
 <h3>Input file consistency</h3>
 <p class=dim>Whether the material the task is built from agrees with itself: the input files against each other, and against the prompt, the expected files and the criteria. The 28 components each grade one artifact against the review form, and none of them asks this, so a submission can score clean on all 28 while two supplied sources state different rules for the same quantity.</p>
 <p class=dim><b>Major</b> means the inconsistency changes what a correct submission looks like: an agent working faithfully from the inputs cannot reach the graded answer, or has to guess between two supplied rules that lead to different graded values. <b>Minor</b> means a real inconsistency that moves no graded output. This pass is never scored and never reaches the verdict.</p>
 <table><tr><th>Submission</th><th>State</th><th class=n>Major</th><th class=n>Minor</th><th class=n>Rules</th><th>What the check found</th></tr>
-<tr><td><a href='#utask_9'><code>task_9</code></a></td><td class=nw><span class='pill p4'>not run</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=dim>No <code>input_consistency.json</code>. The supplied files were never compared against each other.</td></tr>
+<tr><td><a href='#utask_9'><code>task_9</code></a></td><td class=nw><span class="pill p3">minor issues</span></td><td class=n><span class=dim>.</span></td><td class=n>6</td><td class=n>20</td><td><details class=row><summary>Checked all four input files (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) against each other and ...</summary><div class=in><div class=fold>Checked all four input files (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) against each other and against the three expected files (Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png), plus the prompt and 30 criteria. Found six minor inconsistencies: two value-conflicts between inputs (token_rows and window dimensions disagree between gameplay_config.txt and scene_reference.png), and four gold-resolves-silently cases where the gold project uses physics and timing values that differ from gameplay_config.txt despite the prompt designating that file as the physics authority. None of these make any graded criterion unsatisfiable because the prompt provides an explicit resolution rule for visual conflicts and no criterion directly grades exact physics parameter values.</div><div class=fold><span class="pill p3">minor</span> <code>value-conflict</code> <span class=dim>gameplay_config.txt / scene_reference.png</span><br><b>A.</b> gameplay_config.txt [board] section: token_rows = 4<br><b>B.</b> scene_reference.png shows exactly 3 rows of tokens on the board (with 4 grid zones created by 3 horizontal divider lines, the bottom zone empty)<br><b>Why they conflict.</b> The config specifies 4 rows of tokens but the reference image shows only 3 rows. The prompt acknowledges this class of conflict and resolves it: &#x27;Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.&#x27;<br><b>Graded impact.</b> none — the prompt provides explicit resolution favoring the reference image, so a correct agent uses 3 rows and matches the gold <span class=dim>(owned by component <code>11</code>)</span><br><b>Fix.</b> Change token_rows = 3 in gameplay_config.txt to match the reference image</div><div class=fold><span class="pill p3">minor</span> <code>value-conflict</code> <span class=dim>gameplay_config.txt / scene_reference.png</span><br><b>A.</b> gameplay_config.txt [viewport] section: window_width = 1150, window_height = 650<br><b>B.</b> scene_reference.png image dimensions are 1152x648 pixels (verified via image metadata)<br><b>Why they conflict.</b> The config specifies a 1150x650 viewport but the reference image was produced at 1152x648. The gold project.godot also uses 1152x648, matching the reference, not the config.<br><b>Graded impact.</b> none — the 2-pixel width and 2-pixel height differences do not affect any graded criterion, and the prompt&#x27;s resolution rule favoring the reference image applies <span class=dim>(owned by component <code>11</code>)</span><br><b>Fix.</b> Change window_width = 1152 and window_height = 648 in gameplay_config.txt to match the reference image</div><div class=fold><span class="pill p3">minor</span> <code>gold-resolves-silently</code> <span class=dim>gameplay_config.txt / Bomb_Chain_Reaction_Godot_Project.zip</span><br><b>A.</b> gameplay_config.txt [physics] section: gravity_px_per_s2 = 980<br><b>B.</b> Gold script token_wave.gd line 131: &#x27;velocity.y += 38.0 * delta&#x27; applies an effective gravity of 38 px/s-squared, roughly 25 times lower than the config value<br><b>Why they conflict.</b> The prompt says &#x27;gameplay_config.txt controls timing and physics&#x27;, directing the agent to use the config&#x27;s gravity value. The gold silently uses a much lower value (38 instead of 980), producing dramatically different token fall speeds and collected-count trajectories.<br><b>Graded impact.</b> none — no criterion directly compares the gravity parameter value or exact coordinate/collected trajectories against the gold; criteria 12 and 28 check behavioral patterns and internal consistency <span class=dim>(owned by component <code>09</code>)</span><br><b>Fix.</b> Change gravity_px_per_s2 = 38 in gameplay_config.txt to match the gold implementation</div><div class=fold><span class="pill p3">minor</span> <code>gold-resolves-silently</code> <span class=dim>gameplay_config.txt / Bomb_Chain_Reaction_Godot_Project.zip</span><br><b>A.</b> gameplay_config.txt [physics] section: blast_force_px = 600<br><b>B.</b> Gold scene TokenWave.tscn line 11: mechanic_strength = 360.0, used as the blast force magnitude in the bomb mechanic (token_wave.gd line 94: direction * mechanic_strength)<br><b>Why they conflict.</b> The prompt designates gameplay_config.txt as the physics authority, but the gold uses 360 instead of 600 for the blast force, producing different token dispersal velocities.<br><b>Graded impact.</b> none — no criterion grades the exact blast force value; criterion 11 checks that a radial blast exists, not its magnitude <span class=dim>(owned by component <code>09</code>)</span><br><b>Fix.</b> Change blast_force_px = 360 in gameplay_config.txt to match the gold implementation</div><div class=fold><span class="pill p3">minor</span> <code>gold-resolves-silently</code> <span class=dim>gameplay_config.txt / Bomb_Chain_Reaction_Godot_Project.zip</span><br><b>A.</b> gameplay_config.txt [timing] section: auto_cycle_interval_s = 3.0<br><b>B.</b> Gold script token_wave.gd line 47: &#x27;auto_timer = 3.2&#x27; — the auto cycle resets to 3.2 seconds, not 3.0; additionally the initial auto_timer is 0.35 (line 14), causing the first AUTO to fire after only 0.35 seconds instead of 3.0<br><b>Why they conflict.</b> The prompt says the config controls timing, but the gold uses a 3.2-second auto cycle instead of 3.0. The consecutive AUTO gaps in the expected log appear as approximately 3.0 seconds at the 1-second sampling resolution.<br><b>Graded impact.</b> none — the 6.7% difference (3.0 vs 3.2) is well within criterion 30&#x27;s plus-or-minus 20 percent tolerance for AUTO event gaps <span class=dim>(owned by component <code>09</code>)</span><br><b>Fix.</b> Change auto_cycle_interval_s = 3.2 in gameplay_config.txt, or change the gold script auto_timer reset to 3.0</div><div class=fold><span class="pill p3">minor</span> <code>gold-resolves-silently</code> <span class=dim>gameplay_config.txt / Bomb_Chain_Reaction_Godot_Project.zip</span><br><b>A.</b> gameplay_config.txt [physics] section: bounce_damping = 0.7<br><b>B.</b> Gold script token_wave.gd lines 135 and 138: wall bounce uses &#x27;velocity.x *= -0.72&#x27; and ceiling bounce uses &#x27;absf(velocity.y) * 0.72&#x27;, a damping factor of 0.72 rather than 0.7<br><b>Why they conflict.</b> The prompt designates the config as the physics authority, but the gold uses a slightly different bounce damping coefficient (0.72 vs 0.7).<br><b>Graded impact.</b> none — no criterion grades the exact bounce damping value <span class=dim>(owned by component <code>09</code>)</span><br><b>Fix.</b> Change bounce_damping = 0.72 in gameplay_config.txt, or change the gold script to use 0.7</div></div></details></td></tr>
 </table>
 <p class=dim>Rules counts the shared rules, thresholds and quantities that were stated in more than one place and so could be cross-checked. A finding already covered by a scored component names that component; the rest have no home on the review form.</p>
 <h3>Scores by component across all submissions</h3>
@@ -188,12 +188,12 @@ pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:.76rem;
 <tr><td class=mono>13</td><td>Rubric - Hardcoded Values</td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>14</td><td>Rubric - Content</td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td></tr>
 <tr><td class=mono>15</td><td>Rubric - Accuracy</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
-<tr><td class=mono>16</td><td>Rubric - Coverage</td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
+<tr><td class=mono>16</td><td>Rubric - Coverage</td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>17</td><td>Rubric - Self-Containment</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>18</td><td>Rubric - Overfitting</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>19</td><td>Rubric - Atomicity</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>20</td><td>Rubric - Objectivity</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n>1</td></tr>
-<tr><td class=mono>21</td><td>Rubric - Framing</td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
+<tr><td class=mono>21</td><td>Rubric - Framing</td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>22</td><td>Rubric - Redundancy</td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>23</td><td>Rubric - Weight Share</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
 <tr><td class=mono>24</td><td>Rubric - Individual Criteria Weights</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td><td class=n>1</td><td class=n><span class=dim>.</span></td><td class=n><span class=dim>.</span></td></tr>
@@ -208,6 +208,20 @@ pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:.76rem;
 <h2><code>task_9</code> <span class="s p2">2</span> <span class=dim>fail</span></h2>
 <p class=dim>Design &amp; Creative · 28 of 28 components scored</p>
 <div class=panel><div class=head>Output contract issues</div><div class=body><ul class=reasons><li>03 sets blocked_on but claims high confidence</li></ul></div></div>
+<div class=panel><div class=head>What the verdict rests on</div><div class=body>The verdict rests on two independent rubric-level fails -- a missing coverage criterion (component 16) and a negatively framed criterion (component 21) -- both objective and well-evidenced, so the verdict is not fragile.</div></div>
+<p>The mechanical verdict of 2 is driven by two independent rubric-level failures. Component 16 (Coverage) identifies a missing criterion for the alternating horizontal offset between token rows, which is explicitly named in the prompt and confirmed by the config&#x27;s row_offset_pattern=alternating; no existing criterion tests this primary visual requirement. Component 21 (Framing) flags criterion 24&#x27;s &#x27;never decreases&#x27; as negatively framed, with a straightforward positive rewrite available. Both fails are objective and well-evidenced, making the verdict solid. The six Score 3 components flag real but non-failing issues, most notably the gold file&#x27;s physics values deviating significantly from gameplay_config.txt (gravity 38 vs 980, blast_force 360 vs 600) without being directly graded by any criterion -- an agent following the config can still satisfy all criteria, but the discrepancy should be cleaned up.</p>
+<h3>Fix order</h3><ul class=reasons>
+<li><code>16</code> Rubric - Coverage. Add a visual criterion testing that token rows exhibit the alternating horizontal offset the prompt explicitly names (&#x27;including the alternating horizontal offset between rows&#x27;) and that gameplay_config.txt confirms (row_offset_pattern=alternating). A criterion like &#x27;bomb_blast_frame.png shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file&#x27; would close the gap.</li>
+<li><code>21</code> Rubric - Framing. Rewrite criterion 24 in positive framing. Replace &#x27;The actions value in the MOTION_SAMPLE lines of bomb_runtime_log.txt never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line&#x27; with something like &#x27;The actions value in each MOTION_SAMPLE line of bomb_runtime_log.txt is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.&#x27;</li>
+<li><code>09</code> Gold File - Accuracy. Align the gold file&#x27;s physics constants with gameplay_config.txt or update the config to match the code. The gravity discrepancy (38 vs 980, 25.8x off) is the most severe; auto_cycle (3.2 vs 3.0), bounce_damping (0.72 vs 0.7), blast_force (360 vs 600), and blast_expand_duration (0.45 vs 0.4) should also be reconciled. Ideally the script should parse and use gameplay_config.txt values.</li>
+<li><code>11</code> Component: Gold File - Input Consistency. Same root cause as component 09: have token_wave.gd read and use gameplay_config.txt rather than hardcoding divergent values. This resolves both the accuracy and input-consistency flags simultaneously.</li>
+</ul>
+<h3>Not verified</h3>
+<p class=dim>These components could not be settled from the available evidence. The defect classes they cover are unexamined.</p><ul class=reasons>
+<li><code>01</code> Whether the CUA VM environment actually has Godot installed and can run 3D projects with SubViewport support</li>
+<li><code>03</code> Whether the .glb model file contains geometry that could affect prompt clarity if its contents conflicted with the prompt&#x27;s description; the reviewer judged this does not affect the clarity assessment</li>
+<li><code>28</code> Whether the four identical input URLs actually serve the correct distinct files at runtime; the staged copies were cached and differ in size/content, so the pipeline may rewrite URLs, but this is unconfirmed</li>
+</ul>
 <h3>Evidence</h3><p class=dim>The submission as the review saw it. Everything below is embedded in this file.</p><div class=evhead><span><b>30</b> criteria</span><span><b>4</b> input files</span><span><b>3</b> expected files</span><span>verifier <b>agent_judge_multi</b></span><span>domain <b>Design &amp; Creative</b></span></div><details><summary>Prompt given to the agent</summary><div class=in><pre>Hi, I&#x27;m putting together a playable prototype for our Thursday gameplay review and I need it built in Godot so the team can run it themselves instead of watching a capture.
 
 Four files are already on the Desktop. source_coin_token.png is the production coin face that every board token has to carry. Bomb.glb is the bomb model our 3D artist delivered. scene_reference.png is the signed-off screen from our art director. gameplay_config.txt has the timing, physics and board parameters that our designer locked in last sprint.
@@ -1145,6 +1159,161 @@ MOTION_SAMPLE mechanic=bomb t=41.0 first=(424.5,414.9) collected=115 actions=96
     &quot;All four input_files entries (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) carry the identical URL .../65cbc42b32ffab95dd54b864/pwy5ipf5O1s2zNk, although the four staged inputs differ in size and content. This may be a bundle or pipeline artifact, but the initializer URLs are worth confirming, because the same link cannot serve four different files.&quot;,
     &quot;verifier has self_check_score \&quot;1\&quot; as a string, and the contributor&#x27;s expected zip contains a top-level folder named Bomb_Chain_Reaction_Working plus __MACOSX entries. Neither affects this component.&quot;
   ]
+}
+</pre></div></details><details><summary>Raw senior review result</summary><div class=in><pre>{
+  &quot;unit&quot;: &quot;task_9&quot;,
+  &quot;mechanical_verdict&quot;: 2,
+  &quot;verdict_driver&quot;: [&quot;16&quot;, &quot;21&quot;],
+  &quot;fragility&quot;: &quot;The verdict rests on two independent rubric-level fails -- a missing coverage criterion (component 16) and a negatively framed criterion (component 21) -- both objective and well-evidenced, so the verdict is not fragile.&quot;,
+  &quot;contradictions&quot;: [],
+  &quot;escalations&quot;: [],
+  &quot;unverified&quot;: [
+    {
+      &quot;component&quot;: &quot;01&quot;,
+      &quot;blocked_on&quot;: &quot;bundle.json has applications_used: null and does not state that Godot is installed on the CUA VM; feasibility rests on the prompt naming Godot and on expected artifacts existing&quot;,
+      &quot;unexamined&quot;: &quot;Whether the CUA VM environment actually has Godot installed and can run 3D projects with SubViewport support&quot;
+    },
+    {
+      &quot;component&quot;: &quot;03&quot;,
+      &quot;blocked_on&quot;: &quot;Bomb.glb could not be inspected (extractor does not support .glb)&quot;,
+      &quot;unexamined&quot;: &quot;Whether the .glb model file contains geometry that could affect prompt clarity if its contents conflicted with the prompt&#x27;s description; the reviewer judged this does not affect the clarity assessment&quot;
+    },
+    {
+      &quot;component&quot;: &quot;28&quot;,
+      &quot;blocked_on&quot;: &quot;Could not run the verifier and did not fetch S3 links live; all four input_files entries carry the identical S3 URL despite being four distinct files&quot;,
+      &quot;unexamined&quot;: &quot;Whether the four identical input URLs actually serve the correct distinct files at runtime; the staged copies were cached and differ in size/content, so the pipeline may rewrite URLs, but this is unconfirmed&quot;
+    }
+  ],
+  &quot;fix_order&quot;: [
+    {
+      &quot;rank&quot;: 1,
+      &quot;component&quot;: &quot;16&quot;,
+      &quot;fix&quot;: &quot;Add a visual criterion testing that token rows exhibit the alternating horizontal offset the prompt explicitly names (&#x27;including the alternating horizontal offset between rows&#x27;) and that gameplay_config.txt confirms (row_offset_pattern=alternating). A criterion like &#x27;bomb_blast_frame.png shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file&#x27; would close the gap.&quot;
+    },
+    {
+      &quot;rank&quot;: 2,
+      &quot;component&quot;: &quot;21&quot;,
+      &quot;fix&quot;: &quot;Rewrite criterion 24 in positive framing. Replace &#x27;The actions value in the MOTION_SAMPLE lines of bomb_runtime_log.txt never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line&#x27; with something like &#x27;The actions value in each MOTION_SAMPLE line of bomb_runtime_log.txt is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.&#x27;&quot;
+    },
+    {
+      &quot;rank&quot;: 3,
+      &quot;component&quot;: &quot;09&quot;,
+      &quot;fix&quot;: &quot;Align the gold file&#x27;s physics constants with gameplay_config.txt or update the config to match the code. The gravity discrepancy (38 vs 980, 25.8x off) is the most severe; auto_cycle (3.2 vs 3.0), bounce_damping (0.72 vs 0.7), blast_force (360 vs 600), and blast_expand_duration (0.45 vs 0.4) should also be reconciled. Ideally the script should parse and use gameplay_config.txt values.&quot;
+    },
+    {
+      &quot;rank&quot;: 4,
+      &quot;component&quot;: &quot;11&quot;,
+      &quot;fix&quot;: &quot;Same root cause as component 09: have token_wave.gd read and use gameplay_config.txt rather than hardcoding divergent values. This resolves both the accuracy and input-consistency flags simultaneously.&quot;
+    }
+  ],
+  &quot;summary&quot;: &quot;The mechanical verdict of 2 is driven by two independent rubric-level failures. Component 16 (Coverage) identifies a missing criterion for the alternating horizontal offset between token rows, which is explicitly named in the prompt and confirmed by the config&#x27;s row_offset_pattern=alternating; no existing criterion tests this primary visual requirement. Component 21 (Framing) flags criterion 24&#x27;s &#x27;never decreases&#x27; as negatively framed, with a straightforward positive rewrite available. Both fails are objective and well-evidenced, making the verdict solid. The six Score 3 components flag real but non-failing issues, most notably the gold file&#x27;s physics values deviating significantly from gameplay_config.txt (gravity 38 vs 980, blast_force 360 vs 600) without being directly graded by any criterion -- an agent following the config can still satisfy all criteria, but the discrepancy should be cleaned up.&quot;
+}
+</pre></div></details><details><summary>Raw input-consistency result</summary><div class=in><pre>{
+  &quot;unit&quot;: &quot;task_9&quot;,
+  &quot;verdict&quot;: &quot;minor&quot;,
+  &quot;summary&quot;: &quot;Checked all four input files (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) against each other and against the three expected files (Bomb_Chain_Reaction_Godot_Project.zip, bomb_runtime_log.txt, bomb_blast_frame.png), plus the prompt and 30 criteria. Found six minor inconsistencies: two value-conflicts between inputs (token_rows and window dimensions disagree between gameplay_config.txt and scene_reference.png), and four gold-resolves-silently cases where the gold project uses physics and timing values that differ from gameplay_config.txt despite the prompt designating that file as the physics authority. None of these make any graded criterion unsatisfiable because the prompt provides an explicit resolution rule for visual conflicts and no criterion directly grades exact physics parameter values.&quot;,
+  &quot;files_checked&quot;: [
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/gameplay_config.txt&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/scene_reference.png&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/source_coin_token.png&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/inputs/Bomb.glb&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/expected/Bomb_Chain_Reaction_Godot_Project.zip&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_runtime_log.txt&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/files/expected/bomb_blast_frame.png&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/render_index.json&quot;,
+    &quot;/home/user/rangutan_encyclopedia/audit/task_9/bundle.json&quot;
+  ],
+  &quot;rules_compared&quot;: [
+    &quot;token_rows: gameplay_config.txt says 4, scene_reference.png shows 3 rows of tokens, gold seed_tokens() iterates for row in 3&quot;,
+    &quot;tokens_per_row: gameplay_config.txt says 5, scene_reference.png shows 5 per row, gold iterates for column in 5 — consistent&quot;,
+    &quot;row_offset_pattern: gameplay_config.txt says alternating, scene_reference.png shows alternating horizontal offset, gold applies (row % 2) * 24.0 offset — consistent&quot;,
+    &quot;window dimensions: gameplay_config.txt says 1150x650, scene_reference.png is 1152x648 (image metadata), gold project.godot uses 1152x648&quot;,
+    &quot;gravity_px_per_s2: gameplay_config.txt says 980, gold token_wave.gd uses velocity.y += 38.0 * delta&quot;,
+    &quot;blast_force_px: gameplay_config.txt says 600, gold TokenWave.tscn sets mechanic_strength = 360.0&quot;,
+    &quot;bounce_damping: gameplay_config.txt says 0.7, gold token_wave.gd uses 0.72 multiplier on bounce&quot;,
+    &quot;auto_cycle_interval_s: gameplay_config.txt says 3.0, gold token_wave.gd resets auto_timer to 3.2&quot;,
+    &quot;telemetry_sample_interval_s: gameplay_config.txt says 1.0, gold MOTION_SAMPLE lines advance by t=1.0 — consistent&quot;,
+    &quot;blast_expand_duration_s: gameplay_config.txt says 0.4, gold explosion_flash starts at 0.45 — close but different&quot;,
+    &quot;token_diameter_px: gameplay_config.txt says 28, gold scales 110px source texture by 0.78 giving ~85.8px&quot;,
+    &quot;strip_label: gameplay_config.txt says COLLECT, scene_reference.png shows COLLECT, gold draws COLLECT — consistent&quot;,
+    &quot;strip_position: gameplay_config.txt says bottom, scene_reference.png shows bottom strip, gold draws strip at COLLECTION_Y=510 at board bottom — consistent&quot;,
+    &quot;mechanic id: gameplay_config.txt says bomb, gold uses mechanic=bomb, log shows mechanic=bomb — consistent&quot;,
+    &quot;MOTION_SAMPLE format: prompt prescribes format, gold log matches format — consistent&quot;,
+    &quot;ACTION_TRANSITION format: prompt prescribes format, gold log matches format — consistent&quot;,
+    &quot;HUD wording and line breaks: scene_reference.png shows BOMB / Collected: 0 / Actions: 0 / SPACE CLICK trigger mechanic / Automatic preview runs every cycle, gold label.text matches — consistent&quot;,
+    &quot;board_margin_left: gameplay_config.txt says 260, gold BOARD starts at x=255 — off by 5&quot;,
+    &quot;board_margin_right: gameplay_config.txt says 300, gold board right margin is 255 (1152 - 897) — off by 45&quot;,
+    &quot;grid line count: scene_reference.png shows 3 horizontal grid lines creating 4 zones, gold draws lines at y=210,310,410 creating 4 zones, bomb_blast_frame.png shows same — consistent&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;value-conflict&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;scene_reference.png&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [board] section: token_rows = 4&quot;,
+      &quot;statement_b&quot;: &quot;scene_reference.png shows exactly 3 rows of tokens on the board (with 4 grid zones created by 3 horizontal divider lines, the bottom zone empty)&quot;,
+      &quot;why_conflict&quot;: &quot;The config specifies 4 rows of tokens but the reference image shows only 3 rows. The prompt acknowledges this class of conflict and resolves it: &#x27;Where the config file and the reference image disagree on a visual element like row count or token arrangement, go with what the reference image shows.&#x27;&quot;,
+      &quot;graded_impact&quot;: &quot;none — the prompt provides explicit resolution favoring the reference image, so a correct agent uses 3 rows and matches the gold&quot;,
+      &quot;component&quot;: &quot;11&quot;,
+      &quot;fix&quot;: &quot;Change token_rows = 3 in gameplay_config.txt to match the reference image&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;value-conflict&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;scene_reference.png&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [viewport] section: window_width = 1150, window_height = 650&quot;,
+      &quot;statement_b&quot;: &quot;scene_reference.png image dimensions are 1152x648 pixels (verified via image metadata)&quot;,
+      &quot;why_conflict&quot;: &quot;The config specifies a 1150x650 viewport but the reference image was produced at 1152x648. The gold project.godot also uses 1152x648, matching the reference, not the config.&quot;,
+      &quot;graded_impact&quot;: &quot;none — the 2-pixel width and 2-pixel height differences do not affect any graded criterion, and the prompt&#x27;s resolution rule favoring the reference image applies&quot;,
+      &quot;component&quot;: &quot;11&quot;,
+      &quot;fix&quot;: &quot;Change window_width = 1152 and window_height = 648 in gameplay_config.txt to match the reference image&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;gold-resolves-silently&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;Bomb_Chain_Reaction_Godot_Project.zip&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [physics] section: gravity_px_per_s2 = 980&quot;,
+      &quot;statement_b&quot;: &quot;Gold script token_wave.gd line 131: &#x27;velocity.y += 38.0 * delta&#x27; applies an effective gravity of 38 px/s-squared, roughly 25 times lower than the config value&quot;,
+      &quot;why_conflict&quot;: &quot;The prompt says &#x27;gameplay_config.txt controls timing and physics&#x27;, directing the agent to use the config&#x27;s gravity value. The gold silently uses a much lower value (38 instead of 980), producing dramatically different token fall speeds and collected-count trajectories.&quot;,
+      &quot;graded_impact&quot;: &quot;none — no criterion directly compares the gravity parameter value or exact coordinate/collected trajectories against the gold; criteria 12 and 28 check behavioral patterns and internal consistency&quot;,
+      &quot;component&quot;: &quot;09&quot;,
+      &quot;fix&quot;: &quot;Change gravity_px_per_s2 = 38 in gameplay_config.txt to match the gold implementation&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;gold-resolves-silently&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;Bomb_Chain_Reaction_Godot_Project.zip&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [physics] section: blast_force_px = 600&quot;,
+      &quot;statement_b&quot;: &quot;Gold scene TokenWave.tscn line 11: mechanic_strength = 360.0, used as the blast force magnitude in the bomb mechanic (token_wave.gd line 94: direction * mechanic_strength)&quot;,
+      &quot;why_conflict&quot;: &quot;The prompt designates gameplay_config.txt as the physics authority, but the gold uses 360 instead of 600 for the blast force, producing different token dispersal velocities.&quot;,
+      &quot;graded_impact&quot;: &quot;none — no criterion grades the exact blast force value; criterion 11 checks that a radial blast exists, not its magnitude&quot;,
+      &quot;component&quot;: &quot;09&quot;,
+      &quot;fix&quot;: &quot;Change blast_force_px = 360 in gameplay_config.txt to match the gold implementation&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;gold-resolves-silently&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;Bomb_Chain_Reaction_Godot_Project.zip&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [timing] section: auto_cycle_interval_s = 3.0&quot;,
+      &quot;statement_b&quot;: &quot;Gold script token_wave.gd line 47: &#x27;auto_timer = 3.2&#x27; — the auto cycle resets to 3.2 seconds, not 3.0; additionally the initial auto_timer is 0.35 (line 14), causing the first AUTO to fire after only 0.35 seconds instead of 3.0&quot;,
+      &quot;why_conflict&quot;: &quot;The prompt says the config controls timing, but the gold uses a 3.2-second auto cycle instead of 3.0. The consecutive AUTO gaps in the expected log appear as approximately 3.0 seconds at the 1-second sampling resolution.&quot;,
+      &quot;graded_impact&quot;: &quot;none — the 6.7% difference (3.0 vs 3.2) is well within criterion 30&#x27;s plus-or-minus 20 percent tolerance for AUTO event gaps&quot;,
+      &quot;component&quot;: &quot;09&quot;,
+      &quot;fix&quot;: &quot;Change auto_cycle_interval_s = 3.2 in gameplay_config.txt, or change the gold script auto_timer reset to 3.0&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;minor&quot;,
+      &quot;kind&quot;: &quot;gold-resolves-silently&quot;,
+      &quot;files&quot;: [&quot;gameplay_config.txt&quot;, &quot;Bomb_Chain_Reaction_Godot_Project.zip&quot;],
+      &quot;statement_a&quot;: &quot;gameplay_config.txt [physics] section: bounce_damping = 0.7&quot;,
+      &quot;statement_b&quot;: &quot;Gold script token_wave.gd lines 135 and 138: wall bounce uses &#x27;velocity.x *= -0.72&#x27; and ceiling bounce uses &#x27;absf(velocity.y) * 0.72&#x27;, a damping factor of 0.72 rather than 0.7&quot;,
+      &quot;why_conflict&quot;: &quot;The prompt designates the config as the physics authority, but the gold uses a slightly different bounce damping coefficient (0.72 vs 0.7).&quot;,
+      &quot;graded_impact&quot;: &quot;none — no criterion grades the exact bounce damping value&quot;,
+      &quot;component&quot;: &quot;09&quot;,
+      &quot;fix&quot;: &quot;Change bounce_damping = 0.72 in gameplay_config.txt, or change the gold script to use 0.7&quot;
+    }
+  ],
+  &quot;blocked_on&quot;: null
 }
 </pre></div></details>
 <h3>All 28 component scores</h3>
