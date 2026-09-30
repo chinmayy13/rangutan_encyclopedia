@@ -101,9 +101,9 @@
             }
           },
           {
-            "id": "f1a00003-0002-4000-a003-000000000012",
-            "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity and bounce off inner frame walls, consistent with the corresponding expected file.",
-            "weight": 4,
+            "id": "e5f6a7b8-c9d0-4e1f-b234-5c6d7e8f9a0b",
+            "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` instances `Bomb.glb` as a 3D node inside a SubViewport with a dedicated Camera3D and at least two light nodes, so the bomb model renders live during play, consistent with the corresponding expected file.",
+            "weight": 5,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
@@ -129,8 +129,8 @@
           },
           {
             "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
-            "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity and damping values that produce token fall-and-bounce trajectories consistent with those in the corresponding expected file.",
-            "weight": 8,
+            "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity, bounce off inner frame walls, and follow fall-and-bounce trajectories consistent with those in the corresponding expected file.",
+            "weight": 10,
             "annotations": {
               "criteria_type": "REGULAR",
               "criteria_category": "correctness"
@@ -264,7 +264,7 @@
           },
           {
             "id": "248ee70f-a1d3-44ef-a04d-c2b26c94dad1",
-            "title": "The total number of ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus two of the total in the corresponding expected file.",
+            "title": "The number of origin=AUTO ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus one of the count of origin=AUTO lines in the corresponding expected file.",
             "weight": 8,
             "annotations": {
               "criteria_type": "REGULAR",
@@ -444,9 +444,9 @@
                   }
                 },
                 {
-                  "id": "f1a00003-0002-4000-a003-000000000012",
-                  "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity and bounce off inner frame walls, consistent with the corresponding expected file.",
-                  "weight": 4,
+                  "id": "e5f6a7b8-c9d0-4e1f-b234-5c6d7e8f9a0b",
+                  "title": "The project in `Bomb_Chain_Reaction_Godot_Project.zip` instances `Bomb.glb` as a 3D node inside a SubViewport with a dedicated Camera3D and at least two light nodes, so the bomb model renders live during play, consistent with the corresponding expected file.",
+                  "weight": 5,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
@@ -472,8 +472,8 @@
                 },
                 {
                   "id": "b8e7f6d5-c4a3-4b2a-9180-7e6f5d4c3b2a",
-                  "title": "The project scripts in `Bomb_Chain_Reaction_Godot_Project.zip` apply gravity and damping values that produce token fall-and-bounce trajectories consistent with those in the corresponding expected file.",
-                  "weight": 8,
+                  "title": "In the project from `Bomb_Chain_Reaction_Godot_Project.zip`, tokens fall under gravity, bounce off inner frame walls, and follow fall-and-bounce trajectories consistent with those in the corresponding expected file.",
+                  "weight": 10,
                   "annotations": {
                     "criteria_type": "REGULAR",
                     "criteria_category": "correctness"
@@ -607,7 +607,7 @@
                 },
                 {
                   "id": "248ee70f-a1d3-44ef-a04d-c2b26c94dad1",
-                  "title": "The total number of ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus two of the total in the corresponding expected file.",
+                  "title": "The number of origin=AUTO ACTION_TRANSITION lines in `bomb_runtime_log.txt` is within plus or minus one of the count of origin=AUTO lines in the corresponding expected file.",
                   "weight": 8,
                   "annotations": {
                     "criteria_type": "REGULAR",
