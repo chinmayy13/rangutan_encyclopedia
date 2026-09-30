@@ -1,0 +1,525 @@
+<!doctype html><meta charset=utf-8>
+<meta name=viewport content='width=device-width,initial-scale=1'>
+<title>CUA audit fixes &middot; task_9</title>
+<style>
+:root{
+  --ink:#0b0b0c; --paper:#ffffff; --body:#3a3a3d; --muted:#87878c;
+  --faint:#bcbcc0; --line:#e7e7e3; --panel:#f6f6f3; --maxw:760px;
+  --fail:#c62d1f; --fail-bg:#fdeae7; --fail-fg:#b32718;
+  --warn:#8a5a00; --warn-bg:#fdf3e2;
+  --pass:#0e7a4a; --pass-bg:#e5f4ea; --pass-fg:#0b6640;
+  --pend:#6e6e74; --pend-bg:#f1f1ee;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);
+  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+code,.mono,td.n,.pill,.cite{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wrap{max-width:1060px;margin:0 auto;padding:0 6vw}
+.narrow{max-width:var(--maxw)}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:0}
+h1,h2,h3{color:var(--ink);font-weight:620;letter-spacing:-.01em}
+h1.headline{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.08;margin:.2em 0 .5em}
+h2{font-size:1.5rem;margin:0 0 1rem}
+h3{font-size:1.02rem;margin:2rem 0 .6rem}
+.brand{text-transform:uppercase;font-size:.72rem;letter-spacing:.16em;
+  color:var(--muted);margin:0}
+.kicker{text-transform:uppercase;font-size:.74rem;letter-spacing:.18em;
+  color:var(--muted);margin:0 0 .8rem}
+.blurb{font-size:clamp(1.02rem,1.6vw,1.22rem);color:var(--body);max-width:52ch}
+p{margin:0 0 1rem}
+.dim{color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:1rem 0;
+  font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:.5rem .65rem;text-align:left;
+  font-size:.88rem;vertical-align:top}
+th{background:var(--panel);color:var(--ink);font-weight:600;
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+td.n{text-align:right;white-space:nowrap}
+td.nw{white-space:nowrap}
+tr.tot td{border-top:2px solid var(--ink);font-weight:600}
+.pill{display:inline-block;font-size:.64rem;text-transform:uppercase;
+  letter-spacing:.06em;padding:.16rem .42rem;border-radius:4px;font-weight:600}
+.p2{background:var(--fail-bg);color:var(--fail-fg)}
+.p3{background:var(--warn-bg);color:var(--warn)}
+.p4{background:var(--pend-bg);color:var(--pend)}
+.p5{background:var(--pass-bg);color:var(--pass-fg)}
+.s{display:inline-block;min-width:1.5rem;text-align:center;font-weight:600;
+  border-radius:3px;padding:.05rem .3rem;font-size:.82rem}
+.cite{font-size:.7rem;background:var(--panel);border:1px solid var(--line);
+  border-radius:4px;padding:.05rem .3rem;color:var(--ink);text-decoration:none}
+.stat{display:flex;gap:2.6rem;flex-wrap:wrap;margin:1.6rem 0 0}
+.stat div{min-width:88px}
+.stat b{display:block;color:var(--ink);font-size:2rem;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.stat span{font-size:.76rem;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--muted)}
+.unit{padding:56px 0;border-bottom:1px solid var(--line)}
+.unit h2{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+.unit h2 code{font-size:1.05rem}
+.reasons{list-style:none;padding:0;margin:0}
+.reasons li{border-top:1px solid var(--line);padding:.7rem 0 .7rem 1.1rem;
+  position:relative;font-size:.92rem}
+.reasons li:before{content:"";position:absolute;left:0;top:1.15rem;width:6px;
+  height:6px;background:var(--ink);border-radius:50%}
+.panel{border:1px solid var(--line);margin:1rem 0}
+.panel>.head{background:var(--panel);padding:.45rem .7rem;font-size:.74rem;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  border-bottom:1px solid var(--line)}
+.panel>.body{padding:.85rem .7rem;font-size:.92rem}
+.grid28{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line)}
+.c{background:var(--paper);padding:.45rem .55rem;font-size:.78rem;
+  display:flex;justify-content:space-between;gap:.4rem;align-items:baseline}
+.c .t{color:var(--body);line-height:1.3}
+.cs{display:flex;gap:.28rem;align-items:baseline;white-space:nowrap}
+.rdot{display:inline-block;min-width:1.15rem;text-align:center;font-weight:700;
+  font-size:.66rem;padding:.09rem .26rem;border-radius:3px;
+  background:var(--warn-bg);color:var(--warn);border:1px solid #e8d5ad;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.recbox{border:1px solid #e8d5ad;background:#fffdf7;margin:1rem 0}
+.recbox>.head{background:var(--warn-bg);color:var(--warn);padding:.45rem .7rem;
+  font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;
+  border-bottom:1px solid #e8d5ad;font-weight:600}
+.recbox>.body{padding:.85rem .7rem}
+.recbox table{margin:0}
+.recbox ul.reasons li:first-child{border-top:0;padding-top:0}
+.recbox ul.reasons li:first-child:before{top:.45rem}
+ul.reasons li.hg,ul.reasons li.hg code{font-weight:700;color:var(--ink)}
+ul.reasons li.hg:before{background:var(--warn)}
+a{color:var(--ink)}
+footer{padding:48px 0;color:var(--faint);font-size:.8rem}
+details{border:1px solid var(--line);margin:.55rem 0}
+details>summary{background:var(--panel);padding:.45rem .7rem;cursor:pointer;
+  font-size:.76rem;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--muted);list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary:before{content:"+ ";color:var(--ink);font-weight:700}
+details[open]>summary:before{content:"\2212 "}
+details>summary:hover{color:var(--ink)}
+details .in{padding:.7rem}
+/* A table row that folds. The columns stay scannable and the prose is one
+   click away, so it no longer has to be truncated to keep the table readable.
+   Marker and colours are inherited from the appendix folds above, so the
+   gesture a reader learns there is the same one here. */
+details.row{border:0;margin:0;background:none}
+details.row>summary{background:none;border:0;padding:0;font-size:.88rem;
+  text-transform:none;letter-spacing:0;color:var(--body)}
+details.row>summary:hover{color:var(--ink)}
+details.row[open]>summary{color:var(--muted);margin-bottom:.5rem}
+details.row>.in{padding:0}
+.fold{white-space:pre-wrap;font-size:.88rem}
+.fold+.fold{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--line)}
+.fold b{color:var(--ink)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:.76rem;
+  line-height:1.5;max-height:460px;overflow:auto;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:var(--body)}
+.evhead{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.8rem;
+  color:var(--muted);margin:.2rem 0 .8rem}
+.evhead b{color:var(--ink);font-weight:600}
+@media print{section,.unit{break-inside:avoid}details{break-inside:avoid}
+  details>.in{display:block}}
+
+.donow{border-left:3px solid var(--ink);padding:.15rem 0 .15rem 1.05rem;
+  margin:1.4rem 0 0}
+.donow h1{font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.16;
+  margin:.1rem 0 .5rem;letter-spacing:-.015em}
+.donow h1 code{font-size:.92em}
+.donow .blurb{margin:0}
+.statebar{display:flex;gap:2.4rem;flex-wrap:wrap;margin:1.8rem 0 1.3rem;
+  padding:.95rem 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)}
+.statebar div{min-width:96px}
+.statebar b{display:block;color:var(--ink);font-size:1.55rem;line-height:1.12;
+  font-variant-numeric:tabular-nums}
+.statebar span{font-size:.71rem;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--muted);display:block;max-width:15ch}
+.gate{font-size:.92rem;background:var(--panel);border:1px solid var(--line);
+  padding:.75rem .85rem;margin:0 0 1rem}
+.live{display:inline-block;font-weight:700;color:var(--ink)}
+.legend{font-size:.78rem;color:var(--muted);margin:0;line-height:1.9}
+.strikelegend{text-decoration:line-through}
+.prog{display:flex;align-items:center;gap:.8rem;margin:0 0 1.5rem;max-width:var(--maxw)}
+.progtrack{flex:1;height:7px;background:var(--panel);border:1px solid var(--line);
+  border-radius:4px;overflow:hidden}
+.progfill{display:block;height:100%;width:0;background:var(--ink);
+  transition:width .18s ease}
+.progtext{font-size:.76rem;color:var(--muted);white-space:nowrap;
+  font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+ul.steps{list-style:none;padding:0;margin:0}
+li.step{display:flex;gap:.85rem;align-items:flex-start;
+  border-top:1px solid var(--line);padding:1.15rem 0}
+li.step>input{margin:.5rem 0 0;width:16px;height:16px;flex:none;
+  accent-color:var(--ink);cursor:pointer}
+li.step.done .stepbody{opacity:.42}
+.stepbody{flex:1;min-width:0;max-width:var(--maxw)}
+.stepact{font-size:1.02rem;color:var(--ink);font-weight:640;margin:0 0 .35rem;
+  line-height:1.4}
+.stepnum{display:inline-block;min-width:1.7rem;color:var(--muted);font-weight:700;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem}
+.stepact .pill{margin-left:.45rem;vertical-align:.1rem}
+.where{font-size:.79rem;color:var(--muted);margin:0 0 .5rem 1.7rem}
+.where code{font-size:.95em;color:var(--ink)}
+.why{font-size:.92rem;margin:0 0 .7rem 1.7rem}
+.check{font-size:.85rem;margin:.7rem 0 0 1.7rem;padding:.55rem .7rem;
+  background:var(--pass-bg);border-left:3px solid var(--pass)}
+.check b{color:var(--pass-fg)}
+.stepnote{font-size:.82rem;color:var(--muted);margin:.7rem 0 0 1.7rem}
+details.more{border:0;margin:1.2rem 0 0}
+details.more>summary{background:var(--panel);border:1px solid var(--line);
+  padding:.55rem .75rem}
+details.more>.in{padding:0}
+.fix{border:1px solid var(--line);margin:.55rem 0 .55rem 1.7rem;
+  background:var(--paper)}
+.fixh{font-size:.76rem;color:var(--muted);margin:0;padding:.42rem .6rem;
+  background:var(--panel);border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.35rem;align-items:baseline}
+.fixh code{font-size:.95em;color:var(--ink)}
+.w{margin-left:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.92em;white-space:nowrap}
+.d{display:flex;gap:.6rem;padding:.5rem .6rem;font-size:.88rem;
+  border-top:1px solid var(--line);align-items:flex-start}
+.fixh+.d{border-top:0}
+.dl{flex:none;width:3.6rem;font-size:.66rem;text-transform:uppercase;
+  letter-spacing:.07em;font-weight:700;padding-top:.22rem;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.d .tx{flex:1;min-width:0;white-space:pre-wrap}
+.d.was{background:#fbfbf9}
+.d.was .dl{color:var(--muted)}
+.d.del{background:var(--fail-bg)}
+.d.del .dl{color:var(--fail-fg)}
+.d.del .tx{text-decoration:line-through;color:var(--fail-fg)}
+.d.to{background:var(--pass-bg)}
+.d.to .dl{color:var(--pass-fg)}
+.d.to .tx{color:var(--ink)}
+.draft{display:inline-block;margin-left:.3rem;font-size:.58rem;font-weight:700;
+  letter-spacing:.06em;padding:.08rem .28rem;border-radius:3px;
+  background:var(--warn-bg);color:var(--warn);border:1px solid #e8d5ad;
+  text-transform:uppercase;vertical-align:.05rem}
+.fixnote{font-size:.79rem;color:var(--muted);margin:0;padding:.45rem .6rem;
+  border-top:1px solid var(--line);background:#fbfbf9}
+mark{background:#fdf3c2;color:var(--ink);padding:0 .1em}
+.fc{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:.08rem .3rem;border-radius:3px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  vertical-align:.05rem}
+.fc-gtf{background:var(--fail-bg);color:var(--fail-fg);border:1px solid #f2c3bb}
+.fc-input{background:#e7eff8;color:#1f4e79;border:1px solid #c3d6ea}
+.fc-plain{background:var(--pend-bg);color:var(--pend);border:1px solid #dcdcd7}
+ul.opts{list-style:none;padding:0;margin:0 0 1rem}
+ul.opts li{border-top:1px solid var(--line);padding:.7rem 0 .7rem 1.1rem;
+  position:relative;font-size:.92rem}
+ul.opts li:before{content:"";position:absolute;left:0;top:1.15rem;width:6px;
+  height:6px;background:var(--faint);border-radius:50%}
+ul.opts li:first-child:before{background:var(--ink)}
+ul.opts li b{color:var(--ink)}
+ul.also{list-style:none;padding:0;margin:0}
+ul.also li{border-top:1px solid var(--line);padding:.62rem 0 .62rem 1.1rem;
+  position:relative;font-size:.9rem}
+ul.also li:before{content:"";position:absolute;left:0;top:1.05rem;width:6px;
+  height:6px;background:var(--faint);border-radius:50%}
+.startnow{border:2px solid var(--ink);padding:1.2rem 1.3rem;margin:.6rem 0 0;
+  max-width:var(--maxw)}
+.startnow h2{margin:0 0 .5rem;font-size:1.28rem}
+.startnow p{margin:0;font-size:.95rem}
+.startnow code{background:var(--panel);padding:.05rem .25rem;border-radius:3px}
+.unmatched{font-size:.82rem;background:var(--warn-bg);color:var(--warn);
+  border:1px solid #e8d5ad;padding:.6rem .8rem;margin:1rem 0 0}
+.unmatched ul{margin:.3rem 0 0;padding-left:1.1rem}
+.fixnote.unmatched,.stepnote.unmatched{border:0;border-top:1px solid #e8d5ad;margin:0}
+.stepnote.unmatched{margin:.7rem 0 0 1.7rem;border:1px solid #e8d5ad}
+.recs h3{font-size:.92rem;margin:1.4rem 0 .2rem}
+.recs h3 .dim{font-weight:400}
+@media print{li.step,.fix{break-inside:avoid}}
+</style>
+<div class=wrap>
+
+<section>
+<p class=brand>Scale GenAI Ops / CUA v3 &middot; task_9 &middot; Design &amp; Creative</p>
+<div class=donow><h1>Add a criterion to <code>rubric.json</code> testing that token rows show the alternating horizontal offset the prompt names.</h1>
+<p class=blurb>Fix 1 of 6. Component 16 (Coverage) scored 2 -- one of two independent fails driving the verdict. The prompt explicitly requires &#x27;the alternating horizontal offset between rows&#x27; and no existing criterion tests it.</p></div>
+<div class=statebar>
+<div><b>2</b><span>verdict &middot; fail</span></div>
+<div><b>6</b><span>fixes queued</span></div>
+<div><b>2</b><span>fixes clear a fail</span></div>
+<div><b>8</b><span>components below 5</span></div>
+<div><b>0</b><span>major inconsistencies</span></div>
+</div>
+<p class=gate>Verdict 2 (FAIL) rests on two rubric-level fails: component 16 (missing criterion for alternating token row offset) and component 21 (criterion 24 negatively framed). Steps 1 and 2 clear them. <span class=live id=gatestate>2 of 2 verdict-clearing fixes left.</span></p>
+<p class=legend>Key: <span class=draft>draft</span> replacement composed here rather than quoted from the review &mdash; verify the wording before committing. <span class=strikelegend>Struck through</span> text is deleted. <mark>Highlighted</mark> text is the part that changes. File class: <span class='fc fc-gtf'>GTF</span> answer key, editing it changes what every submission is graded against &middot; <span class='fc fc-input'>input</span> a file the agent receives, editing it changes what is solvable &middot; <span class='fc fc-plain'>rubric</span> <span class='fc fc-plain'>bundle</span> <span class='fc fc-plain'>prompt</span> the task's own artifacts.</p>
+<p class=legend>Every score, recommendation and piece of evidence behind these fixes is in <a href='component_review.html'><code>component_review.html</code></a>, beside this file.</p>
+</section>
+
+<section>
+<p class=kicker>Do these in order</p>
+<h2>6 fixes</h2>
+<div class=prog><div class=progtrack><span class=progfill id=progfill></span></div>
+<span class=progtext id=progtext>0 of 6 done</span></div>
+<ul class=steps>
+<li class=step id=step1 data-gate>
+<input type=checkbox aria-label='mark fix 1 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>1</span>Add a visual criterion testing that token rows show the alternating horizontal offset. <span class="pill p2">clears the fail</span></p>
+<p class=where><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; 1 criterion added &middot; component <code>16</code> Rubric - Coverage</p>
+<p class=why>The prompt explicitly requires &#x27;the alternating horizontal offset between rows&#x27; and <code>gameplay_config.txt</code> confirms <code>row_offset_pattern = alternating</code>. No existing criterion tests this. A submission with tokens in straight columns passes every criterion.</p>
+<div class=fix>
+<p class=fixh><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; new criterion after n=23<span class=w>weight to set</span></p>
+<div class='d was'><span class=dl>now</span><span class=tx>No criterion exists for alternating token row offset.</span></div>
+<div class='d to'><span class=dl>to<span class=draft>draft</span></span><span class=tx><mark>`bomb_blast_frame.png` shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.</mark></span></div>
+<p class=fixnote>Wording adapted from S1. Adding this criterion brings the rubric to 31; consider merging criteria 20 and 23 (flagged as overlapping by C22) to stay within the 30-criterion cap. Similar visual criteria carry weight 40-50.</p>
+</div>
+<p class=stepnote>Source: senior review fix order, rank 1; component 16 Rubric - Coverage.</p>
+</div>
+</li>
+<li class=step id=step2 data-gate>
+<input type=checkbox aria-label='mark fix 2 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>2</span>Rewrite criterion 24 in positive framing. <span class="pill p2">clears the fail</span></p>
+<p class=where><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; 1 criterion rewritten &middot; component <code>21</code> Rubric - Framing</p>
+<p class=why>Criterion 24&#x27;s predicate &#x27;never decreases&#x27; is negatively framed. &#x27;Monotonically non-decreasing&#x27; is the standard positive equivalent.</p>
+<div class=fix>
+<p class=fixh><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; criterion n=24<span class=w>weight 10</span></p>
+<div class='d was'><span class=dl>now</span><span class=tx>The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` <mark>never decreases</mark> and agrees with the count of the most recent preceding ACTION_TRANSITION line.</span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>never decreases</span></div>
+<div class='d to'><span class=dl>to<span class=draft>draft</span></span><span class=tx>The actions value in each MOTION_SAMPLE line of `bomb_runtime_log.txt` <mark>is monotonically non-decreasing</mark> and agrees with the count of the most recent preceding ACTION_TRANSITION line.</span></div>
+<p class=fixnote>Wording adapted from S2. Also changed &#x27;the MOTION_SAMPLE lines&#x27; to &#x27;each MOTION_SAMPLE line&#x27; per S2&#x27;s suggestion.</p>
+</div>
+<p class=stepnote>Source: senior review fix order, rank 2; component 21 Rubric - Framing.</p>
+</div>
+</li>
+<li class=step id=step3>
+<input type=checkbox aria-label='mark fix 3 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>3</span>Align 4 physics/timing values in <code>gameplay_config.txt</code> with the gold implementation.</p>
+<p class=where><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; 4 values, 1 file &middot; components <code>09</code> Gold File - Accuracy and <code>11</code> Gold File - Input Consistency</p>
+<p class=why>The gold script hardcodes physics and timing values that differ from <code>gameplay_config.txt</code>, despite the prompt saying the config controls physics. No criterion grades these values directly, so editing the config to match the gold avoids regenerating the gold&#x27;s log and screenshot.</p>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [physics] section, gravity_px_per_s2</p>
+<div class='d was'><span class=dl>now</span><span class=tx>gravity_px_per_s2 = <mark>980</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>980</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>gravity_px_per_s2 = <mark>38</mark></span></div>
+<p class=fixnote>Value from gold script token_wave.gd line 131: velocity.y += 38.0 * delta.</p>
+</div>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [physics] section, blast_force_px</p>
+<div class='d was'><span class=dl>now</span><span class=tx>blast_force_px = <mark>600</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>600</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>blast_force_px = <mark>360</mark></span></div>
+<p class=fixnote>Value from gold scene TokenWave.tscn line 11: mechanic_strength = 360.0.</p>
+</div>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [timing] section, auto_cycle_interval_s</p>
+<div class='d was'><span class=dl>now</span><span class=tx>auto_cycle_interval_s = <mark>3.0</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>3.0</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>auto_cycle_interval_s = <mark>3.2</mark></span></div>
+<p class=fixnote>Value from gold script token_wave.gd line 47: auto_timer = 3.2.</p>
+</div>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [physics] section, bounce_damping</p>
+<div class='d was'><span class=dl>now</span><span class=tx>bounce_damping = <mark>0.7</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>0.7</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>bounce_damping = <mark>0.72</mark></span></div>
+<p class=fixnote>Value from gold script token_wave.gd lines 135-138: velocity multiplied by 0.72 on bounce.</p>
+</div>
+<p class=stepnote>Edits the input, not the gold. Choosing the opposite direction (editing the gold to use config values) would require regenerating <code>bomb_runtime_log.txt</code> and <code>bomb_blast_frame.png</code>. See one_call. Source: input-consistency finding 3 (minor); input-consistency finding 4 (minor); input-consistency finding 5 (minor); input-consistency finding 6 (minor); senior review fix order, rank 3; senior review fix order, rank 4; component 09 Gold File - Accuracy; component 11 Gold File - Input Consistency.</p>
+</div>
+</li>
+<li class=step id=step4>
+<input type=checkbox aria-label='mark fix 4 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>4</span>Align 2 visual parameters in <code>gameplay_config.txt</code> with the reference image.</p>
+<p class=where><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; 3 values, 1 file &middot; component <code>11</code> Gold File - Input Consistency</p>
+<p class=why>The config disagrees with <code>scene_reference.png</code> on token_rows and window dimensions. The prompt resolves visual conflicts in favour of the reference image, and the gold matches the reference. The config values are vestigial.</p>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [board] section, token_rows</p>
+<div class='d was'><span class=dl>now</span><span class=tx>token_rows = <mark>4</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>4</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>token_rows = <mark>3</mark></span></div>
+<p class=fixnote>scene_reference.png shows 3 rows of tokens; gold seed_tokens() iterates for row in 3.</p>
+</div>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [viewport] section, window_width</p>
+<div class='d was'><span class=dl>now</span><span class=tx>window_width = <mark>1150</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>1150</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>window_width = <mark>1152</mark></span></div>
+<p class=fixnote>scene_reference.png image metadata is 1152x648; gold project.godot uses 1152.</p>
+</div>
+<div class=fix>
+<p class=fixh><code>gameplay_config.txt</code> <span class='fc fc-input'>input</span> &middot; [viewport] section, window_height</p>
+<div class='d was'><span class=dl>now</span><span class=tx>window_height = <mark>650</mark></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>650</span></div>
+<div class='d to'><span class=dl>to</span><span class=tx>window_height = <mark>648</mark></span></div>
+<p class=fixnote>scene_reference.png image metadata is 1152x648; gold project.godot uses 648.</p>
+</div>
+<p class=stepnote>Source: input-consistency finding 1 (minor); input-consistency finding 2 (minor); component 11 Gold File - Input Consistency; component 11 recommendation 2.</p>
+</div>
+</li>
+<li class=step id=step5>
+<input type=checkbox aria-label='mark fix 5 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>5</span>Remove the hardcoded token description from criterion 17.</p>
+<p class=where><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; 1 criterion rewritten &middot; component <code>13</code> Rubric - Hardcoded Values</p>
+<p class=why>Criterion 17 states &#x27;yellow oval coins&#x27;, leaking the token colour and shape. The prompt says only that <code>source_coin_token.png</code> is the production coin face; appearance should be anchored to the expected file alone.</p>
+<div class=fix>
+<p class=fixh><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; criterion n=17<span class=w>weight 40</span></p>
+<div class='d was'><span class=dl>now</span><span class=tx>`bomb_blast_frame.png` shows board tokens <mark>rendered as yellow oval coins </mark>matching the token appearance in the corresponding expected file <span class=dim>(Missing terminal period (noted by R20.1).)</span></span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>rendered as yellow oval coins </span></div>
+<div class='d to'><span class=dl>to<span class=draft>draft</span></span><span class=tx>`bomb_blast_frame.png` shows board tokens matching the token appearance in the corresponding expected file.</span></div>
+<p class=fixnote>Removed &#x27;rendered as yellow oval coins&#x27; which C13 identifies as a hardcoded description not found in the prompt. Added terminal period.</p>
+</div>
+<p class=stepnote>Source: component 13 Rubric - Hardcoded Values; component 20 recommendation 1.</p>
+</div>
+</li>
+</ul>
+<details class=more><summary>Show the remaining 1 fix</summary>
+<div class=in>
+<ul class=steps>
+<li class=step id=step6>
+<input type=checkbox aria-label='mark fix 6 done'>
+<div class=stepbody>
+<p class=stepact><span class=stepnum>6</span>Strengthen criterion 9 beyond existence-only.</p>
+<p class=where><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; 1 criterion rewritten &middot; component <code>14</code> Rubric - Content</p>
+<p class=why>Criterion 9 checks only that at least one AUTO and one INPUT line exist. It is the sole existence-only correctness criterion (1 of 17). Adding a quantity anchor to the expected file gives it content weight.</p>
+<div class=fix>
+<p class=fixh><code>rubric.json</code> <span class='fc fc-plain'>rubric</span> and <code>bundle.json</code> <span class='fc fc-plain'>bundle</span> &middot; criterion n=9<span class=w>weight 10</span></p>
+<div class='d was'><span class=dl>now</span><span class=tx>`bomb_runtime_log.txt` <mark>includes at least one origin=AUTO action line and at least one origin=INPUT action line</mark>.</span></div>
+<div class='d del'><span class=dl>delete</span><span class=tx>includes at least one origin=AUTO action line and at least one origin=INPUT action line</span></div>
+<div class='d to'><span class=dl>to<span class=draft>draft</span></span><span class=tx>Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, <mark>with each origin type present in quantities consistent with the corresponding expected file</mark>.</span></div>
+<p class=fixnote>Adapted from R14.1. Keeps the both-types-present check and adds a quantity anchor. Exact counts vary with log length; &#x27;consistent with&#x27; gives the grader appropriate room.</p>
+</div>
+<p class=stepnote>Source: component 14 Rubric - Content; component 14 recommendation 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</details>
+<p class=dim>Consistency-check coverage: Verdict <b>minor</b>; 6 findings (I1-I6), 0 major. I3, I4, I5, I6 carried by step 3; I1, I2 carried by step 4.</p>
+</section>
+
+<section class=narrow>
+<p class=kicker>Before acting on the component reports</p>
+<h2>No component report states a wrong fact.</h2>
+</section>
+
+<section class=narrow>
+<p class=kicker>One call to make</p>
+<h2>Should the physics discrepancies between <code>gameplay_config.txt</code> and the gold script be resolved by editing the config (input) or by editing the gold code and regenerating its outputs (gtf)?</h2>
+<p>Blocks step 3. The prompt says the config controls physics, but no criterion grades exact physics values. Editing the gold requires regenerating <code>bomb_runtime_log.txt</code> and <code>bomb_blast_frame.png</code>.</p>
+<ul class=opts>
+<li><b>Option A &mdash; Edit config to match gold</b> Change 4 values in <code>gameplay_config.txt</code> to match the gold script. No gold regeneration needed. The config becomes descriptive rather than prescriptive.</li>
+<li><b>Option B &mdash; Edit gold to use config values</b> Update the gold script to read <code>gameplay_config.txt</code>, then regenerate <code>bomb_runtime_log.txt</code> and <code>bomb_blast_frame.png</code>. More faithful to the prompt but requires re-running the game.</li>
+<li><b>Option C &mdash; Edit both</b> Set config values to match the gold AND have the gold script read the config file. Most thorough, most work.</li>
+</ul>
+<p>Edit config to match gold. No criterion grades exact physics values, so the gold outputs stay valid and no gtf regeneration is needed.</p>
+</section>
+
+<section class=narrow>
+<p class=kicker>Still open</p>
+<h2>3 components could not be settled</h2>
+<ul class=also>
+<li><code>01</code> Task - Feasibility &mdash; Whether the CUA VM has Godot installed and can run 3D projects with SubViewport support is unverified; <code>bundle.json</code> has <code>applications_used: null</code>.</li>
+<li><code>03</code> Prompt - Clarity &mdash; <code>Bomb.glb</code> could not be inspected (extractor does not support .glb); whether its geometry conflicts with the prompt is unexamined.</li>
+<li><code>28</code> JSON - Structure / URL Integrity &mdash; All four <code>input_files</code> entries in <code>bundle.json</code> carry the identical S3 URL despite being four distinct files; whether the URLs serve correct files at runtime is unconfirmed.</li>
+</ul>
+</section>
+
+<section class=narrow>
+<p class=kicker>Also found</p>
+<h2>3 things outside the fix list</h2>
+<ul class=also>
+<li><code>bundle.json</code> records <code>applications_used: null</code> -- should list Godot so reviewers can confirm the VM has it installed.</li>
+<li>Criteria 20 and 23 overlap on grid lines in the play area (C22, score 3); scoring impact is minimal since C23 adds unique quantitative requirements.</li>
+<li>The expected zip contains <code>__MACOSX</code> entries and an internal folder name (<code>Bomb_Chain_Reaction_Working</code>) differing from the deliverable zip name; criterion 4 should tolerate a nested folder.</li>
+</ul>
+</section>
+
+<section class=narrow>
+<p class=kicker>Start here</p>
+<div class=startnow><h2>Open <code>rubric.json</code> and add the alternating-offset criterion after n=23.</h2>
+<p>Paste: &quot;<code>bomb_blast_frame.png</code> shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.&quot; Set weight (visual, similar criteria are 40-50). Then rewrite criterion 24: replace &#x27;never decreases&#x27; with &#x27;is monotonically non-decreasing&#x27;. Those two edits clear both fails.</p></div>
+</section>
+
+<section class=narrow>
+<p class=kicker>Minor improvements</p>
+<h2>21 recommendations not cited above</h2>
+<p class=dim>None changes a score. Each is quoted as its component wrote it, grouped by component, so two components can make the same point. 3 others are cited in the sections above. <b>An entry in bold is a hard gate elsewhere in the project</b>: unscored here, and the first of these to fix.</p>
+<details class=more><summary>Show the 21 recommendations, 1 in bold</summary>
+<div class='in recs'>
+<h3><code>01</code> Task - Feasibility <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li class=hg>Thin complexity check: not triggered. The task needs cross-file reasoning, physics simulation, live 3D rendering and telemetry logging, so it is not just retrieval.</li>
+<li>Reference zip (Bomb_Chain_Reaction_Working/) contains __MACOSX and .DS_Store entries and an internal folder name that differs from the deliverable zip name. This is harmless, but criterion 4 (project.godot in the zip) should tolerate a nested folder.</li>
+<li>applications_used is null. Record &#x27;Godot&#x27; so reviewers can confirm the VM has it installed.</li>
+</ul>
+<h3><code>03</code> Prompt - Clarity <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li>The prompt does not say which token &#x27;first=(x,y)&#x27; refers to (for example the first token in spawn order) or which coordinate space it uses (screen pixels versus board-local). Rubric criterion 28 only asks for well-formed values that show live movement, so this does not create misalignment.</li>
+<li>The prompt does not say outright that automatic blasts also raise the actions counter. &#x27;Each trigger raises the actions counter&#x27; plus the shared count={n} and actions={n} fields point to counting every blast, and criteria 24 and 27 assume that. One explicit sentence would remove any doubt.</li>
+<li>The config gives a 1150x650 window with board_margin_left = 260 and board_margin_right = 300, which leaves a 590 px board width. The reference image is 1152x648 and its frame is about 642 px wide. The prompt&#x27;s &#x27;reference image is the visual authority&#x27; rule resolves this, but the numbers are not reconciled.</li>
+<li>The screenshot criteria do not give a ring colour. The prompt only says &#x27;blast ring&#x27;, and the reference image shows no ring.</li>
+</ul>
+<h3><code>04</code> Prompt - Realism <span class=dim>&middot; scored 3</span></h3>
+<ul class=reasons>
+<li>The reference-image paragraph could be shortened to point at scene_reference.png and one or two key concerns, since a real requester would rely on the image itself.</li>
+<li>Softening &#x27;Treat it as the spec, not loose inspiration&#x27; to something like &#x27;the reference is what the art director signed off on&#x27; would read less like rubric language.</li>
+<li>The mid-prompt sentence &#x27;Where the config file and the reference image disagree ... go with what the reference image shows&#x27; is a conflict-resolution rule that reads a bit like a spec clause. A brief reason, such as the art director having signed the image off, would make it feel more natural.</li>
+</ul>
+<h3><code>05</code> Prompt - GUI Integration <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li>bundle.json applications_used is null, so the intended GUI application (Godot editor or runtime) is inferred from the prompt rather than declared.</li>
+<li>The screenshot timing condition (&#x27;blast ring still expanding&#x27;) is subjective, and a tolerance could be stated.</li>
+</ul>
+<h3><code>07</code> Prompt - Timelessness <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li>The phrases &#x27;Thursday gameplay review&#x27; and &#x27;last sprint&#x27; are relative time references. They are harmless here but could be dropped for full timelessness.</li>
+</ul>
+<h3><code>09</code> Gold File - Accuracy <span class=dim>&middot; scored 3</span></h3>
+<ul class=reasons>
+<li>Close call on Score 2 vs Score 3: The gravity discrepancy (38 vs 980, 25.8x off) is large in magnitude and the prompt explicitly says the config controls physics. I considered Score 2 (&#x27;wrong values&#x27;) but chose Score 3 because no criterion directly grades the gravity constant, the criteria compare observable behaviors with tolerances rather than exact physics values, and all primary deliverables are present and structurally correct. The fix (changing code to use config values) is legal since the prompt constrains them. Count: 1 reading favored Score 2, 4 readings favored Score 3.</li>
+<li>The code does not implement token_speed_cap_px_per_s = 1200 from the config. No speed cap is applied to token velocities. This is another config parameter that is ignored.</li>
+<li>Denominator: 3 expected files exist (zip, png, txt). All 3 were opened and examined. The zip was extracted to inspect project.godot, TokenWave.tscn, and token_wave.gd. 1 issue flagged (physics parameter deviations from config).</li>
+<li>Screenshot shows Collected: 62, Actions: 89. The log has no MOTION_SAMPLE with exactly those values (closest: t=31.0 with collected=62, actions=91). This is not a contradiction -- the screenshot captured a game state between MOTION_SAMPLE intervals, and ACTION_TRANSITION count=89 does exist in the log, confirming the state was real.</li>
+</ul>
+<h3><code>11</code> Gold File - Input Consistency <span class=dim>&middot; scored 3</span></h3>
+<ul class=reasons>
+<li>The gold file script does not read gameplay_config.txt at all. All six physics/timing parameters from the config (gravity, bounce_damping, blast_force, blast_expand_duration, token_speed_cap, auto_cycle_interval) are either hardcoded to different values or not implemented. While the prompt says &#x27;gameplay_config.txt controls timing and physics,&#x27; the expected project ignores it entirely. The fix is to have the script parse and use gameplay_config.txt values, or to update the config values to match what the script uses.</li>
+</ul>
+<h3><code>12</code> Rubric - Categorization <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li>Criterion 25 (correctness): &#x27;The HUD text in bomb_blast_frame.png reproduces the exact wording and line breaks of the corresponding expected file.&#x27; This criterion tests both correctness (exact wording is content, per calibration: &#x27;A value inside a visual element is correctness&#x27;) and visual (line breaks are a layout/typography property). Fix: split into (a) correctness criterion testing exact wording match, and (b) visual criterion testing line break placement. Target pairs: correctness/REGULAR for wording, visual/REGULAR for line breaks.</li>
+</ul>
+<h3><code>28</code> JSON - Structure / URL Integrity <span class=dim>&middot; scored 5</span></h3>
+<ul class=reasons>
+<li>All four input_files entries (source_coin_token.png, Bomb.glb, scene_reference.png, gameplay_config.txt) carry the identical URL .../65cbc42b32ffab95dd54b864/pwy5ipf5O1s2zNk, although the four staged inputs differ in size and content. This may be a bundle or pipeline artifact, but the initializer URLs are worth confirming, because the same link cannot serve four different files.</li>
+<li>verifier has self_check_score &quot;1&quot; as a string, and the contributor&#x27;s expected zip contains a top-level folder named Bomb_Chain_Reaction_Working plus __MACOSX entries. Neither affects this component.</li>
+</ul>
+</div>
+</details>
+</section>
+
+<script>
+(function(){
+  var boxes = [].slice.call(document.querySelectorAll('ul.steps li.step > input[type=checkbox]'));
+  var fill = document.getElementById('progfill'), text = document.getElementById('progtext'),
+      gate = document.getElementById('gatestate');
+  var total = boxes.length, gateTotal = 0;
+  boxes.forEach(function(b){ if (b.parentNode.hasAttribute('data-gate')) gateTotal++; });
+  function sync(){
+    var done = 0, gateDone = 0;
+    boxes.forEach(function(b){
+      var li = b.parentNode;
+      if (b.checked){ done++; if (li.hasAttribute('data-gate')) gateDone++; li.classList.add('done'); }
+      else { li.classList.remove('done'); }
+    });
+    if (fill) fill.style.width = total ? (done / total * 100) + '%' : '0%';
+    if (text) text.textContent = done + ' of ' + total + ' done';
+    if (gate && gateTotal)
+      gate.textContent = (gateTotal - gateDone) + ' of ' + gateTotal + ' verdict-clearing fixes left.';
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', sync); });
+  sync();
+})();
+</script>
+</div>

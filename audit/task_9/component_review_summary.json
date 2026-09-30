@@ -1,0 +1,397 @@
+{
+ "unit": "task_9",
+ "output": "component_review_summary.html",
+ "generated_at": "2026-09-30T08:35:18+0000",
+ "model": "claude-opus-5",
+ "effort": "high",
+ "elapsed_s": 0,
+ "problems": [],
+ "answer": {
+  "next_action": "Add a criterion to `rubric.json` testing that token rows show the alternating horizontal offset the prompt names.",
+  "next_action_why": "Fix 1 of 6. Component 16 (Coverage) scored 2 -- one of two independent fails driving the verdict. The prompt explicitly requires 'the alternating horizontal offset between rows' and no existing criterion tests it.",
+  "gate": "Verdict 2 (FAIL) rests on two rubric-level fails: component 16 (missing criterion for alternating token row offset) and component 21 (criterion 24 negatively framed). Steps 1 and 2 clear them.",
+  "steps": [
+   {
+    "action": "Add a visual criterion testing that token rows show the alternating horizontal offset.",
+    "pill": "clears the fail",
+    "clears_verdict": true,
+    "components": [
+     "16"
+    ],
+    "scope": "1 criterion added",
+    "why": "The prompt explicitly requires 'the alternating horizontal offset between rows' and `gameplay_config.txt` confirms `row_offset_pattern = alternating`. No existing criterion tests this. A submission with tokens in straight columns passes every criterion.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "rubric.json",
+        "class": "rubric"
+       },
+       {
+        "name": "bundle.json",
+        "class": "bundle"
+       }
+      ],
+      "location": "new criterion after n=23",
+      "weight": "weight to set",
+      "now": "",
+      "now_note": "No criterion exists for alternating token row offset.",
+      "highlight": "",
+      "delete": "",
+      "to": "`bomb_blast_frame.png` shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.",
+      "to_highlight": "`bomb_blast_frame.png` shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.",
+      "draft": true,
+      "note": "Wording adapted from S1. Adding this criterion brings the rubric to 31; consider merging criteria 20 and 23 (flagged as overlapping by C22) to stay within the 30-criterion cap. Similar visual criteria carry weight 40-50."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "",
+    "sources": [
+     "S1",
+     "C16"
+    ]
+   },
+   {
+    "action": "Rewrite criterion 24 in positive framing.",
+    "pill": "clears the fail",
+    "clears_verdict": true,
+    "components": [
+     "21"
+    ],
+    "scope": "1 criterion rewritten",
+    "why": "Criterion 24's predicate 'never decreases' is negatively framed. 'Monotonically non-decreasing' is the standard positive equivalent.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "rubric.json",
+        "class": "rubric"
+       },
+       {
+        "name": "bundle.json",
+        "class": "bundle"
+       }
+      ],
+      "location": "criterion n=24",
+      "weight": "weight 10",
+      "now": "The actions value in the MOTION_SAMPLE lines of `bomb_runtime_log.txt` never decreases and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+      "now_note": "",
+      "highlight": "never decreases",
+      "delete": "never decreases",
+      "to": "The actions value in each MOTION_SAMPLE line of `bomb_runtime_log.txt` is monotonically non-decreasing and agrees with the count of the most recent preceding ACTION_TRANSITION line.",
+      "to_highlight": "is monotonically non-decreasing",
+      "draft": true,
+      "note": "Wording adapted from S2. Also changed 'the MOTION_SAMPLE lines' to 'each MOTION_SAMPLE line' per S2's suggestion."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "",
+    "sources": [
+     "S2",
+     "C21"
+    ]
+   },
+   {
+    "action": "Align 4 physics/timing values in `gameplay_config.txt` with the gold implementation.",
+    "pill": "",
+    "clears_verdict": false,
+    "components": [
+     "09",
+     "11"
+    ],
+    "scope": "4 values, 1 file",
+    "why": "The gold script hardcodes physics and timing values that differ from `gameplay_config.txt`, despite the prompt saying the config controls physics. No criterion grades these values directly, so editing the config to match the gold avoids regenerating the gold's log and screenshot.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[physics] section, gravity_px_per_s2",
+      "weight": "",
+      "now": "gravity_px_per_s2 = 980",
+      "now_note": "",
+      "highlight": "980",
+      "delete": "980",
+      "to": "gravity_px_per_s2 = 38",
+      "to_highlight": "38",
+      "draft": false,
+      "note": "Value from gold script token_wave.gd line 131: velocity.y += 38.0 * delta."
+     },
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[physics] section, blast_force_px",
+      "weight": "",
+      "now": "blast_force_px = 600",
+      "now_note": "",
+      "highlight": "600",
+      "delete": "600",
+      "to": "blast_force_px = 360",
+      "to_highlight": "360",
+      "draft": false,
+      "note": "Value from gold scene TokenWave.tscn line 11: mechanic_strength = 360.0."
+     },
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[timing] section, auto_cycle_interval_s",
+      "weight": "",
+      "now": "auto_cycle_interval_s = 3.0",
+      "now_note": "",
+      "highlight": "3.0",
+      "delete": "3.0",
+      "to": "auto_cycle_interval_s = 3.2",
+      "to_highlight": "3.2",
+      "draft": false,
+      "note": "Value from gold script token_wave.gd line 47: auto_timer = 3.2."
+     },
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[physics] section, bounce_damping",
+      "weight": "",
+      "now": "bounce_damping = 0.7",
+      "now_note": "",
+      "highlight": "0.7",
+      "delete": "0.7",
+      "to": "bounce_damping = 0.72",
+      "to_highlight": "0.72",
+      "draft": false,
+      "note": "Value from gold script token_wave.gd lines 135-138: velocity multiplied by 0.72 on bounce."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "Edits the input, not the gold. Choosing the opposite direction (editing the gold to use config values) would require regenerating `bomb_runtime_log.txt` and `bomb_blast_frame.png`. See one_call.",
+    "sources": [
+     "I3",
+     "I4",
+     "I5",
+     "I6",
+     "S3",
+     "S4",
+     "C09",
+     "C11"
+    ]
+   },
+   {
+    "action": "Align 2 visual parameters in `gameplay_config.txt` with the reference image.",
+    "pill": "",
+    "clears_verdict": false,
+    "components": [
+     "11"
+    ],
+    "scope": "3 values, 1 file",
+    "why": "The config disagrees with `scene_reference.png` on token_rows and window dimensions. The prompt resolves visual conflicts in favour of the reference image, and the gold matches the reference. The config values are vestigial.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[board] section, token_rows",
+      "weight": "",
+      "now": "token_rows = 4",
+      "now_note": "",
+      "highlight": "4",
+      "delete": "4",
+      "to": "token_rows = 3",
+      "to_highlight": "3",
+      "draft": false,
+      "note": "scene_reference.png shows 3 rows of tokens; gold seed_tokens() iterates for row in 3."
+     },
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[viewport] section, window_width",
+      "weight": "",
+      "now": "window_width = 1150",
+      "now_note": "",
+      "highlight": "1150",
+      "delete": "1150",
+      "to": "window_width = 1152",
+      "to_highlight": "1152",
+      "draft": false,
+      "note": "scene_reference.png image metadata is 1152x648; gold project.godot uses 1152."
+     },
+     {
+      "files": [
+       {
+        "name": "gameplay_config.txt",
+        "class": "input"
+       }
+      ],
+      "location": "[viewport] section, window_height",
+      "weight": "",
+      "now": "window_height = 650",
+      "now_note": "",
+      "highlight": "650",
+      "delete": "650",
+      "to": "window_height = 648",
+      "to_highlight": "648",
+      "draft": false,
+      "note": "scene_reference.png image metadata is 1152x648; gold project.godot uses 648."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "",
+    "sources": [
+     "I1",
+     "I2",
+     "C11",
+     "R11.2"
+    ]
+   },
+   {
+    "action": "Remove the hardcoded token description from criterion 17.",
+    "pill": "",
+    "clears_verdict": false,
+    "components": [
+     "13"
+    ],
+    "scope": "1 criterion rewritten",
+    "why": "Criterion 17 states 'yellow oval coins', leaking the token colour and shape. The prompt says only that `source_coin_token.png` is the production coin face; appearance should be anchored to the expected file alone.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "rubric.json",
+        "class": "rubric"
+       },
+       {
+        "name": "bundle.json",
+        "class": "bundle"
+       }
+      ],
+      "location": "criterion n=17",
+      "weight": "weight 40",
+      "now": "`bomb_blast_frame.png` shows board tokens rendered as yellow oval coins matching the token appearance in the corresponding expected file",
+      "now_note": "Missing terminal period (noted by R20.1).",
+      "highlight": "rendered as yellow oval coins ",
+      "delete": "rendered as yellow oval coins ",
+      "to": "`bomb_blast_frame.png` shows board tokens matching the token appearance in the corresponding expected file.",
+      "to_highlight": "",
+      "draft": true,
+      "note": "Removed 'rendered as yellow oval coins' which C13 identifies as a hardcoded description not found in the prompt. Added terminal period."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "",
+    "sources": [
+     "C13",
+     "R20.1"
+    ]
+   },
+   {
+    "action": "Strengthen criterion 9 beyond existence-only.",
+    "pill": "",
+    "clears_verdict": false,
+    "components": [
+     "14"
+    ],
+    "scope": "1 criterion rewritten",
+    "why": "Criterion 9 checks only that at least one AUTO and one INPUT line exist. It is the sole existence-only correctness criterion (1 of 17). Adding a quantity anchor to the expected file gives it content weight.",
+    "fixes": [
+     {
+      "files": [
+       {
+        "name": "rubric.json",
+        "class": "rubric"
+       },
+       {
+        "name": "bundle.json",
+        "class": "bundle"
+       }
+      ],
+      "location": "criterion n=9",
+      "weight": "weight 10",
+      "now": "`bomb_runtime_log.txt` includes at least one origin=AUTO action line and at least one origin=INPUT action line.",
+      "now_note": "",
+      "highlight": "includes at least one origin=AUTO action line and at least one origin=INPUT action line",
+      "delete": "includes at least one origin=AUTO action line and at least one origin=INPUT action line",
+      "to": "Both origin=AUTO and origin=INPUT action lines appear in `bomb_runtime_log.txt`, with each origin type present in quantities consistent with the corresponding expected file.",
+      "to_highlight": "with each origin type present in quantities consistent with the corresponding expected file",
+      "draft": true,
+      "note": "Adapted from R14.1. Keeps the both-types-present check and adds a quantity anchor. Exact counts vary with log length; 'consistent with' gives the grader appropriate room."
+     }
+    ],
+    "answer_key_check": "",
+    "note": "",
+    "sources": [
+     "C14",
+     "R14.1"
+    ]
+   }
+  ],
+  "consistency_coverage": "Verdict **minor**; 6 findings (I1-I6), 0 major. I3, I4, I5, I6 carried by step 3; I1, I2 carried by step 4.",
+  "wrong_facts": [],
+  "one_call": {
+   "question": "Should the physics discrepancies between `gameplay_config.txt` and the gold script be resolved by editing the config (input) or by editing the gold code and regenerating its outputs (gtf)?",
+   "context": "Blocks step 3. The prompt says the config controls physics, but no criterion grades exact physics values. Editing the gold requires regenerating `bomb_runtime_log.txt` and `bomb_blast_frame.png`.",
+   "options": [
+    {
+     "label": "Edit config to match gold",
+     "detail": "Change 4 values in `gameplay_config.txt` to match the gold script. No gold regeneration needed. The config becomes descriptive rather than prescriptive."
+    },
+    {
+     "label": "Edit gold to use config values",
+     "detail": "Update the gold script to read `gameplay_config.txt`, then regenerate `bomb_runtime_log.txt` and `bomb_blast_frame.png`. More faithful to the prompt but requires re-running the game."
+    },
+    {
+     "label": "Edit both",
+     "detail": "Set config values to match the gold AND have the gold script read the config file. Most thorough, most work."
+    }
+   ],
+   "pick": "Edit config to match gold. No criterion grades exact physics values, so the gold outputs stay valid and no gtf regeneration is needed."
+  },
+  "still_open": [
+   {
+    "components": [
+     "01"
+    ],
+    "line": "Whether the CUA VM has Godot installed and can run 3D projects with SubViewport support is unverified; `bundle.json` has `applications_used: null`."
+   },
+   {
+    "components": [
+     "03"
+    ],
+    "line": "`Bomb.glb` could not be inspected (extractor does not support .glb); whether its geometry conflicts with the prompt is unexamined."
+   },
+   {
+    "components": [
+     "28"
+    ],
+    "line": "All four `input_files` entries in `bundle.json` carry the identical S3 URL despite being four distinct files; whether the URLs serve correct files at runtime is unconfirmed."
+   }
+  ],
+  "also_found": [
+   "`bundle.json` records `applications_used: null` -- should list Godot so reviewers can confirm the VM has it installed.",
+   "Criteria 20 and 23 overlap on grid lines in the play area (C22, score 3); scoring impact is minimal since C23 adds unique quantitative requirements.",
+   "The expected zip contains `__MACOSX` entries and an internal folder name (`Bomb_Chain_Reaction_Working`) differing from the deliverable zip name; criterion 4 should tolerate a nested folder."
+  ],
+  "start_here": {
+   "action": "Open `rubric.json` and add the alternating-offset criterion after n=23.",
+   "detail": "Paste: \"`bomb_blast_frame.png` shows tokens arranged with an alternating horizontal offset between adjacent rows, consistent with the corresponding expected file.\" Set weight (visual, similar criteria are 40-50). Then rewrite criterion 24: replace 'never decreases' with 'is monotonically non-decreasing'. Those two edits clear both fails."
+  }
+ }
+}
