@@ -1,0 +1,112 @@
+# 26. Component: Rubric - Robustness
+
+> Generated from this skill's `audit-rubric.csv` by `_generate.py`. Do not hand-edit; edit the CSV and regenerate.
+
+| | |
+|---|---|
+| audit-rubric id | `32654a22-f35f-4e9c-9ea6-2c53223ef4e2` |
+| title | Component: Rubric - Robustness |
+| allowed scores | 2, 3, 5 |
+| required | true |
+| evidence class | `rubric` |
+| subagent model | `claude-opus-5` at `--effort max` |
+
+## Question
+
+Rate the Robustness (Anti-Hacking) of the Rubric dimension.
+
+## Description (verbatim from the CSV)
+
+```
+Checks whether formatting/visual criteria can be satisfied by a degenerate shortcut that defeats their intent (reward hacking). A criterion like "no text overlap," "table does not overflow," or "fits on one page" can be passed by shrinking the font to an unreadable size — technically meeting the check while producing a bad artifact. Robust criteria reward the intended, legible outcome and cannot be gamed this way, e.g. by pairing "fits without overflow" with "remains legible at normal zoom," or by anchoring to the expected file's layout.
+
+Note: Constraints dissuading reward hacking may be fairly general and satisfy the minimum requirements for this dimension; e.g., specifying that some text should be "legible" is sufficient to ensure its of a readable size.
+```
+
+## Score options
+
+Only these scores exist for this component. There is no other value; in particular do not invent a score the CSV does not list.
+
+**Before you score.** The notes below are calibration carried over from the deployed reference evals. They say how the options that follow are applied — they never add an option, move a threshold, or create a band the CSV does not list. Where the two sources genuinely conflict, the CSV wins and the rule is left out, so everything below is safe to apply as written.
+
+- A criterion is adequately guarded if **either** guard is present, and either one alone is sufficient: **(a)** an explicit legibility or quality condition — "fits without overflow" paired with "remains legible at normal zoom"; or **(b)** an anchor to the expected file's layout — "comparable to the corresponding expected file" — which rules out the degenerate shortcut on its own, because a 4pt table is not comparable to the expected file.
+- **Never score a formatting or visual criterion down for lacking guard (a) when it carries guard (b).** This has been a confirmed over-flag: a criterion was failed as "a mechanical fit/no-overflow proxy without a legibility guard" while the evidence block quoted its anchoring clause.
+- **Before taking the fail option, confirm a compliant construction exists.** It must satisfy this component, atomicity and value binding *simultaneously*. If your finding leaves the author no compliant wording, the finding is wrong, not the rubric.
+
+### Score 2  — **justification REQUIRED**
+
+```
+[Fail - Robustness] 
+One or more formatting/visual criteria can be satisfied by a degenerate shortcut that defeats the intent (e.g., "no text overlap" or "table does not overflow" passable by shrinking text to an unreadable size), with no paired legibility/quality condition to prevent it.
+```
+
+### Score 3  — **justification REQUIRED**
+
+```
+[Non-Fail - Robustness] 
+Criteria are outcome-based overall, but one criterion is phrased mechanically (a negative proxy) without an explicit legibility/quality guard; the intended result is still clear and not trivially gameable.
+```
+
+**Applies to this score.**
+
+- Where the **prompt itself** explicitly asks for the fit, overflow or pagination behaviour, the criterion is a requested check: mechanical phrasing there is this band, not the fail option.
+
+### Score 5  — justification not required
+
+```
+Formatting and visual criteria reward the intended, legible, professional outcome and cannot be satisfied by a degenerate shortcut (e.g., they pair "fits without overflow" with "remains legible at normal zoom").
+```
+
+## errorCategories
+
+The label a reviewer selects. Emit one of these verbatim in `error_category` when the score is not the clean pass, else `null`.
+
+- `[All] [All] [Fail - Robustness]`
+- `[All] [All] [Non-Fail - Robustness]`
+
+**One band, one value.** Where the score you chose has no matching label — several components define a non-fail score but list only a `Fail` entry — emit `null` and name the band in `justification`. Never emit a `Fail` label on a non-fail score: the label is what reaches the reviewer's CSV, and a mislabelled non-fail reads there as a failure.
+
+## The guard lives in the same criterion
+
+A legibility or quality guard discharges this component only when it sits in the **same criterion** as the mechanical check. A guard in a different criterion does not help: that criterion can fail independently while the gameable one still passes. Nor does an argument that other criteria create an incentive against the shortcut. Name the element at risk, then quote the guard from that criterion's own text, or record that there is none.
+
+## Scope, not just presence
+
+A guard or a label is not enough on its own; it has to cover the thing at risk. For each criterion in scope, name the specific element that could be degraded or mis-handled, then check whether the guard or category actually covers **that element**. A guard scoped to one element leaves every other element unprotected, and a criterion that spans two categories is mis-categorised even when the category it carries is defensible for part of it. Report the element and the coverage, not the existence of the clause.
+
+## Evidence to read
+
+- `bundle.json` -> `criteria[]` — each `{n, id, title, weight, category, type}`
+- `bundle.json` -> `prompt` — for coverage and framing only
+- `bundle.json` -> `mechanical` — precomputed counts and weight shares; trust them, do not recompute
+
+Every path above is relative to the evidence directory named in the prompt. Read nothing outside it.
+
+## Output contract
+
+Return exactly one JSON object:
+
+```json
+{
+  "component_id": "32654a22-f35f-4e9c-9ea6-2c53223ef4e2",
+  "title": "Component: Rubric - Robustness",
+  "score": <one of: 2, 3, 5>,
+  "error_category": "<verbatim from the list above, or null>",
+  "justification": "<required when the chosen score says so>",
+  "evidence": "<quote the exact text, value, cell or filename>",
+  "criteria": [<rubric criterion numbers, if applicable>],
+  "confidence": "high|medium|low",
+  "blocked_on": "<what you could not verify, or null>",
+  "minor_issues": ["<non-scoring suggestion>", "..."]
+}
+```
+
+Rules:
+
+- Score **only** from the options above. The clean-pass score is `5`.
+- A score whose option is marked **justification REQUIRED** must carry a non-empty `justification` naming the threshold it crosses and the evidence it rests on.
+- Quote evidence. A finding with no quoted text, value or filename is not a finding — score the clean pass instead.
+- If you could not verify something (a file would not open, an artifact is unavailable), set `blocked_on` and lower `confidence`; do not guess.
+- Judge **this** submission only. Any reviewer score or feedback in the task response was written about the PREVIOUS attempt and does not apply here — ignore it.
+- **A criterion you propose must pass the rubric itself.** Replacement or new criterion text you write, in `justification` or `minor_issues`, is judged by the rubric components the way the task's own criteria are. It never states the value, name, date, count or conclusion the agent has to produce: it names the expected file and a comparison — a tolerance on a derived number, semantic equivalence on prose — and only a value the prompt itself gives may appear. It has no conditional wording ("if …", "unless …", "where applicable", "when present", "if any", "any X it reports"): the task's inputs already fix which case holds, so it grades that case's outcome. It tests one element. A criterion that grades what the prompt never asks for is removed, folded into another, or backed by a prompt change, never made conditional.
+- `minor_issues` is **never scored**. It carries suggestions that would improve the task but that this component's answer options do not name, so nothing you put there may change `score`, `error_category` or the verdict — and a clean pass stays a clean pass with entries in it. Use `[]` when there is nothing to record.
