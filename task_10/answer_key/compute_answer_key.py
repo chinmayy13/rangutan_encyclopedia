@@ -1,12 +1,12 @@
 """Recompute every graded value for the CTSAgn task from the input files.
 
-Run from the repo root:  python3 -I task_10_v2/answer_key/compute_answer_key.py
-Reads the v2 inputs; files that did not change are read from task_10/initial_files.
+Run from the repo root:  python3 -I task_10/answer_key/compute_answer_key.py
+Reads the input files in task_10/initial_files.
 """
 import csv, os, json, numpy as np, openpyxl
 
-V2, V1 = "task_10_v2/initial_files", "task_10/initial_files"
-def p(name): return os.path.join(V2, name) if os.path.exists(os.path.join(V2, name)) else os.path.join(V1, name)
+IN = "task_10/initial_files"
+def p(name): return os.path.join(IN, name)
 
 def load_txt(path):
     rows = []

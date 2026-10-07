@@ -3,8 +3,8 @@
 Fill every `PASTE_*` from the platform: input URLs from *Initial Files Upload* ("Starting File URLs to be used in Task Initializer"), expected-file URLs from *Asset Upload* (link icon). Both must be `scale-cds://…#s3/scale-cds-public-us-west-2` with **no** `Expires=` parameter. File names in the initializer, verifier and Asset section must match exactly. Last block in each list has **no trailing comma**. The previous submission failed on a missing closing bracket and on stale golden links, so paste the result into a JSON validator before clicking Execute.
 
 ## Initial Files Upload section — upload these nine
-`CTS.txt`, `Agn.txt` (v2), `CTSAgn.xlsx`, `CTSAgn_After.xlsx`, `CTSAgn_batch_economics.csv` (v2), `Thermal_Screening_Note.pdf` (v2), `Stage_Gate_Policy.pdf` (new), `Regeneration_Guidance_Bulletin.pdf`, `plot_template.xcf`.
-Remove from the section anything left over from the seed (`DTG Thermogram.png`, `adsorbent_economic_analysis.csv`, `CTSAgn After.xlsx` with a space, `Composite_DTG_Overlay.png`). Unchanged files are in `../task_10/initial_files/`, changed/new ones in `initial_files/`. Do not upload the GTFs here.
+`CTS.txt`, `Agn.txt` (revised), `CTSAgn.xlsx`, `CTSAgn_After.xlsx`, `CTSAgn_batch_economics.csv` (revised), `Thermal_Screening_Note.pdf` (revised), `Stage_Gate_Policy.pdf` (new), `Regeneration_Guidance_Bulletin.pdf`, `plot_template.xcf`.
+Remove from the section anything left over from the seed (`DTG Thermogram.png`, `adsorbent_economic_analysis.csv`, `CTSAgn After.xlsx` with a space, `Composite_DTG_Overlay.png`). All nine are in `initial_files/`. Do not upload the GTFs here.
 
 ## Initializer
 ```json

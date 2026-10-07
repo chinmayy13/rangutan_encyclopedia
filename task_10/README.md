@@ -1,6 +1,6 @@
-# CTSAgn task: rebuilt version (v2)
+# CTSAgn task: redesign notes
 
-Original (`../task_10/`) is untouched. This folder is a full redesign following `../task_10/feedback.md` (reviewer: "must be redone from scratch, adding more complexity"; agent run scored 96%).
+This task was redesigned in place following `feedback.md` (reviewer: "must be redone from scratch, adding more complexity"; agent run scored 96%).
 
 ## Why the old task scored 96%, and what changed
 Every rule the agent needed was spelled out, so it was data processing, not judgment (`stump.md`: "method hides in the files", "thresholds live in the source"; `model_stumping_prompts.md`: "if you write the criteria into the request you have removed the judgment call"). Three levers were moved from the prompt into the source files, each changing a large share of the deliverable:
@@ -40,4 +40,6 @@ Four levers, as the guide recommends ("three or four is enough; nine is dense, n
 4. Confirm CC0/PII on the TGA files: `CTS.txt` and the xlsx headers carry a lab server path with a first name ("Abner") and operator initials. Standalone names are tolerated by `pre_submission.md`, but strip them if you prefer.
 
 ## Files
-`prompt.md` · `prompt_change_description.md` · `rubric.md` · `verifier_initializer.md` · `answer_key/` · `initial_files/` (changed: Agn.txt, CTSAgn_batch_economics.csv, Thermal_Screening_Note.pdf; new: Stage_Gate_Policy.pdf).
+`prompt.md` · `rubrics.md` · `prompt_change_description.md` · `verifier_initializer.md` · `answer_key/` · `initial_files/` (changed: Agn.txt, CTSAgn_batch_economics.csv, Thermal_Screening_Note.pdf; new: Stage_Gate_Policy.pdf).
+
+**Still stale, to redo:** `gtf_files/` still holds the GTFs for the *old* task (old rates and costs, wrong plot colours), so they must be rebuilt in the VM from the new inputs. `files.md` and `information.md` are platform snapshots from the old task (old input list); the platform's Initial Files section is what counts.
