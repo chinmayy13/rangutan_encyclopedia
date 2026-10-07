@@ -25,7 +25,7 @@ Four levers, as the guide recommends ("three or four is enough; nine is dense, n
 | Note says "Alignate", "The The"; water-tail wording | Fixed in `initial_files/Thermal_Screening_Note.pdf` (tail-to-185 °C wording kept) |
 | Agn.txt Sig1–Sig6 removed | Column-definition block restored (data rows byte-identical; checked) |
 | Initializer missing Regeneration bulletin, missing bracket, stale golden links | `verifier_initializer.md`: nine-file list, validated structure, URL rules |
-| GTF font colours vs template, decimals, 9.5 pt, headings | `gtf_spec.md` fixes table |
+| GTF font colours vs template, decimals, 9.5 pt, headings | To apply when rebuilding the GTFs: peak labels and axis text in #15295d (only the two traces change colour), temperatures to one decimal, all docx text ≥10 pt including the table, one heading style per level |
 | Rubric: C3/C30 categorisation, C12/C13 overfit/mixed, C14 subjective, C16 overloaded, C18 inaccurate, C19 location, C21/C24 overlap, C23 negative framing, C26/27 redundant, missing colour coverage | New rubric: 30 criteria; font/margin thresholds are the prompt's own 10 pt / 2.5 cm and categorised visual; no negative framing; hex colours covered in two criteria; no "immediately under the table"; one criterion per element |
 
 ## Guideline cross-check (`attempter_guidelines.md`, `pre_submission.md`, `prompt_writing.md`)
@@ -34,10 +34,10 @@ Four levers, as the guide recommends ("three or four is enough; nine is dense, n
 - Every graded value reproduces from the inputs: `answer_key/compute_answer_key.py` (asserts the CSV line items sum to each stated batch total).
 
 ## What I could not do (needs you, in the platform/VM)
-1. Upload the new/changed inputs, run the initializer, build the three GTFs in the VM from `gtf_spec.md`, upload to Asset section.
+1. Upload the new/changed inputs, run the initializer, rebuild the three GTFs in the VM from the new inputs (numbers in `answer_key/answer_key.json`), upload to Asset section.
 2. Paste the rubric, run Copilot checks and the rubric generator, fix flags, run the verifier (expect 1.0).
 3. **Click Run twice for the agent run.** The 96% was measured on the old task; the new difficulty is my estimate (`rubric.md` footer: ~51% for an agent that misses both conventions) and is unverified. If it still averages >80%, the next lever is a second precision trap in the data (e.g. an off-side note in the CSV that re-grades a batch).
 4. Confirm CC0/PII on the TGA files: `CTS.txt` and the xlsx headers carry a lab server path with a first name ("Abner") and operator initials. Standalone names are tolerated by `pre_submission.md`, but strip them if you prefer.
 
 ## Files
-`prompt.md` · `prompt_change_description.md` · `rubric.md` · `gtf_spec.md` · `verifier_initializer.md` · `answer_key/` · `initial_files/` (changed: Agn.txt, CTSAgn_batch_economics.csv, Thermal_Screening_Note.pdf; new: Stage_Gate_Policy.pdf).
+`prompt.md` · `prompt_change_description.md` · `rubric.md` · `verifier_initializer.md` · `answer_key/` · `initial_files/` (changed: Agn.txt, CTSAgn_batch_economics.csv, Thermal_Screening_Note.pdf; new: Stage_Gate_Policy.pdf).
