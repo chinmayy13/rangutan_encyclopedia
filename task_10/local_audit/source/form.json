@@ -1,0 +1,6 @@
+{
+  "applications_used": "LibreOffice Writer, GIMP",
+  "notes_for_reviewer": "Rebuilt from scratch after the earlier version scored 96% on the agent run. The decisive conventions now live in the input files rather than the prompt: the rate basis in Thermal_Screening_Note.pdf (derivative-weight signal, per cent of the 150 C mass), and the cost basis and stage-gate tests in Stage_Gate_Policy.pdf (cash cost without equipment depreciation, released batches only, a manufacturing-loss sensitivity, a 25 C thermal margin, measured data on the candidate, demonstrated cycles). Expected outcome is Hold for validation. Agent score is not available at the attempt layer.",
+  "domain": "Engineering",
+  "sub_domain": "Chemical Engineering"
+}
