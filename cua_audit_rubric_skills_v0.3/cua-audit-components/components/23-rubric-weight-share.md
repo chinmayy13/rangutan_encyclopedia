@@ -1,0 +1,117 @@
+# 23. Rubric - Weight Share
+
+> Generated from this skill's `audit-rubric.csv` by `_generate.py`. Do not hand-edit; edit the CSV and regenerate.
+
+| | |
+|---|---|
+| audit-rubric id | `791d6498-5d1d-48b9-89ca-0ac6b7b5dea1` |
+| title | Rubric - Weight Share |
+| allowed scores | 2, 3, 5 |
+| required | true |
+| evidence class | `rubric` |
+| subagent model | `claude-opus-5` at `--effort max` |
+
+## Question
+
+Rate the Weight Share of the Rubric dimension.
+
+## Description (verbatim from the CSV)
+
+```
+Weights reflect importance of a correct deliverable, the weight share (%) shows the distribution of criteria across the 3 categories.
+
+To determine weight share of each category, add up the Weights of all criteria in the category and divide by the total Weight of the rubric.
+i.e., (Correctness weight share) = (Sum of Weight for all Correctness criteria) / (Total Weight for all rubric criteria)
+
+The expected weight shares are: 
+
+1. Format gates ≤ 20% for all task domains
+
+2a. Correctness > 50% for all task domains other than Design & Creative
+2b. Correctness 20-30% for tasks with the Design & Creative domain
+
+3a. Visual 20–30% for all task domains other than Design & Creative
+3b. Visual ≥ 50% for tasks with the Design & Creative domain
+```
+
+## Score options
+
+Only these scores exist for this component. There is no other value; in particular do not invent a score the CSV does not list.
+
+**Before you score.** The notes below are calibration carried over from the deployed reference evals. They say how the options that follow are applied — they never add an option, move a threshold, or create a band the CSV does not list. Where the two sources genuinely conflict, the CSV wins and the rule is left out, so everything below is safe to apply as written.
+
+- **Only `Design & Creative` inverts.** Every other domain — **including Multimedia & A/V** — takes the default bands, and the mechanical pre-pass is built that way. Where a Multimedia & A/V task sits outside the default bands, **flag rather than fail**: take the non-fail band and say in `justification` that the domain may warrant the inverted set, so the call is visible. See `references/source-conflicts.md` §4.
+- **Take each criterion's declared `criteria_category` as given.** A share verdict that only holds after you re-categorise something is not a weighting finding — miscategorisation belongs to component 12.
+- **Measure the miss from the nearest edge of the band** and state it in percentage points. A visual share of 18.9% against a 20–30% band is off by 1.1pp — the non-fail band. A correctness share of 62% against a 20–30% band is off by 32pp — the fail option. Never escalate a boundary case.
+- **Show the arithmetic as `sum / total = xx%` for all three categories**, not only the one you are scoring against, and **name the band set you applied** so the choice is visible and can be challenged.
+- Trust `mechanical.23_rubric_weight_share`: the three shares, the band set and `off_by` are precomputed. Do not recompute them.
+- **The fix is to move weight**, never to refile a criterion into another category, and never to add or delete criteria in a way that would take the rubric outside 10–30.
+
+### Score 2  — **justification REQUIRED**
+
+```
+[Fail - Weight Share] 1+ rubric category/categories have an incorrect weight share by >5% for its domain (see dimension description for ranges by domain). E.g., Format gates exceed 25%.
+```
+
+### Score 3  — **justification REQUIRED**
+
+```
+[Non-Fail - Weight Share]: 1+ rubric category/categories have an incorrect weight share by <=5% for its domain (see dimension description for ranges). E.g., Format gates exceed 20%, but comprise no more than 25% of the total weight.
+```
+
+### Score 5  — justification not required
+
+```
+The weight shares of the rubric categories are aligned with expectations: 
+1. Format gates ≤ 20% for all task domains
+2a. Correctness > 50% for all task domains other than Design & Creative
+2b. Correctness 20-30% for tasks with the Design & Creative domain
+3a. Visual 20–30% for all task domains other than Design & Creative
+3b. Visual ≥ 50% for tasks with the Design & Creative domain
+```
+
+## errorCategories
+
+The label a reviewer selects. Emit one of these verbatim in `error_category` when the score is not the clean pass, else `null`.
+
+- `[All] [All] [Fail - Weight Share]`
+- `[All] [All] [Non-Fail - Weight Share]`
+
+**One band, one value.** Where the score you chose has no matching label — several components define a non-fail score but list only a `Fail` entry — emit `null` and name the band in `justification`. Never emit a `Fail` label on a non-fail score: the label is what reaches the reviewer's CSV, and a mislabelled non-fail reads there as a failure.
+
+## Evidence to read
+
+- `bundle.json` -> `criteria[]` — each `{n, id, title, weight, category, type}`
+- `bundle.json` -> `prompt` — for coverage and framing only
+- `bundle.json` -> `mechanical` — precomputed counts and weight shares; trust them, do not recompute
+
+Every path above is relative to the evidence directory named in the prompt. Read nothing outside it.
+
+## Output contract
+
+Return exactly one JSON object:
+
+```json
+{
+  "component_id": "791d6498-5d1d-48b9-89ca-0ac6b7b5dea1",
+  "title": "Rubric - Weight Share",
+  "score": <one of: 2, 3, 5>,
+  "error_category": "<verbatim from the list above, or null>",
+  "justification": "<required when the chosen score says so>",
+  "evidence": "<quote the exact text, value, cell or filename>",
+  "criteria": [<rubric criterion numbers, if applicable>],
+  "confidence": "high|medium|low",
+  "blocked_on": "<what you could not verify, or null>",
+  "minor_issues": ["<non-scoring suggestion>", "..."]
+}
+```
+
+Rules:
+
+- Score **only** from the options above. The clean-pass score is `5`.
+- A score whose option is marked **justification REQUIRED** must carry a non-empty `justification` naming the threshold it crosses and the evidence it rests on.
+- Quote evidence. A finding with no quoted text, value or filename is not a finding — score the clean pass instead.
+- If you could not verify something (a file would not open, an artifact is unavailable), set `blocked_on` and lower `confidence`; do not guess.
+- Judge **this** submission only. Any reviewer score or feedback in the task response was written about the PREVIOUS attempt and does not apply here — ignore it.
+- **A criterion you propose must pass the rubric itself.** Replacement or new criterion text you write, in `justification` or `minor_issues`, is judged by the rubric components the way the task's own criteria are. It never states the value, name, date, count or conclusion the agent has to produce: it names the expected file and a comparison — a tolerance on a derived number, semantic equivalence on prose — and only a value the prompt itself gives may appear. It has no conditional wording ("if …", "unless …", "where applicable", "when present", "if any", "any X it reports"): the task's inputs already fix which case holds, so it grades that case's outcome. It tests one element. A criterion that grades what the prompt never asks for is removed, folded into another, or backed by a prompt change, never made conditional.
+- `minor_issues` is **never scored**. It carries suggestions that would improve the task but that this component's answer options do not name, so nothing you put there may change `score`, `error_category` or the verdict — and a clean pass stays a clean pass with entries in it. Use `[]` when there is nothing to record.

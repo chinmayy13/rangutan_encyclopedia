@@ -1,0 +1,69 @@
+category,name,version,install_method,pinned,notes
+os,Ubuntu,22.04.5 LTS (jammy),base image,n/a,
+os,Linux kernel,5.15.0-186-generic,base image,no,
+os,GNOME Shell,42.9,apt,no,Yaru theme; fonts-ubuntu + fonts-dejavu-core
+desktop-app,Google Chrome,150.0.7871.128,vendor .deb (current stable),no,--password-store=basic + swiftshader flags
+desktop-app,SketchUp for Web,n/a (Chrome --app launcher),.desktop launcher,n/a,no Linux build; signed-in Trimble session expires 2026-10-11
+desktop-app,LibreOffice Writer/Calc/Impress,7.3.7.2 (1:7.3.7-0ubuntu0.22.04.12),apt,no,libreoffice-gnome integration
+desktop-app,Carlito font (Calibri metric),20130920-1.1,apt,no,fonts-crosextra-carlito
+desktop-app,Caladea font (Cambria metric),20130214-2.1,apt,no,fonts-crosextra-caladea
+desktop-app,Liberation fonts,1:1.07.4-11,apt,no,fonts-liberation
+desktop-app,Liberation 2 fonts,2.1.5-1,apt,no,fonts-liberation2
+desktop-app,VLC,3.0.16-1build7,apt,no,privacy dialog pre-dismissed
+desktop-app,GIMP,2.10.30-1ubuntu0.1,apt,no,
+desktop-app,Blender,5.2.1 (snap rev 7740),snap --classic,no,apt build replaced by snap in 1.0.53
+desktop-app,Shotcut,22.01.30+ds-1,apt,no,
+desktop-app,KiCad,10.0.4~ubuntu22.04.1,kicad PPA,no,pulls OCCT 7.6 (why FreeCAD is an AppImage)
+desktop-app,R,4.1.2-1ubuntu2,apt (r-base),no,
+desktop-app,RStudio,2026.05.1+225,pinned .deb,yes,rstudio-2026.05.1-225-amd64.deb
+desktop-app,pgAdmin 4 (desktop),9.16,pgadmin apt repo,no,desktop mode; db in ~/.pgadmin
+desktop-app,pgAdmin 4 (server),9.16,pgadmin apt repo,no,
+desktop-app,PostgreSQL,14.23-0ubuntu0.22.04.1,apt,no,added in 1.0.58 so pgAdmin has a server to connect to
+desktop-app,Visual Studio Code,1.85.2-1705561292,pinned .deb,yes,updates/telemetry/walkthrough disabled
+desktop-app,Thunderbird,140.7.1 (1:140.7.1+build1-0ubuntu0.22.04.1),apt,no,privacy notice + telemetry suppressed
+desktop-app,FFmpeg,4.4.2-0ubuntu0.22.04.1,apt,no,
+desktop-app,7-Zip (p7zip-full),16.02+dfsg-8,apt,no,p7zip-rar too
+desktop-app,GNOME Calendar,41.2-3,apt/universe,no,
+desktop-app,mpv,0.34.1-1ubuntu3,apt/universe,no,
+desktop-app,darktable,3.8.1-2,apt/universe,no,
+desktop-app,SolveSpace,3.0.rc2+repack1-3,apt/universe,no,
+desktop-app,GNU Octave,6.4.0-2,apt/universe,no,
+desktop-app,FreeCAD,1.1.1,AppImage extracted to /opt/freecad,yes,bundles OCCT 7.8.1; apt 0.19 conflicts with KiCad
+desktop-app,MuseScore Studio,4.6.0,AppImage extracted to /opt/musescore,yes,OSWorld V2 pin
+desktop-app,LabPlot,2.12.1,AppImage extracted to /opt/labplot,yes,OSWorld V2 pin
+desktop-app,Audacity,3.7.5,AppImage extracted to /opt/audacity,yes,22.04 build
+desktop-app,Obsidian,1.10.6,official .deb,yes,
+desktop-app,Zotero,8.0.2 (build 20260203193816),pinned tarball to /opt/zotero,yes,
+desktop-app,REAPER,7.64,vendor tarball to /opt/REAPER,yes,reaper764_linux_x86_64.tar.xz; free evaluation
+desktop-app,3D Slicer,5.6.2,vendor tarball to /opt/slicer,yes,image carries lib/Slicer-5.6
+desktop-app,OpenBoard,1.7.1,pinned .deb,yes,last jammy-native release
+desktop-app,GeoGebra Classic 5,5-4-925-3,portable tarball to /opt/geogebra,yes,HF gated repo (needs HF_TOKEN); bundles its own JRE
+desktop-app,XMind,26.1.3145 (xmind-vana 26.1.3145-202510170359),pinned .deb,yes,
+desktop-app,Logisim,2.7.1,generic jar to /opt/logisim,yes,HF gated asset; runs on system OpenJDK 11
+desktop-app,OVITO Basic,3.16.0,vendor tarball to /opt/ovito,yes,no jammy apt candidate
+desktop-app,Godot Engine,4.7-stable,tarball to /opt/godot,yes,opengl3 wrapper; added in 1.0.56
+desktop-app,GNOME Files (nautilus),1:42.6-0ubuntu2,apt,no,
+desktop-app,GNOME Terminal,3.44.0-1ubuntu1,apt,no,
+desktop-app,Vim,2:8.2.3995-1ubuntu2.34,apt,no,vim-tiny/vim-common
+desktop-app,htop,jammy,apt,no,
+runtime,Python (system),3.10.12-1~22.04.16,apt,no,also OSWorld server venv
+runtime,Python (CUA computer server venv),3.12.13-1+jammy1,deadsnakes,no,python3.12-venv/-tk/-dev
+runtime,Node.js,20.20.2-1nodesource1,NodeSource,no,jammy's v12 too old for the site builds
+runtime,npm,10.8.2,NodeSource,no,
+runtime,uv,0.11.29,install script,no,install-copy (not symlink) per the controller fix
+runtime,OpenJDK JRE,11.0.31 (2:1.11-72build2),apt default-jre,no,for Logisim
+runtime,Docker Engine,29.1.3-0ubuntu3~22.04.2,apt,no,runs the osworld-web compose stack in-guest
+runtime,Docker Compose,v2.31.0,apt plugin,no,
+runtime,x11vnc,0.9.16-8,apt,no,
+runtime,noVNC,1:1.0.0-5,apt,no,desktop bridge on :6080
+runtime,websockify,0.10.0+dfsg1-2build1,apt,no,
+runtime,nginx-light,jammy,apt,no,the :80 synthetic-site router; masked as a service
+runtime,Caddy docker-proxy,2.8-alpine,docker image,yes,lucaslorentz/caddy-docker-proxy; cua-gym-route
+runtime,opencode CLI,1.18.3,install script,no,agent_judge provider; LITELLM key baked
+runtime,Playwright (python),1.61.0,controller venv,no,Firefox browser in ~cua-controller/.cache/ms-playwright
+runtime,snapd,2.76.3,snap,no,core20 20260901 / core22 20260410 / lxd 5.0.9
+web-env,osworld-web stack,21 hosts (27 app dirs),docker compose in guest,per-app,includes sharelatex 6.1.2 / redis 7.4.8-alpine / mongo 8.0.20
+web-env,CUA-Gym-Hub,98 mock-site bundles,single Node server /opt/cua-gym,payload 20260911+patches,served behind Caddy
+web-env,cloudfile website,n/a,Next.js service on :5003,no,seeded professional-drive-v2
+web-env,pandoras_inbox website,n/a,Next.js service on :5005,no,seeded professional-inbox-v3
+web-env,shopora website,n/a,Next.js service on :5004,no,

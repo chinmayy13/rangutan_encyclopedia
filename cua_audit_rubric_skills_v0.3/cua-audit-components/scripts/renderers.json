@@ -1,0 +1,242 @@
+{
+  "version": 1,
+  "note": "The renderer registry. render_common.py reads `tools` to probe this machine and to compare what it found against the pinned build in cua-applications.csv; render_files.py reads `formats[kind]` to turn a file into page images. Supporting a new file type is an entry here, not a code change.",
+  "parity_note": "`parity_app` names the row in cua-applications.csv that this tool stands in for on the CUA Ubuntu VM. Only the tools that decide LAYOUT carry one — an office suite, a browser, a 3D renderer. A rasteriser like pdftoppm turns an already-laid-out PDF into pixels and has no VM counterpart, so it needs no parity target.",
+  "requires_note": "A format renders faithfully when every tool in `requires` is present AND, where `one_of` is given, at least one of those is. `one_of` holds interchangeable tools — any PDF rasteriser will do. The degraded fallbacks in render_files.py (a Quick Look thumbnail) never satisfy a requirement; they exist so a missing renderer still shows page 1 while being reported as not visually verifiable.",
+  "tools": {
+    "pymupdf": {
+      "probe": "python",
+      "module": "fitz",
+      "unlocks": "PDF -> page images + text (no system package needed)",
+      "hint": {
+        "default": "python3 provision_renderers.py pymupdf --install"
+      },
+      "acquire": {
+        "kind": "pip",
+        "package": "pymupdf",
+        "note": "A wheel in the workspace venv, so PDFs render on a host with no system packages at all. Unversioned on purpose: it rasterises a layout that is already fixed in the file, so it has no VM counterpart to match."
+      }
+    },
+    "pdftoppm": {
+      "version_args": ["-v"],
+      "unlocks": "PDF -> page images",
+      "hint": {
+        "darwin": "brew install poppler",
+        "linux": "apt-get install -y poppler-utils"
+      }
+    },
+    "pdftotext": {
+      "version_args": ["-v"],
+      "unlocks": "PDF -> layout-preserved text",
+      "hint": {
+        "darwin": "brew install poppler",
+        "linux": "apt-get install -y poppler-utils"
+      }
+    },
+    "soffice": {
+      "bins": ["soffice", "libreoffice"],
+      "provisioned_paths": [
+        "{tools}/apps/LibreOffice.app/Contents/MacOS/soffice",
+        "{tools}/apps/libreoffice/opt/libreoffice*/program/soffice"
+      ],
+      "paths": [
+        "/Applications/LibreOffice.app/Contents/MacOS/soffice",
+        "/usr/lib/libreoffice/program/soffice"
+      ],
+      "version_args": ["--version"],
+      "unlocks": "DOCX/PPTX/XLSX -> PDF",
+      "parity": true,
+      "parity_app": "LibreOffice Writer/Calc/Impress",
+      "parity_note": "LibreOffice is the parity renderer: every CUA task is Ubuntu-only, so the VM's office suite is LibreOffice, not MS Office. A different build repaginates, and pagination is what the visual criteria grade.",
+      "hint": {
+        "darwin": "python3 provision_renderers.py soffice --install   (pinned build; `brew install --cask libreoffice` gives the latest instead)",
+        "linux": "python3 provision_renderers.py soffice --install   (pinned build; `apt-get install -y libreoffice` gives the distro's instead)"
+      },
+      "acquire": {
+        "kind": "libreoffice-archive",
+        "base": "https://downloadarchive.documentfoundation.org/libreoffice/old/{version}",
+        "note": "The Document Foundation keeps every past release, so the CSV's pinned version is installable as-is rather than approximated by 'latest'.",
+        "darwin": {"arm64": "mac/aarch64/LibreOffice_{version}_MacOS_aarch64.dmg",
+                   "x86_64": "mac/x86_64/LibreOffice_{version}_MacOS_x86-64.dmg"},
+        "linux": {"x86_64": "deb/x86_64/LibreOffice_{version}_Linux_x86-64_deb.tar.gz",
+                  "aarch64": null}
+      },
+      "wrapper": {
+        "prepend_args": ["-env:UserInstallation=file://{state}/libreoffice"],
+        "note": "A private user profile: headless conversion must not touch, or be blocked by, the operator's own LibreOffice session."
+      }
+    },
+    "chrome": {
+      "bins": ["google-chrome", "google-chrome-stable", "chromium", "chromium-browser", "chrome"],
+      "paths": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium"
+      ],
+      "version_args": ["--version"],
+      "unlocks": "HTML/SVG -> screenshot",
+      "parity": true,
+      "parity_app": "Google Chrome",
+      "hint": {
+        "darwin": "install Google Chrome",
+        "linux": "apt-get install -y chromium-browser"
+      }
+    },
+    "ffmpeg": {
+      "version_args": ["-version"],
+      "unlocks": "video -> frames",
+      "parity": true,
+      "parity_app": "FFmpeg",
+      "hint": {
+        "darwin": "brew install ffmpeg",
+        "linux": "apt-get install -y ffmpeg"
+      }
+    },
+    "blender": {
+      "version_args": ["--version"],
+      "unlocks": ".blend -> rendered frame",
+      "parity": true,
+      "parity_app": "Blender",
+      "hint": {
+        "darwin": "brew install --cask blender",
+        "linux": "snap install blender --classic"
+      }
+    },
+    "magick": {
+      "bins": ["magick", "convert"],
+      "version_args": ["--version"],
+      "unlocks": "PSD/HEIC/AVIF/TIFF -> PNG",
+      "hint": {
+        "darwin": "brew install imagemagick",
+        "linux": "apt-get install -y imagemagick"
+      }
+    },
+    "gs": {
+      "version_args": ["--version"],
+      "unlocks": "PostScript/EPS -> PDF",
+      "hint": {
+        "darwin": "brew install ghostscript",
+        "linux": "apt-get install -y ghostscript"
+      }
+    },
+    "unzip": {
+      "version_args": ["-v"],
+      "unlocks": "archive listing + integrity",
+      "hint": {
+        "darwin": "(preinstalled on macOS)",
+        "linux": "apt-get install -y unzip"
+      }
+    },
+    "qlmanage": {
+      "version_args": null,
+      "unlocks": "page-1 thumbnail fallback",
+      "hint": {
+        "default": "(macOS only — no Linux equivalent)"
+      }
+    },
+    "fonts-parity": {
+      "probe": "fonts",
+      "fonts": ["Carlito", "Caladea", "Liberation", "DejaVu"],
+      "unlocks": "LibreOffice substitutes nothing: the same metrics as the CUA Ubuntu VM",
+      "parity": true,
+      "parity_note": "Fonts are part of parity. Carlito carries Calibri's metrics and Caladea carries Cambria's; without them a DOCX written in Calibri reflows, so the line breaks and page counts you would then 'verify' are not the contributor's.",
+      "hint": {
+        "darwin": "python3 provision_renderers.py soffice --install   (all four families ship inside LibreOffice)",
+        "linux": "apt-get install -y fonts-crosextra-carlito fonts-crosextra-caladea fonts-liberation fonts-liberation2 fonts-dejavu-core"
+      }
+    }
+  },
+  "formats": {
+    "pdf": {
+      "requires": [],
+      "one_of": ["pymupdf", "pdftoppm"],
+      "builtin": "pdf"
+    },
+    "office": {
+      "requires": ["soffice"],
+      "one_of": ["pymupdf", "pdftoppm"],
+      "builtin": "office",
+      "note": "Converted to PDF by LibreOffice, then rasterised. Both halves must work; the rasteriser is interchangeable and has no parity requirement, the converter is neither."
+    },
+    "image": {
+      "requires": [],
+      "builtin": "image"
+    },
+    "text": {
+      "requires": [],
+      "builtin": "text"
+    },
+    "archive": {
+      "requires": ["unzip"],
+      "builtin": "archive"
+    },
+    "html": {
+      "requires": ["chrome"],
+      "builtin": "html",
+      "extra_args": {
+        "linux": ["--no-sandbox", "--disable-dev-shm-usage"]
+      },
+      "note": "HTML has real layout, unlike plain text. Chrome headless screenshots it; without Chrome its appearance is UNVERIFIABLE, not 'no layout'."
+    },
+    "media": {
+      "requires": ["ffmpeg"],
+      "render": {
+        "via": "png",
+        "tool": "ffmpeg",
+        "cmd": ["ffmpeg", "-loglevel", "error", "-i", "{src}", "-vf", "fps=1/10",
+                "-frames:v", "{max_pages}", "{out}/page-%02d.png"],
+        "skip_exts": [".mp3", ".wav", ".m4a", ".flac", ".ogg"],
+        "skip_note": "audio has no visual layout; its content is UNVERIFIABLE from frames",
+        "note": "One frame every 10s, capped by the page budget. Anything between samples is unseen."
+      },
+      "note": "Without ffmpeg a video's visual asks are UNVERIFIABLE; metadata only."
+    },
+    "blender": {
+      "requires": ["blender"],
+      "render": {
+        "via": "png",
+        "tool": "blender",
+        "cmd": ["blender", "-b", "{src}", "-E", "CYCLES", "-o", "{out}/page-#",
+                "-F", "PNG", "-f", "1"],
+        "note": "Frame 1 of the scene's active camera, forced to Cycles on CPU. A .blend with no camera renders nothing, which is a failed render, not a defect."
+      },
+      "note": "Without blender a .blend is UNVERIFIABLE; metadata only."
+    },
+    "postscript": {
+      "requires": ["gs"],
+      "one_of": ["pymupdf", "pdftoppm"],
+      "exts": [".eps", ".ps"],
+      "render": {
+        "via": "pdf",
+        "tool": "gs",
+        "cmd": ["gs", "-q", "-dBATCH", "-dNOPAUSE", "-dSAFER", "-sDEVICE=pdfwrite",
+                "-sOutputFile={out}/converted.pdf", "{src}"]
+      },
+      "note": "Ghostscript converts to PDF, then the PDF renderer rasterises it."
+    },
+    "raster_exotic": {
+      "requires": ["magick"],
+      "exts": [".psd", ".heic", ".avif", ".xcf"],
+      "render": {
+        "via": "png",
+        "tool": "magick",
+        "cmd": ["magick", "-density", "{dpi}", "{src}[0]", "{out}/page-01.png"],
+        "note": "First layer/page only — a multi-layer composite is not judged here."
+      },
+      "note": "Raster formats the Read tool cannot display, so handing over the original would claim a verifiable appearance nobody can see."
+    },
+    "raster_multipage": {
+      "requires": ["magick"],
+      "exts": [".tif", ".tiff"],
+      "render": {
+        "via": "png",
+        "tool": "magick",
+        "cmd": ["magick", "-density", "{dpi}", "{src}", "{out}/page-%02d.png"],
+        "note": "Every frame, not just the first: a TIFF is most often a multi-page scan, and page 1 is not the file."
+      }
+    },
+    "unknown": {
+      "requires": [],
+      "builtin": "unknown"
+    }
+  }
+}

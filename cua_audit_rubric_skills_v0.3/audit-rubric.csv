@@ -1,0 +1,232 @@
+"id","title","questionText","questionDescription","required","useAllSteps","stepIds","useAllErrorCategories","errorCategories","rubricFailureType","answerOptionText","answerOptionScore","answerOptionRequiresJustification"
+"58db686e-d16d-413e-8e83-e54feb9ca6de","Task - Feasibility","Rate the Feasibility of the Task dimension.","","true","true","","false","[All] [All] [Fail - Infeasible Prompt]","","[Fail - Infeasible Prompt]
+The task cannot be completed in the VM, e.g., needs software that's not installed","2","true"
+"","","","","","","","","","","The task is fully feasible.","5","false"
+"6da062ea-94f1-4e13-86f5-9763145509aa","Task - PII / Safety","Rate the PII / Safety of the Task dimension.","PII types:
+Real non-famous people
+| - Contact info
+| - Financial info
+| - Other sensitive personal details.
+
+Flag names as PII only when paired with sensitive data (e.g., names alongside phone numbers or SSNs). If the PII is hard to trace, a score of 3 [Fail - Minor PII Violation] is acceptable since synthetic data is also allowed.
+
+Standalone names, authors, or usernames (even in the task's metadata) are fine.","true","true","","false","[All] [All] [Fail - PII Violation]; [All] [All] [Fail - Minor PII Violation]","","[Fail - PII Violation]
+The task contains any major instance of PII.","2","true"
+"","","","","","","","","","","[Non-Fail - Minor PII Violation]
+The task contains any minor  instance of PII. For instance, synthetic names or data that is hard to trace back/verify.","4","false"
+"","","","","","","","","","","The task does not contain any instance of PII.","5","false"
+"f42591e3-1f2a-4eee-9089-7a1d785d2e8b","Prompt - Clarity","Rate the Clarity of the Prompt dimension.","The task must be verifiable and objective; avoid open-ended queries.
+
+The prompt must align with all valid states the paired verifier/rubric will accept—no more, no less.
+
+Do not fail for ambiguity when a predominant interpretation exists, or when an ambiguous element wouldn't manifest as verifier misalignment.
+
+Minor typos are OK, provided that the intention is very obvious.","true","true","","false","[Prompt] [Prompt Clarity/ Specificity] [Non-Fail Minor Clarity / Specificity Issues]; [Prompt] [Prompt Clarity/ Specificity] [Fail - Major Clarity / Specificity Issues]","","[Fail - Major Clarity / Specificity Issues]
+The prompt is overly vague, and the goal is indeterminable.","2","true"
+"","","","","","","","","","","[Non Fail - Minor Clarity / Specificity Issues]
+The prompt is solvable with only one valid interpretation but could be clearer; the agent might need to make a very small, reasonable assumption.","3","false"
+"","","","","","","","","","","The prompt is clear, and the goal is apparent; the agent does not need to make assumptions.","5","false"
+"c651259f-9eb4-4a33-98db-0775ac9e56c9","Prompt - Realism","Rate the Realism of the Prompt dimension.","The prompt should read like something a real person would write—wording, rhythm, minor spelling errors, and detail matching a normal working session.
+It should carry a light layer of context—who is asking, their role/stack, the constraint shaping the ask, etc.—and make the motivation for the expected files visible.
+
+Stripped-of-context, templated prompts are the failure mode this dimension catches.
+
+Watch for the V3 anti-patterns:
+Rubric-style language (""treat X as fixed,"" ""do not use outside sources"")
+| - Artificial personas (""You are a finance manager"")
+| - Excessive ""must/only/exactly""
+| - Robotic file references (""extract data from file A and file B"").","true","true","","false","[All] [All] [Non-Fail - Minor Prescriptive Prompt]; [All] [All] [Fail - Unnatural Prompt]","","[Fail - Unnatural Prompt]
+The prompt is overly synthetic/templated without a realistic framing, i.e., the ""why"".
+| The prompt reads as a raw test case a real user would never write.
+| The prompt is overly prescriptive—excessive step-by-step guidance or exact section-title checklists that overfit the output / reveal verifier logic.","2","true"
+"","","","","","","","","","","[Non-Fail - Minor Prescriptive Prompt]
+The prompt is natural and grounded but is somewhat prescriptive—there's more procedural detail than a real user would typically write, but not to the extent of leaking verifiers or overfitting output.","3","true"
+"","","","","","","","","","","The prompt is natural, grounded, and conveys a realistic user context.","5","false"
+"a45a178b-8e59-4e45-9163-794bcb395b60","Prompt - GUI Integration","Rate the GUI Integration of the Prompt dimension.","GUI interaction is a defining requirement of CUA v3.
+
+Reward UI work that affects the observable output (e.g., ""adjust the translated German text so it fits the text box without overlapping the chart, then preview the slide"").
+
+Do not reward GUI-for-its-own-sake (""open the file and click around"").
+The GUI action must be verifiable in the output artifact.","true","true","","false","[All] [All] [Fail - Lacking GUI Action]; [All] [All] [Non-Fail - Minimal GUI Action]","","[Fail - Lacking GUI Action]
+The prompt lacks any meaningful GUI interaction where the deliverable plainly calls for it.
+
+e.g., A layout/print/visual/animation/browser task solvable entirely via script with no observable UI decision.","2","true"
+"","","","","","","","","","","[Non-Fail - Minimal GUI Action]
+The prompt contains a GUI interaction, but it's minimal or only loosely tied to the deliverable.","3","true"
+"","","","","","","","","","","The prompt contains a meaningful GUI interaction that changes what the agent must observe or do.","5","false"
+"9b90d593-d92a-431c-b3ca-99f25c8ab95d","Prompt - Output Naming","Rate the Output Naming of the Prompt dimension.","Required for all file-based tasks.
+
+The prompt must name the exact expected output file(s) in a natural way and state that outputs are saved to the Desktop.","true","true","","false","[All] [All] [Fail - Output Naming / Location]","","[Fail - Output Naming / Location]
+The prompt omits the exact output filename(s).
+| The prompt does not state that outputs are saved to the Desktop, such that the verifier cannot reliably locate the output.","2","true"
+"","","","","","","","","","","The prompt contains the exact output filename(s), the Desktop save location is stated naturally, and it's consistent with the GTF assets.","5","false"
+"a1d00c99-1e0e-43c8-b7d9-b74e99319e9d","Prompt - Timelessness","Rate the Timelessness of the Prompt dimension.","All tasks must use historical or static data.
+
+Time-sensitive framing that could mislead the model's trajectory is failing.
+
+For arXiv content, a fixed historic version (e.g., https://arxiv.org/abs/<arxivID>v1) must be used.","true","true","","false","[All] [All] [Fail - Time-dependent Prompt]; [All] [All] [Non-Fail - Minor Time-sensitivity]","","[Fail - Time-dependent Prompt]
+The correct solution varies with time, e.g., live stock prices, real-time scores, current weather, etc.
+| The prompt contains a time-sensitive count/claim—framed as trajectory confirmation—that may mislead the model, e.g., ""There should be 113 results...""","2","true"
+"","","","","","","","","","","[Non-Fail - Minor Time-sensitivity]
+The prompt contains some time-sensitive statements, but they don't affect the correct solution and won't mislead the model, i.e., they're only ""background noise"".","3","true"
+"","","","","","","","","","","There are no time-sensitive references; data sources are verifiably static/archived.","5","false"
+"8c2ae7e1-6bcb-411e-a3f1-fdedb7fa0687","Component: Prompt - Answer leakage","Rate the Answer Leakage of the Prompt dimension.","","true","true","","false","[Prompt] [All] [Non-Fail - Answer Leakage]; [Prompt] [All] [Fail - Answer Leakage]","","[Fail - Answer Leakage]
+The prompt itself contains the answer content that scored criteria look for (specific values, the conclusion, or full sentences the deliverable must contain), so an agent could copy the prompt into its output and earn meaningful credit without doing the work.","2","true"
+"","","","","","","","","","","[Non-Fail - Minor Leakage]
+The prompt restates one or two secondary facts that also appear in the answer, but the core graded deliverable still requires work the prompt does not contain.","3","true"
+"","","","","","","","","","","The prompt gives the task and context but none of the graded answer content; the agent must derive it from the inputs.","5","false"
+"4d2d498a-cd03-4e60-9367-1dc61a3e4de9","Gold File - Accuracy","Rate the Accuracy of the Gold File dimension.","The expected (gold) file is the answer key—it must exactly match what the prompt asks and follow file/naming standards.
+
+If the prompt specifies file names, it's a fail if the gold files don't follow them.
+The expected file (not the prompt) is the rubric's scoring anchor.","true","true","","false","[All] [All] [Fail - Inaccurate Gold File]; [All] [All] [Non-Fail - Somewhat Inaccurate Gold File]","","[Fail - Inaccurate Gold File]
+The gold file doesn't match the prompt, e.g., wrong/missing data, wrong values, ordinal vs. cardinal, tied-rank errors, missing required formatting, etc.","2","true"
+"","","","","","","","","","","[Non Fail - Somewhat Inaccurate Gold File] 
+Content and values are substantively correct and match the prompt, but a minor, non-scoring-impacting format issue exists (e.g., a cosmetic inconsistency, a resolvable naming deviation) that doesn't alter verifier outcome.","3","false"
+"","","","","","","","","","","The gold file is correct and aligns with the prompt.","5","false"
+"5b2a7e9a-4aaf-40d8-8ea5-eec4bf279436","Gold File - Format","Rate the Format of the Gold File dimension.","All file types that can be created by the software programs in the following list are acceptable for the Gold Files:
+LibreOffice Calc, LibreOffice Writer, LibreOffice Impress, Blender, 3D Slicer, KiCAD, FreeCAD, MuseScore, Chrome, Solvespace, Reaper, MPV, pgAdmin, VSCode, LabPlot, Octave, R Studio, GeoGebra, Zotero, Logism, GIMP, Shotcut, Obsidian, and Openboard","true","true","","false","[All] [All] [Fail - Wrong Format]","","[Fail - Wrong Format]
+The gold file is not in a file format that the software programs in the list above can generate. | A single gold file is shared across OS's. | The ground-truth URL points to the starting file instead of the gold file.","2","true"
+"","","","","","","","","","","The gold file is in a file format that the software programs in the list above can generate. | There's a separate gold file per OS (when applicable). | The ground-truth URL points to the gold file.","5","false"
+"456787e8-cb89-4fd7-a6bd-9d0760318f5e","Component: Gold File - Input Consistency","Rate the Input Consistency of the Gold File dimension.","","true","true","","false","[All] [All] [Non-Fail - Input Consistency]; [All] [All] [Fail - Input Consistency]","","[Fail - Input Consistency]
+The gold file's records or values do not derive from the provided input files (a different dataset, IDs, or figures than the agent receives), so a correct agent working from the inputs cannot match it.","2","true"
+"","","","","","","","","","","[Non-Fail - Input Consistency]
+One or two secondary gold values are not directly traceable to the inputs, but the core deliverable derives correctly from them.","3","true"
+"","","","","","","","","","","Every graded gold value traces to the provided inputs; an agent following the inputs can reproduce it.","5","false"
+"7c7c74f0-5299-482d-8a5d-eeaea4e03068","Rubric - Categorization","Rate the Categorization of the Rubric dimension.","See ""Examples & Notes"" tab in spec sheet for reference table.","true","true","","false","[All] [All] [Fail - Categorization]; [All] [All] [Non-Fail - Categorization]","","[Fail - Categorization]
+15%+ criteria are incorrectly categorized (""Format Gates"", ""Correctness"", ""Visual"")","2","true"
+"","","","","","","","","","","[Non-Fail - Categorization]
+<15% an isolated category or type slip with no gating impact.","3","true"
+"","","","","","","","","","","All criteria are correctly categorized.
+| All criteria have correct type classifications.","5","false"
+"eaf3a435-fd94-4b4f-9c17-d61eb42d2b32","Rubric - Hardcoded Values","Rate the Hardcoded Values of the Rubric dimension.","The criterion should compare to the expected file via tolerance; the criterion should not contain the concrete answer.
+
+BAD: ""Shows X as 3.89°""
+GOOD: ""The X value in results.docx matches the corresponding value in the expected file within ±1%"".","true","true","","false","[All] [All] [Fail - Hardcoded Values]","","[Fail - Hardcoded Values]
+At least 2 criteria contain ""hardcoded"" expected values rather than referencing the expected (gold) file","2","true"
+"","","","","","","","","","","[Non-Fail - Hardcoded Values]
+1 criterion contains ""hardcoded"" expected values rather than referencing the expected (gold) file","3","true"
+"","","","","","","","","","","There are no criteria with hardcoded expected values.","5","false"
+"b73c983a-d49f-42ae-97a5-595a176fa776","Rubric - Content","Do the correctness criteria assess content rather than existence?","This SLA Component only applies to correctness criteria (not format_gates or visual criteria).","true","true","","false","[All] [All] [Fail - Rubric Content]; [All] [All] [Non-Fail - Rubric Content]","","[Fail - Rubric Content] More than 15%  of the correctness criteria only cover existence—e.g., ""Includes a revenue analysis section""—rather than content","2","true"
+"","","","","","","","","","","[Non-Fail - Rubric Content] Up to 15% of correctness criteria only cover existence—e.g., ""Includes a revenue analysis section""—rather than content","3","true"
+"","","","","","","","","","","There are no correctness criteria that only cover existence rather than content","5","false"
+"a8306b3d-a400-45b0-86a7-116b1df9c0e5","Rubric - Accuracy","Rate the Accuracy of the Rubric Crieria","","true","true","","false","[All] [All] [Fail - Rubric Accuracy]","","[Fail - Rubric Accuracy]
+At least 1 criterion contains an objective inaccuracy","2","true"
+"","","","","","","","","","","All criteria are objectively accurate","5","false"
+"5178d35e-bf44-45cc-bad8-acfff08955e3","Rubric - Coverage","Rate the Coverage of the Rubric dimension.","A primary request is an essential request to the core intent of the prompt.
+
+A secondary request is a request that is not critical to fulfilling the core intent of the prompt.
+
+See Example & Notes on the spec for more detailed explanation.","true","true","","false","[All] [All] [Fail - Coverage]; [All] [All] [Non-Fail - Coverage]","","[Fail - Coverage]
+At least 1 explicit, primary prompt request is not covered in the rubric such that a clearly wrong answer could pass the rubric.","2","true"
+"","","","","","","","","","","[Non-Fail - Coverage]
+At least 1 secondary or implicit prompt request is not covered in the rubric.","3","true"
+"","","","","","","","","","","The rubric has sufficient coverage.","5","false"
+"b6d68ac4-8165-4c83-b78f-38a0f5918e79","Rubric - Self-Containment","Rate the Self-Containment of the Rubric dimension.","The LLM grader sees only the expected (gold) file and the agent output, never the prompt or input files. Value/content criteria must anchor to the expected file by name (e.g., ""matches the value in expected_file.docx"") to be gradable.
+
+Exception in cross-file consistency: a criterion that checks whether two parts of the agent's own output agree with each other (e.g., ""the total in the summary table matches the total in the detail table,"" ""the chart's color scheme matches the color scheme used in the accompanying report"") does not need to anchor to the expected file. Both sides of the comparison come directly from the agent output, which the grader already has, anchoring to the gold file would add nothing and isn't required.","true","true","","false","[All] [All] [Fail - Self-containment]; [All] [All] [Non-Fail - Self-containment]","","[Fail - Self-containment]
+At least 20% criterion is not self-contained (explicitly requires prompt/external context to assess)","2","true"
+"","","","","","","","","","","[Non-Fail - Self-containment] <20% of criteria need minor external context or reference a GT-specific detail not explicitly requested — doesn't undermine overall usability of the rubric.","3","true"
+"","","","","","","","","","","All criteria are self-contained.","5","false"
+"fed588c5-689e-495c-b522-71a8279ab740","Rubric - Overfitting","Rate the Overfitting of the Rubric dimension.","Criteria should not penalize valid fulfillments of the prompt or hone in on overly specific implementations.
+
+Examples of overfitting:
+Mandating ground-truth specific output wording/attribution or an output filename the prompt never specifies
+| - Demanding exact equality where the prompt permits variation
+| - Penalizing valid rounding, semantically equivalent prose, defensible methods, or visually comparable layouts.","true","true","","false","[All] [All] [Fail - Overfitting]; [All] [All] [Non-Fail - Overfitting]","","[Fail - Overfitting]
+At least 15% of the  criteria are overfit (i.e., valid alternate implementations would be penalized)","2","true"
+"","","","","","","","","","","[Non-Fail - Overfitting]
+<15% of the criterion are overfit (i.e., valid alternate implementations would be penalized)","3","true"
+"","","","","","","","","","","The rubric does not contain any overfit criteria.","5","false"
+"f676c8ad-83bc-473d-9419-da82db8da737","Rubric - Atomicity","Rate the Atomicity of the Rubric dimension.","Criteria should only evaluate one ""element"" in the output file(s).
+An element should be considered as a major segment/item in an output file.
+(e.g., contents of a section, table, chart, image, etc.)
+
+Criteria should only evaluate one ""element"" in the output file(s).
+An element should be considered as a major segment/item in an output file.
+(e.g., contents of a section, table, chart, image, etc.)
+
+For example, if there is a table that includes multiple items, there only needs to be one criterion that evaluates the correctness of the whole table (via aggregation).
+
+Additionally, criteria should only evaluate around a single Category (""Format Gates"", ""Correctness"", ""Visual"").
+A criterion which evaluates both ""Correctness"" and ""Visual"" should be considered as non-atomic.","true","true","","false","[All] [All] [Fail - Atomicity]; [All] [All] [Non-Fail - Minor Atomicity Issues]","","[Fail - Atomicity]
+More than 15% of the criteria are non-atomic (see notes for definition)","2","true"
+"","","","","","","","","","","[Non-Fail - Minor Atomicity Issues] 15% or less of the criteria are non-atomic (see notes for definition)","3","true"
+"","","","","","","","","","","All criteria are reasonably atomic.","5","false"
+"635195ed-1833-49a5-bd7e-c1b45fa1fff4","Rubric - Objectivity","Rate the Objectivity of the Rubric dimension.","Criteria evaluation should not revolve around subjectivity or cannot be objectively evaluated —e.g., ""good"", ""nice"", ""appropriate"", etc.
+
+ An important caveat to this is that ""Visual"" criteria are allowed to use subjective phrasing, such as ""professional comparable/appropriate"".","true","true","","false","[All] [All] [Fail - Objectivity]; [All] [All] [Non-Fail - Objectivity]","","[Fail - Objectivity]
+More than 10% of the rubric's criteria are subjective or cannot be objectively evaluated (non-visual).","2","true"
+"","","","","","","","","","","[Non-Fail - Objectivity]
+Up to 10% of the rubric's criteria are subjective or loosely worded but still reasonably gradable (non-visual).","3","true"
+"","","","","","","","","","","All criteria are reasonably objective.","5","false"
+"de6f8f1c-3701-4af6-b54d-40645afe9f54","Rubric - Framing","Rate the Framing of the Rubric dimension.","Criteria should be positively framed, UNLESS the prompt explicitly asks to omit something.
+
+GOOD: ""The model does X""
+BAD: ""The model does not do X"".","true","true","","false","[All] [All] [Fail - Framing]","","[Fail - Framing]
+At least 1 criterion is negatively framed—e.g., ""Does not include..."", ""Fails to create...""—and this is not due to an omission request in the prompt","2","true"
+"","","","","","","","","","","All criteria are positively framed.
+| Negatively framed criteria stem from an omission request in the prompt.","5","false"
+"09396cc3-65d2-4fba-a60d-5545e2185f9b","Rubric - Redundancy","Rate the Redundancy of the Rubric dimension.","","true","true","","false","[All] [All] [Non-Fail - Redundancy]; [All] [All] [Fail - Redundancy]","","[Fail - Redundancy]
+Redundant/overlapping criteria are pervasive across the rubric.","2","true"
+"","","","","","","","","","","[Non-Fail - Redundancy]
+One or two redundant or overlapping pairs exist; scoring impact is minimal, i.e., there are still some important distinctions/nuance between them.","3","true"
+"","","","","","","","","","","All criteria are functionally distinct.","5","false"
+"791d6498-5d1d-48b9-89ca-0ac6b7b5dea1","Rubric - Weight Share","Rate the Weight Share of the Rubric dimension.","Weights reflect importance of a correct deliverable, the weight share (%) shows the distribution of criteria across the 3 categories.
+
+To determine weight share of each category, add up the Weights of all criteria in the category and divide by the total Weight of the rubric.
+i.e., (Correctness weight share) = (Sum of Weight for all Correctness criteria) / (Total Weight for all rubric criteria)
+
+The expected weight shares are: 
+
+1. Format gates ≤ 20% for all task domains
+
+2a. Correctness > 50% for all task domains other than Design & Creative
+2b. Correctness 20-30% for tasks with the Design & Creative domain
+
+3a. Visual 20–30% for all task domains other than Design & Creative
+3b. Visual ≥ 50% for tasks with the Design & Creative domain","true","true","","false","[All] [All] [Fail - Weight Share]; [All] [All] [Non-Fail - Weight Share]","","[Fail - Weight Share] 1+ rubric category/categories have an incorrect weight share by >5% for its domain (see dimension description for ranges by domain). E.g., Format gates exceed 25%.","2","true"
+"","","","","","","","","","","[Non-Fail - Weight Share]: 1+ rubric category/categories have an incorrect weight share by <=5% for its domain (see dimension description for ranges). E.g., Format gates exceed 20%, but comprise no more than 25% of the total weight.","3","true"
+"","","","","","","","","","","The weight shares of the rubric categories are aligned with expectations: 
+1. Format gates ≤ 20% for all task domains
+2a. Correctness > 50% for all task domains other than Design & Creative
+2b. Correctness 20-30% for tasks with the Design & Creative domain
+3a. Visual 20–30% for all task domains other than Design & Creative
+3b. Visual ≥ 50% for tasks with the Design & Creative domain","5","false"
+"cb62d51d-a958-4480-b1fe-5a2c775ed093","Rubric - Individual Criteria Weights","Rate the Weight of the Rubric dimension.","QC assesses that weights are in the range of 1–50 and properly labeled as MUST-PASS or REGULAR. QC does NOT assess the appropriateness of the weight values in regards to their importance for fulfilling the prompt.
+
+Per-criterion weight is an integer strictly in the range 1–50.
+
+MUST-PASS is reserved for format-gate criteria (the file itself / correct extension). Everything else is REGULAR.","true","true","","false","[All] [All] [Fail - Weight]; [All] [All] [Non-Fail - Weight]","","[Fail - Weight]
+At least 1 criterion has a weight outside the range 1–50","2","true"
+"","","","","","","","","","","[Non-Fail - Weight]
+Every criterion uses an integer weight in the range 1–50; one criteria is tagged MUST-PASS or REGULAR incorrectly","3","true"
+"","","","","","","","","","","Every criterion uses an integer weight in the range 1–50 and is tagged MUST-PASS or REGULAR correctly","5","false"
+"4f4f7cfc-1c98-46fb-b779-b61820061c90","Rubric - Count","Rate the Count of the Rubric dimension.","The rubric should contain between 10–30 criteria.","true","true","","false","[All] [All] [Fail - Count]","","[Fail - Count]
+The rubric contains fewer than 10 criteria
+| The rubric contains more than 30 criteria","2","true"
+"","","","","","","","","","","The rubric contains between 10–30 criteria.","5","false"
+"32654a22-f35f-4e9c-9ea6-2c53223ef4e2","Component: Rubric - Robustness","Rate the Robustness (Anti-Hacking) of the Rubric dimension.","Checks whether formatting/visual criteria can be satisfied by a degenerate shortcut that defeats their intent (reward hacking). A criterion like ""no text overlap,"" ""table does not overflow,"" or ""fits on one page"" can be passed by shrinking the font to an unreadable size — technically meeting the check while producing a bad artifact. Robust criteria reward the intended, legible outcome and cannot be gamed this way, e.g. by pairing ""fits without overflow"" with ""remains legible at normal zoom,"" or by anchoring to the expected file's layout.
+
+Note: Constraints dissuading reward hacking may be fairly general and satisfy the minimum requirements for this dimension; e.g., specifying that some text should be ""legible"" is sufficient to ensure its of a readable size.","true","true","","false","[All] [All] [Fail - Robustness]; [All] [All] [Non-Fail - Robustness]","","[Fail - Robustness] 
+One or more formatting/visual criteria can be satisfied by a degenerate shortcut that defeats the intent (e.g., ""no text overlap"" or ""table does not overflow"" passable by shrinking text to an unreadable size), with no paired legibility/quality condition to prevent it.","2","true"
+"","","","","","","","","","","[Non-Fail - Robustness] 
+Criteria are outcome-based overall, but one criterion is phrased mechanically (a negative proxy) without an explicit legibility/quality guard; the intended result is still clear and not trivially gameable.","3","true"
+"","","","","","","","","","","Formatting and visual criteria reward the intended, legible, professional outcome and cannot be satisfied by a degenerate shortcut (e.g., they pair ""fits without overflow"" with ""remains legible at normal zoom"").","5","false"
+"d77b518d-fd8c-467d-8717-d5e7b05327c4","Component: Rubric - Value Binding","Rate the Value Binding of the Rubric dimension.","","true","true","","false","[All] [All] [Fail - Unbound Value]; [All] [All] [Non-Fail - Somewhat Unbound Value]","","[Fail - Unbound Value]
+A value criterion only requires the value to appear somewhere in the file, with no binding to its correct row, column, or label and no guard against other candidate values also appearing, so it cannot tell a correctly placed answer from a dump of every candidate.","2","true"
+"","","","","","","","","","","[Non-Fail - Somewhat Unbound Value]
+The criterion requires the value in labeled context but does not explicitly rule out other candidate values also appearing.","3","true"
+"","","","","","","","","","","Value criteria bind each value to its correct label, row, or column, and guard against extraneous candidate values appearing as correct.","5","false"
+"1d89daf5-f545-4599-b767-6d54f915c206","JSON - Structure / URL Integrity","Rate the Structure / URL Integrity of the JSON dimension.","If the sheet isn’t updated (like if a task can’t be found), then notify your vertical lead to contact the PT first, then skip the task.
+
+A detailed instructions document for evaluating JSON Structure / URL Integrity is linked in the Examples & Notes tab of the Spec Sheet.
+
+Note: QC does NOT have to check the verifier score (it's ok if it's a 0). The verifier score is environment-dependent and a new environment is loaded when QC uses the VM so scores of 0 are expected.","true","true","","false","[All] [All] [Fail - JSON Structure]","","[Fail - JSON Structure]
+• Either the verifier or task initializer JSON follows an incorrect structure
+• The Verifier fails to run due to invalid structure or JSON
+• The links and filenames are invalid and do not correspond to the golden files(see notes)
+• ""func"" is not set to ""agent_judge_multi""","2","true"
+"","","","","","","","","","","• Both verifier and task initializer JSONs have correct structure with correct golden file links.
+• ""expected/result"" filenames match the gold files.
+• Verifier runs cleanly.
+• ""func"" is set to ""agent_judge_multi""","5","false"
