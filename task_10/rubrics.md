@@ -1,8 +1,8 @@
-# Rubric (30 criteria max; weights integers 1–50)
+# Rubric (30 criteria; weights integers 1–50)
 
-Criteria: **30**   |   total weight: **320**   |   format_gate **5.0%** (≤20%)   correctness **71.9%** (>50%)   visual **23.1%** (20–30%)
+Criteria: **30**   |   total weight: **324**   |   format_gate **4.9%** (≤20%)   correctness **72.2%** (>50%)   visual **22.8%** (20–30%)
 
-Paste into the task rubric builder one criterion at a time. 'expected file' wording is deliberate. File names are in backticks. Values are never written into criteria; only prompt-stated numbers appear (10 pt, 2.5 cm, the two hex colours, one page).
+Paste into the task rubric builder one criterion at a time. 'expected file' wording is deliberate. File names are in backticks. Values are never written into criteria; the only literals are the prompt's own layout limits (one page, 10 pt, 2.5 cm). The two trace colours are anchored to the expected file, not written out.
 
 1
 Output includes a file named `Thermal_Stability_Assessment.pdf` with the `.pdf` extension.
@@ -33,11 +33,11 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 16 points · REGULAR · correctness
 
 8
-`Thermal_Stability_Assessment.pdf` states the change in the composite's peak mass-loss rate between the as-made and post-adsorption traces with the same direction as the corresponding expected file and a relative change within ±2 percentage points of it.
+`Thermal_Stability_Assessment.pdf` states the relative change in the composite's peak mass-loss rate between the as-made and post-adsorption traces within ±2 percentage points of the relative change in the corresponding expected file, describing the rate as essentially unchanged where the expected file does.
 14 points · REGULAR · correctness
 
 9
-`Thermal_Stability_Assessment.pdf` places the as-made composite peak relative to both precursor peaks and associates the composite's decomposition with the precursor that the corresponding expected file associates it with.
+`Thermal_Stability_Assessment.pdf` places the as-made composite peak relative to both precursor peaks (above, between or below) as the corresponding expected file does.
 6 points · REGULAR · correctness
 
 10
@@ -45,7 +45,7 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 8 points · REGULAR · correctness
 
 11
-`Thermal_Stability_Assessment.pdf` treats the post-adsorption peak-temperature change as a distinct observation from a change in decomposition onset and presents its cause as a hypothesis, consistent with the corresponding expected file.
+`Thermal_Stability_Assessment.pdf` gives a cause for the post-adsorption peak-temperature change and presents it as a hypothesis rather than a demonstrated mechanism. A different plausible cause is accepted when it is also presented as tentative.
 6 points · REGULAR · correctness
 
 12
@@ -53,51 +53,51 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 12 points · REGULAR · correctness
 
 13
-`Thermal_Stability_Assessment.pdf` weighs that ceiling against the trade-group note's regeneration figure and reaches the same conclusion about which is the better-supported basis as the corresponding expected file, and ends with this passage.
+`Thermal_Stability_Assessment.pdf` weighs that ceiling against the trade-group note's regeneration figure and identifies the same basis as better supported as the corresponding expected file, however worded, and ends with this passage.
 8 points · REGULAR · correctness
 
 14
-`Thermal_Stability_Assessment.pdf` shows in its plot only the as-made and post-adsorption composite traces, each with its peak labelled with a temperature within ±1 °C of the corresponding plot in the expected file, and with the two peak heights in the same relation to each other as in the expected file within ±3% relative.
+`Thermal_Stability_Assessment.pdf` shows in its plot only the as-made and post-adsorption composite traces, each with its peak labelled with a temperature within ±1 °C of the corresponding plot in the expected file, and with the two peaks at visibly comparable height to each other as in the expected file.
 14 points · REGULAR · correctness
 
 15
+The plot in `Thermal_Stability_Assessment.pdf` uses the same axis titles and the same two legend entries as the corresponding plot in the expected file.
+6 points · REGULAR · correctness
+
+16
 The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, and reports CTSAgn's Cost ($/kg), Cost ($/g) and Capacity (mg/g) cells each within ±0.5% of the corresponding expected-file cells.
 20 points · REGULAR · correctness
 
-16
+17
 The benchmark table in `Adsorbent_Cost_Comparison.docx` reports Cost per mg removed and Efficiency for all five rows within ±1% of the corresponding expected-file cells.
 18 points · REGULAR · correctness
 
-17
+18
 The costing note in `Adsorbent_Cost_Comparison.docx` identifies the same CTSAgn costing basis (batches and cost lines counted) and the same formulas for Cost per mg removed and Efficiency as the corresponding expected file.
 10 points · REGULAR · correctness
 
-18
+19
 `Adsorbent_Cost_Comparison.docx` identifies the same closest benchmark on efficiency as the corresponding expected file and states the direction and magnitude of CTSAgn's efficiency difference against it within ±5% relative of the expected-file figure.
 8 points · REGULAR · correctness
 
-19
+20
 The manufacturing-loss case in `Adsorbent_Cost_Comparison.docx` reports CTSAgn's cost per kg, cost per mg removed and efficiency each within ±1% of the corresponding expected-file values.
 16 points · REGULAR · correctness
 
-20
-`Adsorbent_Cost_Comparison.docx` states the additional pilot expenditure the released product can absorb before CTSAgn no longer matches its closest benchmark on efficiency within ±1% of the corresponding expected-file figure.
+21
+`Adsorbent_Cost_Comparison.docx` states the additional pilot expenditure the released product can absorb before CTSAgn's efficiency falls below its closest benchmark's, within ±1% of the corresponding expected-file figure.
 10 points · REGULAR · correctness
 
-21
-`Adsorbent_Cost_Comparison.docx` compares that allowable amount with the cash cost of the rejected batches, with the rejected-batch figure within ±1% of the corresponding expected file, and states what the gap means for the stage-gate decision, consistent with the expected file.
-8 points · REGULAR · correctness
-
 22
-`Adsorbent_Cost_Comparison.docx` states the margin between the recovered composite's handling ceiling and the benchmark's assumed regeneration temperature within ±1 °C of the corresponding expected file and judges it against the required margin as the expected file does.
+`Adsorbent_Cost_Comparison.docx` compares that allowable amount with the cash cost of the rejected batches, with the rejected-batch figure within ±1% of the corresponding expected file.
 8 points · REGULAR · correctness
 
 23
-`Adsorbent_Cost_Comparison.docx` separates the benchmark's assumed repeated-cycle regeneration from what the data demonstrate for CTSAgn, consistent with the corresponding expected file.
-6 points · REGULAR · correctness
+The reasons given for the adoption call in `Adsorbent_Cost_Comparison.docx` rest on the same policy tests as the corresponding expected file: the recovered composite's margin over the benchmark's assumed regeneration temperature (within ±1 °C of the expected-file margin), the efficiency shortfall in the manufacturing-loss case, and the absence of demonstrated repeated-cycle performance.
+12 points · REGULAR · correctness
 
 24
-The adoption call in `Adsorbent_Cost_Comparison.docx` reaches the same outcome as the corresponding expected file, supported by the same failed or incomplete tests, and is the closing section of the document.
+The adoption call in `Adsorbent_Cost_Comparison.docx` reaches the same outcome as the corresponding expected file and is the closing section of the document.
 10 points · REGULAR · correctness
 
 25
@@ -109,7 +109,7 @@ The text and benchmark table of `Adsorbent_Cost_Comparison.docx` render at norma
 14 points · REGULAR · visual
 
 27
-The plot in `Thermal_Stability_Assessment.pdf` spans approximately the page text width and keeps its original proportions without stretching or squashing.
+The plot in `Thermal_Stability_Assessment.pdf` spans approximately the page text width and its text and markers render with undistorted proportions.
 10 points · REGULAR · visual
 
 28
@@ -117,13 +117,13 @@ The plot in `Thermal_Stability_Assessment.pdf` keeps its axis labels, legend ent
 12 points · REGULAR · visual
 
 29
-The plot in `Thermal_Stability_Assessment.pdf` draws the as-made trace in c91d1d and the post-adsorption trace in 277534, and uses the same text colours and labelling text (axis titles, legend entries) as the corresponding expected file.
+The plot in `Thermal_Stability_Assessment.pdf` draws the as-made and post-adsorption traces in the same colours as the corresponding plot in the expected file and sets its text in the same colour as the expected file.
 10 points · REGULAR · visual
 
 30
-The trace lines and legend swatches in `plot_template_updated.xcf` are c91d1d for the as-made entry and 277534 for the post-adsorption entry, and all other elements (title, axes, grid, text) are identical to the corresponding expected file apart from small anti-aliasing differences.
+The trace lines and legend swatches in `plot_template_updated.xcf` use the same colours as the corresponding expected file for the as-made and post-adsorption entries, and all other elements (title, axes, grid, text) are identical to the expected file apart from small anti-aliasing differences.
 14 points · REGULAR · visual
 
 
 ---
-**Sanity check on difficulty (estimate, not a measured agent run).** Criteria that depend on the dry-rate convention (tag D) or the cash-cost convention (tag C) carry 156 of 320 points (49%). An agent that does everything else right but uses the instrument's derivative column as-is and the CSV `Total_Production_Cost_$` column would therefore land near 51% before any other slip. The real number only comes from clicking Run twice in the task (target: average ≤80%).
+**Sanity check on difficulty (estimate, not a measured agent run).** Criteria that depend on the 150 °C rate basis or the cash-cost basis carry 142 of 324 points (44%). An agent that does everything else right but uses the instrument's derivative column as-is and the CSV `Total_Production_Cost_$` column would land near 56% before any other slip. The real number only comes from clicking Run twice in the task (target: average ≤80%).
