@@ -65,7 +65,7 @@ The plot in `Thermal_Stability_Assessment.pdf` uses the same axis titles and the
 6 points · REGULAR · correctness
 
 16
-The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, and reports CTSAgn's Cost ($/kg), Cost ($/g) and Capacity (mg/g) cells each within ±0.5% of the corresponding expected-file cells.
+The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, reports CTSAgn's Cost ($/kg), Cost ($/g) and Capacity (mg/g) cells each within ±0.5% of the corresponding expected-file cells, and keeps the four benchmark adsorbents' given Cost ($/kg) and Capacity (mg/g) cells within ±1% of the expected file.
 20 points · REGULAR · correctness
 
 17
