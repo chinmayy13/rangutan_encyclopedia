@@ -1,0 +1,14 @@
+How the two output documents were produced (middle steps, in order)
+
+1. make_plot.py reads CTSAgn.xlsx and CTSAgn_After.xlsx, rescales the derivative-weight signal to per cent
+   of the mass at 150 C, and draws plot.png in the template's style (python3 + matplotlib + openpyxl).
+2. tsa.html holds the page text, the peak table and plot.png. LibreOffice imports it as a Writer document and
+   exports Thermal_Stability_Assessment.pdf:
+     soffice --headless --convert-to pdf --infilter="HTML (StarWriter)" tsa.html
+3. acc.html holds the cost document. LibreOffice Writer converts it to Adsorbent_Cost_Comparison.docx:
+     soffice --headless --convert-to "docx:MS Word 2007 XML" --infilter="HTML (StarWriter)" acc.html
+   Two edits were then made inside the docx: the Heading 2 style's left/right indent (200 twips) was removed so
+   headings align with the body text, and the page margins were set to 1419 twips (2.503 cm).
+4. plot_template_updated.xcf was kept from the earlier version of this task; checked against plot_template.xcf,
+   only the two trace lines and their legend swatches differ (216 pixels).
+5. Every number in both documents comes from ../answer_key/compute_answer_key.py (output: ../answer_key/answer_key.json).
