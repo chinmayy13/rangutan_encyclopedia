@@ -17,7 +17,7 @@ Output includes a file named `plot_template_updated.xcf` with the `.xcf` extensi
 4 points · MUST-PASS · format_gate
 
 4
-`Thermal_Stability_Assessment.pdf` is exactly one page.
+`Thermal_Stability_Assessment.pdf` is exactly one page at a body text size that remains legible at normal zoom.
 4 points · REGULAR · format_gate
 
 5
@@ -33,7 +33,7 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 16 points · REGULAR · correctness
 
 8
-`Thermal_Stability_Assessment.pdf` states the relative change in the composite's peak mass-loss rate between the as-made and post-adsorption traces within ±2 percentage points of the relative change in the corresponding expected file, describing the rate as essentially unchanged where the expected file does.
+`Thermal_Stability_Assessment.pdf` states the relative change in the composite's peak mass-loss rate between the as-made and post-adsorption traces within ±2 percentage points of the relative change in the corresponding expected file, characterising that change in the same terms as the corresponding expected file.
 14 points · REGULAR · correctness
 
 9
@@ -45,7 +45,7 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 8 points · REGULAR · correctness
 
 11
-`Thermal_Stability_Assessment.pdf` gives a cause for the post-adsorption peak-temperature change and presents it as a hypothesis rather than a demonstrated mechanism. A different plausible cause is accepted when it is also presented as tentative.
+`Thermal_Stability_Assessment.pdf` gives the same cause for the post-adsorption peak-temperature change as the corresponding expected file and frames its certainty as the corresponding expected file does.
 6 points · REGULAR · correctness
 
 12
@@ -53,19 +53,19 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 12 points · REGULAR · correctness
 
 13
-`Thermal_Stability_Assessment.pdf` weighs that ceiling against the trade-group note's regeneration figure and identifies the same basis as better supported as the corresponding expected file, however worded, and ends with this passage.
+`Thermal_Stability_Assessment.pdf` weighs that ceiling against the trade-group note's regeneration figure and identifies the same basis as better supported as the corresponding expected file does, however worded, and ends with this passage.
 8 points · REGULAR · correctness
 
 14
-`Thermal_Stability_Assessment.pdf` shows in its plot only the as-made and post-adsorption composite traces, each with its peak labelled with a temperature within ±1 °C of the corresponding plot in the expected file, and with the two peaks at visibly comparable height to each other as in the expected file.
+`Thermal_Stability_Assessment.pdf` shows in its plot only the as-made and post-adsorption composite traces, each with its peak labelled with a temperature within ±1 °C of the corresponding plot in the expected file, and with the two peaks in the same height relationship to each other as in the corresponding plot of the expected file.
 14 points · REGULAR · correctness
 
 15
-The plot in `Thermal_Stability_Assessment.pdf` uses the same axis titles and the same two legend entries as the corresponding plot in the expected file.
+The plot in `Thermal_Stability_Assessment.pdf` uses the same chart title, the same axis titles and the same two legend entries as the corresponding plot in the expected file.
 6 points · REGULAR · correctness
 
 16
-The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, reports CTSAgn's Cost ($/kg), Cost ($/g) and Capacity (mg/g) cells each within ±0.5% of the corresponding expected-file cells, and keeps the four benchmark adsorbents' given Cost ($/kg) and Capacity (mg/g) cells within ±1% of the expected file.
+The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, reports CTSAgn's Cost ($/kg) and Cost ($/g) cells each within ±0.5% of the corresponding expected-file cells, and matches the corresponding expected-file cells exactly for CTSAgn's Capacity (mg/g) and for the four benchmark adsorbents' Cost ($/kg), Cost ($/g) and Capacity (mg/g).
 20 points · REGULAR · correctness
 
 17
@@ -73,7 +73,7 @@ The benchmark table in `Adsorbent_Cost_Comparison.docx` reports Cost per mg remo
 18 points · REGULAR · correctness
 
 18
-The costing note in `Adsorbent_Cost_Comparison.docx` identifies the same CTSAgn costing basis (batches and cost lines counted) and the same formulas for Cost per mg removed and Efficiency as the corresponding expected file.
+The costing note in `Adsorbent_Cost_Comparison.docx` identifies the same CTSAgn costing basis (batches and cost lines counted) and the same formulas for Cost per mg removed and Efficiency as the corresponding expected file, and appears below the benchmark table.
 10 points · REGULAR · correctness
 
 19
@@ -93,7 +93,7 @@ The manufacturing-loss case in `Adsorbent_Cost_Comparison.docx` reports CTSAgn's
 8 points · REGULAR · correctness
 
 23
-The reasons given for the adoption call in `Adsorbent_Cost_Comparison.docx` rest on the same policy tests as the corresponding expected file: the recovered composite's margin over the benchmark's assumed regeneration temperature (within ±1 °C of the expected-file margin), the efficiency shortfall in the manufacturing-loss case, and the absence of demonstrated repeated-cycle performance.
+The reasons given for the adoption call in `Adsorbent_Cost_Comparison.docx` rest on the same policy tests as the corresponding expected file: the recovered composite's margin over the benchmark's assumed regeneration temperature (within ±1 °C of the expected-file margin), the efficiency comparison on the manufacturing-loss basis, and the repeated-cycle evidence test, reaching the same verdict on each as the corresponding expected file.
 12 points · REGULAR · correctness
 
 24
@@ -121,7 +121,7 @@ The plot in `Thermal_Stability_Assessment.pdf` draws the as-made and post-adsorp
 10 points · REGULAR · visual
 
 30
-The trace lines and legend swatches in `plot_template_updated.xcf` use the same colours as the corresponding expected file for the as-made and post-adsorption entries, and all other elements (title, axes, grid, text) are identical to the expected file apart from small anti-aliasing differences.
+The legend swatches in `plot_template_updated.xcf` use the same colour for the as-made entry and the same colour for the post-adsorption entry as the corresponding entries in the expected file, and all other elements (title, axes, grid, text) are identical to the expected file apart from small anti-aliasing differences.
 14 points · REGULAR · visual
 
 
