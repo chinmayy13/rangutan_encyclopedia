@@ -1,0 +1,114 @@
+{
+  "thermal": {
+    "Chitosan precursor": {
+      "m0_mg": 6.204938,
+      "m150_mg": 5.665068,
+      "peak_T": 305.1665,
+      "peak_rate_raw": 1.022877,
+      "peak_rate_dry": 1.1203551954938582,
+      "T_5pct_loss_since_150": 283.149
+    },
+    "Alginate precursor": {
+      "m0_mg": 19.93942,
+      "m150_mg": 17.74948,
+      "peak_T": 246.7935,
+      "peak_rate_raw": 1.130741,
+      "peak_rate_dry": 1.2702524079702615,
+      "T_5pct_loss_since_150": 220.1281
+    },
+    "CTSAgn as made": {
+      "m0_mg": 12.11924,
+      "m150_mg": 11.15811,
+      "peak_T": 241.372,
+      "peak_rate_raw": 0.1186837,
+      "peak_rate_dry": 0.1289067991252999,
+      "T_5pct_loss_since_150": 200.5934
+    },
+    "CTSAgn post-adsorption": {
+      "m0_mg": 9.588531,
+      "m150_mg": 7.56408,
+      "peak_T": 236.9691,
+      "peak_rate_raw": 0.1022825,
+      "peak_rate_dry": 0.12965739680271757,
+      "T_5pct_loss_since_150": 195.4009
+    },
+    "_derived": {
+      "asmade_vs_chitosan": 8.691203280944485,
+      "asmade_vs_alginate": 9.854037309044898,
+      "post_vs_chitosan": 8.640889167307236,
+      "post_vs_alginate": 9.796991450499625,
+      "post_over_asmade_dry": 1.0058227935416197,
+      "post_over_asmade_raw": 0.8618074765110962,
+      "shift_C": -4.402900000000017,
+      "asmade_below_alginate_C": 5.4214999999999804,
+      "asmade_below_chitosan_C": 63.79449999999997,
+      "ceiling_C": 195.4009,
+      "ceiling_margin_over_175": 20.400900000000007,
+      "ceiling_below_peak_C": 41.56819999999999
+    }
+  },
+  "cost": {
+    "benchmarks": {
+      "Biochar": {
+        "cost_usd_per_kg": 10,
+        "cost_usd_per_g": 0.01,
+        "capacity": 30,
+        "cost_per_mg": 0.0003333333333333333,
+        "efficiency": 3000.0
+      },
+      "Chitosan": {
+        "cost_usd_per_kg": 200,
+        "cost_usd_per_g": 0.2,
+        "capacity": 100,
+        "cost_per_mg": 0.002,
+        "efficiency": 500.0
+      },
+      "Activated Carbon": {
+        "cost_usd_per_kg": 150,
+        "cost_usd_per_g": 0.15,
+        "capacity": 60,
+        "cost_per_mg": 0.0025,
+        "efficiency": 400.0
+      },
+      "Iron Oxide": {
+        "cost_usd_per_kg": 80,
+        "cost_usd_per_g": 0.08,
+        "capacity": 50,
+        "cost_per_mg": 0.0016,
+        "efficiency": 625.0
+      }
+    },
+    "released_cash": {
+      "total": 2146.0,
+      "kg": 50.0,
+      "cost_usd_per_kg": 42.92,
+      "cost_usd_per_g": 0.04292,
+      "capacity_mg_per_g": 150.0,
+      "cost_per_mg": 0.0002861333333333333,
+      "efficiency_mg_per_usd": 3494.874184529357
+    },
+    "rejected_cash": 947.0,
+    "loss_case": {
+      "total": 3093.0,
+      "cost_usd_per_kg": 61.86,
+      "cost_usd_per_g": 0.06186,
+      "capacity_mg_per_g": 150.0,
+      "cost_per_mg": 0.0004124,
+      "efficiency_mg_per_usd": 2424.8302618816683
+    },
+    "closest_benchmark": "Biochar",
+    "efficiency_vs_closest_released": 0.16495806150978565,
+    "efficiency_vs_closest_loss": -0.1917232460394439,
+    "break_even": {
+      "max_total_for_parity": 2500.0,
+      "headroom": 354.0,
+      "rejected_cash": 947.0,
+      "headroom_share_of_rejected": 0.3738120380147835,
+      "shortfall": 593.0
+    },
+    "trap_total_incl_depreciation": {
+      "released": 2271.0,
+      "rejected": 997.0
+    }
+  }
+}
