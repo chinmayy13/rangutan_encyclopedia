@@ -17,7 +17,7 @@ Output includes a file named `plot_template_updated.xcf` with the `.xcf` extensi
 4 points · MUST-PASS · format_gate
 
 4
-`Thermal_Stability_Assessment.pdf` is exactly one page at a body text size that remains legible at normal zoom.
+`Thermal_Stability_Assessment.pdf` is exactly one page.
 4 points · REGULAR · format_gate
 
 5
@@ -45,7 +45,7 @@ The peak table in `Thermal_Stability_Assessment.pdf` reports each of the four ma
 8 points · REGULAR · correctness
 
 11
-`Thermal_Stability_Assessment.pdf` gives the same cause for the post-adsorption peak-temperature change as the corresponding expected file and frames its certainty as the corresponding expected file does.
+`Thermal_Stability_Assessment.pdf` discusses a cause for the post-adsorption peak-temperature change and frames the certainty of that cause as the corresponding expected file does, however worded.
 6 points · REGULAR · correctness
 
 12
@@ -65,7 +65,7 @@ The plot in `Thermal_Stability_Assessment.pdf` uses the same chart title, the sa
 6 points · REGULAR · correctness
 
 16
-The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, reports CTSAgn's Cost ($/kg) and Cost ($/g) cells each within ±0.5% of the corresponding expected-file cells, and matches the corresponding expected-file cells exactly for CTSAgn's Capacity (mg/g) and for the four benchmark adsorbents' Cost ($/kg), Cost ($/g) and Capacity (mg/g).
+The benchmark table in `Adsorbent_Cost_Comparison.docx` has the five adsorbents each on its own row under the same six column headers and units as the corresponding expected file, reports CTSAgn's Cost ($/kg) and Cost ($/g) cells each within ±0.5% of the corresponding expected-file cells, and matches the corresponding expected-file cells in value for CTSAgn's Capacity (mg/g) and for the four benchmark adsorbents' Cost ($/kg), Cost ($/g) and Capacity (mg/g).
 20 points · REGULAR · correctness
 
 17
