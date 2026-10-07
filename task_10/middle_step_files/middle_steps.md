@@ -2,17 +2,17 @@
 
 ## compute_answer_key.py
 
-Reads the nine input files in `task_10/initial_files` and computes every value that appears in the two documents: the four peak temperatures and rates, the rate ratios, the 5% mass-loss ceiling, and the cost, loss-case and break-even figures. Run it from the folder that contains `task_10`.
+Reads the input files `CTS.txt`, `Agn.txt`, `CTSAgn.xlsx`, `CTSAgn_After.xlsx` and `CTSAgn_batch_economics.csv` from the folder it is run in, and computes every value that appears in the two documents: the four peak temperatures and rates, the rate ratios, the 5% mass-loss ceiling, and the cost, loss-case and break-even figures.
 
 ```python
 """Recompute every graded value for the CTSAgn task from the input files.
 
-Run from the repo root:  python3 -I task_10/answer_key/compute_answer_key.py
-Reads the input files in task_10/initial_files.
+Run it in the folder that holds the input files:  python3 compute_answer_key.py
+Reads CTS.txt, Agn.txt, CTSAgn.xlsx, CTSAgn_After.xlsx and CTSAgn_batch_economics.csv from the current folder.
 """
 import csv, os, json, numpy as np, openpyxl
 
-IN = "task_10/initial_files"
+IN = "."
 def p(name): return os.path.join(IN, name)
 
 def load_txt(path):
@@ -95,17 +95,18 @@ print(json.dumps(out, indent=2, default=float))
 
 ## make_plot.py
 
-Draws `plot.png`, the plot placed in the PDF. It reads `CTSAgn.xlsx` and `CTSAgn_After.xlsx` from the `initial_files` folder next to it, rescales the derivative-weight signal to per cent of the mass at 150 °C, and writes `plot.png` beside the script. Needs Python 3 with matplotlib, numpy and openpyxl.
+Draws `plot.png`, the plot placed in the PDF. It reads `CTSAgn.xlsx` and `CTSAgn_After.xlsx` from the folder it is run in, rescales the derivative-weight signal to per cent of the mass at 150 °C, and writes `plot.png` to the same folder. Needs Python 3 with matplotlib, numpy and openpyxl.
 
 ```python
 """Draws the plot used in Thermal_Stability_Assessment.pdf.
 Rates are the instrument derivative-weight signal rescaled to per cent of the 150 C mass per C
 (the lab note's rate basis). Template styling: title/axis text #15295d, traces c91d1d (as made) and 277534 (post-adsorption).
-Run: python3 make_plot.py [height_cm]   (default 7.0 cm, width 16.59 cm = text width). Writes plot.png next to this file.
+Run it in the folder that holds CTSAgn.xlsx and CTSAgn_After.xlsx:  python3 make_plot.py [height_cm]
+(default height 7.0 cm, width 16.59 cm = text width). Writes plot.png to the current folder.
 """
 import sys, pathlib, numpy as np, openpyxl, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
-HERE=pathlib.Path(__file__).resolve().parent; INP=HERE.parent/"initial_files"; H=float(sys.argv[1]) if len(sys.argv)>1 else 7.0
+HERE=pathlib.Path.cwd(); INP=HERE; H=float(sys.argv[1]) if len(sys.argv)>1 else 7.0
 def lx(p):
     ws=openpyxl.load_workbook(p,data_only=True).active
     return np.array([r for r in ws.iter_rows(values_only=True) if r[0] is not None and all(isinstance(x,(int,float)) for x in r)],float)
