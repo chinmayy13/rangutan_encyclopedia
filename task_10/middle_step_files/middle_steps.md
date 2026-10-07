@@ -1,15 +1,8 @@
-# Middle steps: how the three expected files were made
+# Files used to create the expected files
 
-Upload these two files together: `middle_steps.md` (this document: all scripts, sources and commands) and `plot.png` (the image drawn in step 2 and placed in the PDF). Nothing else was used to create the expected files apart from the task's own input files.
+## compute_answer_key.py
 
-| Output | Made from | Step |
-|---|---|---|
-| `Thermal_Stability_Assessment.pdf` | `plot.png` + the page text in `tsa.html`, exported by LibreOffice Writer | 2, 3 |
-| `Adsorbent_Cost_Comparison.docx` | the text and table in `acc.html`, converted by LibreOffice Writer, then two edits inside the file | 4 |
-| `plot_template_updated.xcf` | kept from the earlier version of this task (see step 5) | 5 |
-
-## Step 1. Compute every graded value from the input files
-The values in both documents come from this script. It reads the nine input files, and asserts that the CSV cost lines add up to each batch's stated total. Run from the repository root.
+Reads the nine input files in `task_10/initial_files` and computes every value that appears in the two documents: the four peak temperatures and rates, the rate ratios, the 5% mass-loss ceiling, and the cost, loss-case and break-even figures. Run it from the folder that contains `task_10`.
 
 ```python
 """Recompute every graded value for the CTSAgn task from the input files.
@@ -100,21 +93,9 @@ out["cost"]["trap_total_incl_depreciation"] = dict(released=sum(tot(b) for b in 
 print(json.dumps(out, indent=2, default=float))
 ```
 
-Key results (150 °C rate basis, cash-cost basis):
+## make_plot.py
 
-| Item | Value |
-|---|---|
-| Peak (°C) and rate (%/°C), chitosan | 305.2 / 1.120 |
-| Peak and rate, alginate | 246.8 / 1.270 |
-| Peak and rate, CTSAgn as made | 241.4 / 0.129 |
-| Peak and rate, CTSAgn post-adsorption | 237.0 / 0.130 |
-| Recovered-material ceiling (5% loss of the 150 °C mass) | 195.4 °C, margin over the 175 °C assumption 20.4 °C |
-| CTSAgn released cash cost | $2,146 over 50 kg = $42.92/kg, efficiency 3494.9 mg/$ |
-| Manufacturing-loss case | $3,093 over 50 kg = $61.86/kg, efficiency 2424.8 mg/$ |
-| Break-even headroom vs rejected-batch cash cost | $354 vs $947 |
-
-## Step 2. Draw the plot (`plot.png`)
-Python 3 with matplotlib, numpy and openpyxl. Rates are the instrument's derivative-weight signal rescaled to per cent of the mass at 150 °C. Styling follows `plot_template.xcf` (title and axis text `#15295d`, as-made trace `#c91d1d`, post-adsorption trace `#277534`). The y-axis is extended to 0.35 because the post-adsorption water step reaches 0.318. Width is 16.59 cm (the page text width); height 7.0 cm.
+Draws `plot.png`, the plot placed in the PDF. It reads `CTSAgn.xlsx` and `CTSAgn_After.xlsx` from the `initial_files` folder next to it, rescales the derivative-weight signal to per cent of the mass at 150 °C, and writes `plot.png` beside the script. Needs Python 3 with matplotlib, numpy and openpyxl.
 
 ```python
 """Draws the plot used in Thermal_Stability_Assessment.pdf.
@@ -152,8 +133,9 @@ for t_ in leg.get_texts(): t_.set_color(NAVY)
 fig.tight_layout(pad=0.4); fig.savefig(HERE/"plot.png"); print("peaks",res, "fig %.2f x %.2f cm"%(W_IN*2.54,H))
 ```
 
-## Step 3. Thermal_Stability_Assessment.pdf
-`tsa.html` (below) is imported by LibreOffice as a Writer document, with `plot.png` in the same folder, and exported to PDF. US Letter, 2.5 cm margins, 10 pt text.
+## tsa.html
+
+The content of `Thermal_Stability_Assessment.pdf`: the heading, the peak table, `plot.png` and the four paragraphs. Open it in LibreOffice Writer with `plot.png` in the same folder and export to PDF, or run:
 
 ```bash
 soffice --headless --convert-to pdf --infilter="HTML (StarWriter)" tsa.html
@@ -180,14 +162,15 @@ th{background:#dbe3f0}
 </body></html>
 ```
 
-## Step 4. Adsorbent_Cost_Comparison.docx
-`acc.html` (below) is converted to Word format by LibreOffice Writer.
+## acc.html
+
+The content of `Adsorbent_Cost_Comparison.docx`: the benchmark table and the Notes, Manufacturing-loss case, Break-even and Adoption sections. Convert it to Word format with LibreOffice Writer:
 
 ```bash
 soffice --headless --convert-to "docx:MS Word 2007 XML" --infilter="HTML (StarWriter)" acc.html
 ```
 
-Two edits were then made inside the resulting file (word/styles.xml and word/document.xml): the left and right indent (200 twips) was removed from the Heading 2 style so headings align with the body text, and the page margins were set to 1419 twips (2.503 cm) on all four sides.
+After converting, two small edits were made inside the .docx: the left and right indent (200 twips) was removed from the Heading 2 style in `word/styles.xml`, so the headings line up with the body text, and the page margins in `word/document.xml` were set to 1419 twips (2.503 cm) on all four sides.
 
 ```html
 <html><head><meta charset="utf-8"><title>Adsorbent cost comparison</title><style>
@@ -219,5 +202,6 @@ p{margin:0 0 5pt} .s{font-style:italic}
 </body></html>
 ```
 
-## Step 5. plot_template_updated.xcf
-Kept from the earlier version of this task. It was checked against `plot_template.xcf`: only the two trace lines and their legend swatches differ (216 pixels, amber to c91d1d and blue to 277534), and the navy text pixels are identical.
+## plot_template_updated.xcf
+
+Kept from the earlier version of this task. Compared with `plot_template.xcf`, only the two trace lines and their legend swatches differ (amber to `c91d1d`, blue to `277534`); the text is unchanged.
